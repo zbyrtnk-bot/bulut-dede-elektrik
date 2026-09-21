@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bulut Dede Elektrik; Kuzey Kıbrıs'ta güneş enerjisi, elektrik tesisatı, pano ve 7/24 acil servis için keşif, teklif ve uygulama desteği sunar.">
+  <meta name="theme-color" content="#020617">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; upgrade-insecure-requests">
+  <link rel="icon" type="image/png" href="bulut-dede-logo.png">
+  <title>Bulut Dede Elektrik | Kuzey Kıbrıs Enerji Çözümleri</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { color-scheme: dark; }
+    :root { --wire-yellow: #facc15; --wire-red: #ef4444; --wire-brown: #92400e; }
+    html { scroll-behavior: smooth; }
+    body { position: relative; isolation: isolate; min-height: 100vh; background-color: #071329; background-image: radial-gradient(circle at 8% 12%, rgba(250, 204, 21, .15), transparent 25%), radial-gradient(circle at 92% 18%, rgba(56, 189, 248, .18), transparent 27%), radial-gradient(circle at 48% 88%, rgba(239, 68, 68, .1), transparent 30%), linear-gradient(135deg, #08152f 0%, #102344 48%, #0b1833 100%); }
+    body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .22; background-image: linear-gradient(120deg, transparent 0 42%, rgba(250, 204, 21, .2) 43%, transparent 44% 100%), linear-gradient(300deg, transparent 0 48%, rgba(56, 189, 248, .16) 49%, transparent 50% 100%); background-size: 360px 360px, 440px 440px; animation: energyDrift 18s ease-in-out infinite alternate; }
+    @keyframes energyDrift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 1%, 0) scale(1.04); } }
+    .brand-mark { border: 1px solid rgba(148, 163, 184, .35); background: linear-gradient(145deg, rgba(30, 41, 59, .98), rgba(15, 23, 42, .92)); box-shadow: 0 0 24px rgba(250, 204, 21, .12), inset 0 0 18px rgba(239, 68, 68, .06); }
+    .brand-bolt { fill: #fff7b2; filter: drop-shadow(0 0 2px rgba(250, 204, 21, .9)); }
+    .brand-accent { background: linear-gradient(90deg, var(--wire-yellow), var(--wire-red), var(--wire-brown)); }
+    .contact-panel { background: linear-gradient(135deg, rgba(15, 23, 42, .98), rgba(30, 41, 59, .72)); }
+    .hero-main { position: relative; isolation: isolate; overflow: clip; }
+    .hero-main > * { position: relative; z-index: 1; }
+    .hero-main::before { content: ""; position: absolute; inset: 0 0 auto; z-index: 0; height: 560px; pointer-events: none; border-radius: 0 0 3rem 3rem; background-image: linear-gradient(90deg, rgba(7, 19, 41, .12) 0%, rgba(7, 19, 41, .28) 45%, rgba(7, 19, 41, .72) 100%), linear-gradient(180deg, rgba(7, 19, 41, .14) 0%, rgba(7, 19, 41, .82) 94%), url("technician-electrical-hero.png"); background-position: center, center, 70% 16%; background-size: cover, cover, cover; background-repeat: no-repeat; box-shadow: inset 0 -80px 80px rgba(7, 19, 41, .34); }
+    @media (max-width: 640px) { .hero-main::before { height: 530px; background-position: center, center, 100% 12%; background-image: linear-gradient(90deg, rgba(7, 19, 41, .48) 0%, rgba(7, 19, 41, .42) 52%, rgba(7, 19, 41, .64) 100%), linear-gradient(180deg, rgba(7, 19, 41, .16) 0%, rgba(7, 19, 41, .84) 94%), url("technician-electrical-hero.png"); } }
+    .service-panel { scroll-margin-top: 92px; }
+    .service-panel.is-opening { animation: servicePanelOpen .32s ease both; }
+    .service-calculator { scroll-margin-top: 92px; }
+    .service-calculator.is-opening { animation: servicePanelOpen .32s ease both; }
+    @keyframes servicePanelOpen { from { opacity: .15; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .tab-btn { min-height: 58px; }
+    .tab-btn[aria-selected="true"] { background: #eab308; color: #020617; box-shadow: 0 8px 22px rgba(234, 179, 8, .2); }
+    .tab-btn[aria-selected="false"] { color: #c0cee2; }
+    .tab-btn[aria-selected="false"]:hover { color: #fff; background: rgba(65, 95, 145, .45); }
+    .service-panel { box-shadow: 0 20px 60px rgba(14, 165, 233, .09); }
+    .range-track { accent-color: #facc15; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen font-sans text-slate-100 selection:bg-yellow-400 selection:text-slate-950">
+  <header class="sticky top-0 z-50 border-b border-slate-700/80 bg-[#0c1832]/90 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl flex-nowrap items-center gap-4 px-4 py-4 sm:px-6">
+      <a id="home-link" href="#top" class="flex min-w-0 shrink-0 items-center gap-3" aria-label="Bulut Dede Elektrik ana sayfa">
+        <span class="brand-mark flex h-11 w-11 items-center justify-center rounded-xl" aria-hidden="true">
+          <img src="bulut-dede-logo.png" class="h-9 w-9 object-contain" alt="" aria-hidden="true">
+        </span>
+        <span>
+          <strong class="block text-lg font-extrabold leading-none tracking-[.16em] text-white sm:text-xl">BULUT DEDE</strong>
+          <span class="mt-1 block text-[10px] font-bold uppercase tracking-[.24em] text-yellow-400 sm:text-xs" data-i18n="brandTagline">Elektrik &amp; Enerji</span>
+          <span class="brand-accent mt-2 block h-0.5 w-16 rounded-full opacity-90"></span>
+        </span>
+      </a>
+      <div class="ml-auto flex shrink-0 items-center justify-end gap-2 sm:gap-3">
+        <button id="language-toggle" type="button" onclick="toggleLanguage()" aria-label="Switch to English" class="rounded-lg border border-slate-600/80 bg-[#152544] px-2.5 py-2 text-xs font-black tracking-wider text-slate-100 transition hover:border-yellow-400 hover:text-yellow-300 sm:px-3">EN</button>
+        <a id="emergency-link" href="tel:+905338712332" aria-label="7/24 acil çağrı +90 533 871 23 32" class="flex items-center gap-2 rounded-lg border border-slate-600/80 bg-[#152544] px-2.5 py-2 text-xs font-semibold text-slate-200 transition hover:border-slate-400 hover:bg-[#1d3154] sm:px-4 sm:text-sm">
+          <i class="fa-solid fa-phone text-yellow-400" aria-hidden="true"></i>
+          <span class="hidden sm:inline" data-i18n="emergencyCall">7/24 Acil Çağrı</span>
+          <span class="hidden xl:inline text-slate-400">+90 533 871 23 32</span>
+        </a>
+        <a id="header-whatsapp" href="https://wa.me/905338712332?text=Merhaba%20Bulut%20Dede%20Elektrik%2C%20servis%20talep%20ediyorum." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Hattı +90 533 871 23 32" class="flex items-center gap-2 rounded-lg bg-yellow-500 px-2.5 py-2 text-xs font-bold text-slate-950 shadow-lg shadow-yellow-500/20 transition hover:bg-yellow-400 sm:px-5 sm:text-sm">
+          <i class="fa-brands fa-whatsapp text-base sm:text-lg" aria-hidden="true"></i>
+          <span class="hidden sm:inline" data-i18n="whatsappLine">WhatsApp Hattı</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="hero-main mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-10 px-4 py-8 sm:px-6 lg:gap-12 lg:py-14">
+    <section id="services" class="mx-auto w-full max-w-4xl space-y-6" aria-labelledby="hero-title">
+      <div>
+        <span class="mb-4 inline-block rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1.5 text-xs font-semibold text-yellow-400" data-i18n="heroBadge">Kuzey Kıbrıs genelinde anahtar teslim çözümler</span>
+        <h1 id="hero-title" class="max-w-xl text-3xl font-black tracking-tight text-white sm:text-5xl sm:leading-[1.05]"><span data-i18n="heroTitleLead">Standartların ötesinde</span><br><span class="bg-gradient-to-r from-yellow-300 via-red-400 to-amber-700 bg-clip-text text-transparent" data-i18n="heroTitleAccent">güvenli ve akıllı güç.</span></h1>
+        <p class="mt-4 max-w-xl text-sm leading-7 text-slate-400 sm:text-base" data-i18n="heroDescription">Evden sanayiye; arıza müdahalesinden güneş enerjisi sistemlerine kadar elektrik ihtiyaçlarınız için keşif, teklif ve uygulama desteği sunuyoruz.</p>
+      </div>
+
+      <div class="flex items-center justify-between gap-4 px-1">
+        <h2 class="text-sm font-bold text-white sm:text-base" data-i18n="servicePrompt">Hizmet alanını seçin</h2>
+        <span class="text-xs text-slate-500" data-i18n="detailsHint">Detaylar aşağıda açılır</span>
+      </div>
+      <div id="service-tabs" class="grid grid-cols-2 gap-2 rounded-2xl border border-slate-700/80 bg-[#142443]/90 p-1.5" role="tablist" aria-label="Hizmet kategorileri">
+        <button type="button" onclick="setTab('solar', true)" id="tab-solar" class="tab-btn flex items-center gap-2 rounded-xl px-3 py-3 text-left text-xs font-bold transition sm:gap-3 sm:px-4" role="tab" aria-controls="tab-content-card" aria-selected="true" aria-expanded="true"><i class="fa-solid fa-solar-panel text-base" aria-hidden="true"></i><span data-i18n="serviceSolar">Güneş Enerjisi (GES)</span></button>
+        <button type="button" onclick="setTab('tesisat', true)" id="tab-tesisat" class="tab-btn flex items-center gap-2 rounded-xl px-3 py-3 text-left text-xs font-bold transition sm:gap-3 sm:px-4" role="tab" aria-controls="tab-content-card" aria-selected="false" aria-expanded="false"><i class="fa-solid fa-bolt text-base" aria-hidden="true"></i><span data-i18n="serviceInstall">Konut &amp; Akıllı Tesisat</span></button>
+        <button type="button" onclick="setTab('pano', true)" id="tab-pano" class="tab-btn flex items-center gap-2 rounded-xl px-3 py-3 text-left text-xs font-bold transition sm:gap-3 sm:px-4" role="tab" aria-controls="tab-content-card" aria-selected="false" aria-expanded="false"><i class="fa-solid fa-industry text-base" aria-hidden="true"></i><span data-i18n="servicePanel">Pano &amp; Kompanzasyon</span></button>
+        <button type="button" onclick="setTab('ariza', true)" id="tab-ariza" class="tab-btn flex items-center gap-2 rounded-xl px-3 py-3 text-left text-xs font-bold transition sm:gap-3 sm:px-4" role="tab" aria-controls="tab-content-card" aria-selected="false" aria-expanded="false"><i class="fa-solid fa-kit-medical text-base" aria-hidden="true"></i><span data-i18n="serviceEmergency">7/24 Acil Arıza</span></button>
+      </div>
+
+      <article id="tab-content-card" class="service-panel min-h-[220px] space-y-4 rounded-2xl border border-slate-700/80 bg-[#142443]/95 p-5 shadow-xl" role="tabpanel" aria-live="polite" aria-hidden="false" tabindex="-1"></article>
+
+      <section id="calculator-shell" hidden class="service-calculator rounded-2xl border border-slate-700/80 bg-gradient-to-br from-[#182a4a] to-[#0d1932]/90 p-5" aria-labelledby="simulator-title">
+        <div class="mb-3 flex items-center justify-between gap-4">
+          <label id="simulator-title" for="bill-slider" class="text-xs font-bold uppercase tracking-wider text-slate-400" data-i18n="billLabel">Aylık ortalama elektrik faturanız</label>
+          <output id="bill-display" for="bill-slider" class="shrink-0 text-sm font-black text-yellow-400">6.000 TL</output>
+        </div>
+        <input id="bill-slider" type="range" min="2000" max="35000" step="500" value="6000" oninput="calculateSavings(this.value)" class="range-track h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-800">
+        <div class="mt-4 grid grid-cols-2 gap-3 border-t border-slate-800 pt-4">
+          <div><span class="block text-xs text-slate-400" data-i18n="systemLabel">Önerilen GES gücü</span><strong id="system-kwp" class="mt-1 block text-base font-extrabold text-white">5,5 kWp çift yönlü</strong></div>
+          <div><span class="block text-xs text-slate-400" data-i18n="yearlyLabel">Yıllık tahmini kazanç</span><strong id="yearly-savings" class="mt-1 block text-base font-extrabold text-emerald-400">~62.000 TL</strong></div>
+        </div>
+      </section>
+    </section>
+
+  </main>
+
+  <section id="contact" class="border-t border-slate-700/80 bg-[#0a1730]/90 px-4 py-8 sm:px-6 sm:py-10" aria-labelledby="contact-title">
+    <div class="contact-panel mx-auto flex max-w-7xl flex-col gap-6 rounded-2xl border border-slate-800 p-5 shadow-2xl shadow-slate-950/40 sm:flex-row sm:items-center sm:justify-between sm:p-7">
+      <div class="max-w-2xl">
+        <span class="text-xs font-bold uppercase tracking-[.18em] text-yellow-400" data-i18n="contactEyebrow">Servis ve keşif talebi</span>
+        <h2 id="contact-title" class="mt-2 text-2xl font-black tracking-tight text-white sm:text-3xl" data-i18n="contactTitle">Elektrik ihtiyacınızı birlikte netleştirelim.</h2>
+        <p class="mt-2 text-sm leading-6 text-slate-400" data-i18n="contactDescription">Kuzey Kıbrıs genelinde hizmet almak istediğiniz konuyu WhatsApp üzerinden iletin veya 7/24 acil çağrı hattını kullanın.</p>
+        <p class="mt-3 max-w-2xl text-xs leading-5 text-slate-500" data-i18n="complianceNote">Şebekeye bağlı güneş enerjisi sistemlerinde proje, başvuru ve bağlantı süreçleri; KKTC mevzuatı, Kıb-Tek şartları ve yetkili uzmanların koordinasyonuyla yürütülür. Nihai kapsam keşif ve resmi onaylara göre belirlenir.</p>
+      </div>
+      <div class="flex shrink-0 flex-wrap gap-2">
+        <a id="contact-whatsapp" href="https://wa.me/905338712332?text=Merhaba%20Bulut%20Dede%20Elektrik%2C%20servis%20talep%20ediyorum." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg bg-yellow-500 px-4 py-3 text-sm font-bold text-slate-950 transition hover:bg-yellow-400"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i><span data-i18n="whatsappWrite">WhatsApp'tan yaz</span></a>
+        <a href="tel:+905338712332" aria-label="7/24 ara +90 533 871 23 32" class="inline-flex items-center gap-2 rounded-lg border border-slate-600 bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:border-yellow-400"><i class="fa-solid fa-phone text-yellow-400" aria-hidden="true"></i><span data-i18n="call24">7/24 ara</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-slate-700/80 bg-[#0a1730]/85">
+    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <span>© <span id="year"></span> Bulut Dede <span data-i18n="footerBusiness">Elektrik &amp; Enerji</span></span>
+      <div class="flex items-center gap-4"><a href="#services" class="transition hover:text-slate-300" data-i18n="footerServices">Hizmetler</a><a href="#contact" class="transition hover:text-slate-300" data-i18n="footerContact">İletişim</a><span data-i18n="footerDescription">Kuzey Kıbrıs elektrik ve enerji çözümleri</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      tr: {
+        brandTagline: 'Elektrik & Enerji', emergencyCall: '7/24 Acil Çağrı', whatsappLine: 'WhatsApp Hattı', heroBadge: 'Kuzey Kıbrıs genelinde keşif ve uygulama desteği', heroTitleLead: 'Standartların ötesinde', heroTitleAccent: 'güvenli ve akıllı güç.', heroDescription: 'Evden sanayiye; arıza müdahalesinden güneş enerjisi sistemlerine kadar elektrik ihtiyaçlarınız için keşif, teklif ve uygulama desteği sunuyoruz.', servicePrompt: 'Hizmet alanını seçin', detailsHint: 'Detaylar aşağıda açılır', serviceSolar: 'Güneş Enerjisi (GES)', serviceInstall: 'Konut & Akıllı Tesisat', servicePanel: 'Pano & Kompanzasyon', serviceEmergency: '7/24 Acil Arıza', billLabel: 'Aylık ortalama elektrik faturanız', systemLabel: 'Önerilen GES gücü', yearlyLabel: 'Yıllık tahmini kazanç', calculatorOpen: 'Fatura ve GES tasarruf hesaplayıcısını aç', calculatorHide: 'Fatura ve GES tasarruf hesaplayıcısını gizle', whatsappInfo: "WhatsApp'tan bilgi al", callNow: 'Hemen ara', contactEyebrow: 'Servis ve keşif talebi', contactTitle: 'Elektrik ihtiyacınızı birlikte netleştirelim.', contactDescription: 'Kuzey Kıbrıs genelinde hizmet almak istediğiniz konuyu WhatsApp üzerinden iletin veya 7/24 acil çağrı hattını kullanın.', complianceNote: 'Şebekeye bağlı güneş enerjisi sistemlerinde proje, başvuru ve bağlantı süreçleri; KKTC mevzuatı, Kıb-Tek şartları ve yetkili uzmanların koordinasyonuyla yürütülür. Nihai kapsam keşif ve resmi onaylara göre belirlenir.', whatsappWrite: "WhatsApp'tan yaz", call24: '7/24 ara', footerBusiness: 'Elektrik & Enerji', footerServices: 'Hizmetler', footerContact: 'İletişim', footerDescription: 'Kuzey Kıbrıs elektrik ve enerji çözümleri', pageTitle: 'Bulut Dede Elektrik | Kuzey Kıbrıs Enerji Çözümleri', metaDescription: "Bulut Dede Elektrik; Kuzey Kıbrıs'ta güneş enerjisi, elektrik tesisatı, pano ve 7/24 acil servis için keşif, teklif ve uygulama desteği sunar."
+      },
+      en: {
+        brandTagline: 'Electrical & Energy', emergencyCall: '24/7 Emergency Call', whatsappLine: 'WhatsApp Support', heroBadge: 'Survey and installation support across North Cyprus', heroTitleLead: 'Beyond the standard', heroTitleAccent: 'safe and smart power.', heroDescription: 'From homes to industry, we provide survey, quotation and installation support for your electrical needs, including solar energy systems.', servicePrompt: 'Choose a service area', detailsHint: 'Details open below', serviceSolar: 'Solar Energy (PV)', serviceInstall: 'Home & Smart Installation', servicePanel: 'Panels & Power Factor Correction', serviceEmergency: '24/7 Emergency Service', billLabel: 'Your average monthly electricity bill', systemLabel: 'Recommended PV capacity', yearlyLabel: 'Estimated annual savings', calculatorOpen: 'Open the GES savings calculator', calculatorHide: 'Hide the GES savings calculator', whatsappInfo: 'Get info on WhatsApp', callNow: 'Call now', contactEyebrow: 'Service and site survey request', contactTitle: "Let's clarify your electrical needs together.", contactDescription: 'Tell us what you need anywhere in North Cyprus through WhatsApp, or use the 24/7 emergency call line.', complianceNote: 'For grid-connected solar systems, project, application and connection processes are coordinated with North Cyprus requirements, KIB-TEK conditions and authorized professionals. Final scope depends on the site survey and official approvals.', whatsappWrite: 'Message us on WhatsApp', call24: 'Call 24/7', footerBusiness: 'Electrical & Energy', footerServices: 'Services', footerContact: 'Contact', footerDescription: 'North Cyprus electrical and energy solutions', pageTitle: 'Bulut Dede Electrical | North Cyprus Energy Solutions', metaDescription: 'Bulut Dede Electrical provides survey, quotation and installation support for solar energy, electrical installations, panels and emergency service across North Cyprus.'
+      }
+    };
+
+    const serviceData = {
+      tr: {
+        solar: { title: 'Güneş Enerjisi (GES) & Şebeke Entegrasyonu', desc: 'Kuzey Kıbrıs güneş potansiyelini elektriğe dönüştürün. On-grid/off-grid bataryalı sistemler için keşif, teklif ve uygulama desteği; resmi süreçlerde yetkili uzmanlarla koordinasyon.', bullets: ['Kıb-Tek başvuru ve izin süreci koordinasyonu', 'Lityum bataryalı gece depolama', 'Yüksek verimli half-cut paneller'], icon: 'fa-solar-panel' },
+        tesisat: { title: 'Villa, Konut & Akıllı Ev Altyapısı', desc: 'Sıfırdan kaba ve ince tesisat, akıllı aydınlatma otomasyonları ve şebeke dalgalanmalarına karşı koruma sistemleri.', bullets: ['Halojensiz, yanmaz borulama', 'Akıllı telefon kontrollü aydınlatma', 'Bölgesel yük dağıtımı ve topraklama'], icon: 'fa-bolt' },
+        pano: { title: 'Ana Dağıtım Panoları & Kompanzasyon', desc: 'İşletmeler, oteller ve siteler için reaktif ceza önleyici kompanzasyon panoları, jeneratör transferi ve regülatör montajı.', bullets: ['Schneider / Siemens şalt malzemeleri', 'Termal kamera ile aşırı ısınma taraması', 'Periyodik bakım ve ölçüm raporu'], icon: 'fa-industry' },
+        ariza: { title: '7/24 Ada Geneli Acil Arıza Servisi', desc: 'Elektrik kesintileri, yanan sigortalar, faz kayıpları ve ani voltaj düşmelerine karşı mobil servis ekibiyle hızlı müdahale.', bullets: ['Ortalama 30–45 dakika ulaşım', 'Konum bildirimiyle doğrudan ekip yönlendirme', 'Garantili ve belgeli tamir'], icon: 'fa-kit-medical' }
+      },
+      en: {
+        solar: { title: 'Solar Energy (PV) & Grid Integration', desc: "Turn North Cyprus's solar potential into electricity. Survey, quotation and installation support for on-grid/off-grid battery systems, with coordination by authorized professionals for official processes.", bullets: ['Coordination of KIB-TEK application and permit processes', 'Lithium battery night storage', 'High-efficiency half-cut panels'], icon: 'fa-solar-panel' },
+        tesisat: { title: 'Villa, Home & Smart Home Infrastructure', desc: 'Complete rough-in and finish electrical work, smart lighting automation and protection against grid surges and voltage fluctuations.', bullets: ['Halogen-free, fire-resistant conduit', 'Smartphone-controlled lighting', 'Local load distribution and grounding'], icon: 'fa-bolt' },
+        pano: { title: 'Main Distribution Panels & Power Factor Correction', desc: 'Power factor correction panels, automatic generator transfer and regulator installation for businesses, hotels and residential sites.', bullets: ['Schneider / Siemens switchgear', 'Thermal-camera overheating inspection', 'Periodic maintenance and measurement reports'], icon: 'fa-industry' },
+        ariza: { title: '24/7 Island-Wide Emergency Electrical Service', desc: 'Fast mobile-service response for power cuts, blown fuses, phase loss and sudden voltage drops.', bullets: ['Average 30–45 minute response', 'Direct team dispatch from your location', 'Guaranteed, documented repairs'], icon: 'fa-kit-medical' }
+      }
+    };
+
+    let currentLanguage = 'tr';
+    let activeTab = 'solar';
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>\"']/g, (character) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '\"': '&quot;',
+        "'": '&#39;'
+      })[character]);
+    }
+
+    function setTab(key, reveal = false) {
+      const item = serviceData[currentLanguage][key];
+      if (!item) return;
+      activeTab = key;
+      const card = document.getElementById('tab-content-card');
+      const languageText = translations[currentLanguage];
+      const whatsappMessage = currentLanguage === 'en' ? `Hello Bulut Dede Electrical, I would like information about ${item.title}.` : `Merhaba Bulut Dede Elektrik, ${item.title} hakkında bilgi almak istiyorum.`;
+      const calculatorShell = document.getElementById('calculator-shell');
+      if (calculatorShell) {
+        calculatorShell.hidden = true;
+        calculatorShell.classList.remove('is-opening');
+      }
+      document.querySelectorAll('.tab-btn').forEach((button) => {
+        const active = button.id === `tab-${key}`;
+        button.setAttribute('aria-selected', active ? 'true' : 'false');
+        button.setAttribute('aria-expanded', active ? 'true' : 'false');
+      });
+      card.classList.remove('is-opening');
+      void card.offsetWidth;
+      const safeIcon = /^[a-z0-9-]+$/i.test(item.icon) ? item.icon : 'fa-bolt';
+      const safeTitle = escapeHtml(item.title);
+      const safeDescription = escapeHtml(item.desc);
+      const safeBullets = item.bullets.map((bullet) => escapeHtml(bullet));
+      const safeWhatsappInfo = escapeHtml(languageText.whatsappInfo);
+      const safeCallNow = escapeHtml(languageText.callNow);
+      card.innerHTML = `<div class="flex items-center gap-3"><div class="flex h-10 w-10 items-center justify-center rounded-lg border border-yellow-500/20 bg-yellow-500/10 text-lg text-yellow-400"><i class="fa-solid ${safeIcon}" aria-hidden="true"></i></div><h2 class="text-base font-bold text-white">${safeTitle}</h2></div><p class="text-sm leading-6 text-slate-300">${safeDescription}</p><ul class="space-y-2 border-t border-slate-800 pt-3">${safeBullets.map((bullet) => `<li class="flex items-center gap-2 text-sm text-slate-400"><i class="fa-solid fa-check text-xs text-yellow-400" aria-hidden="true"></i>${bullet}</li>`).join('')}</ul><div class="flex flex-wrap gap-2 border-t border-slate-800 pt-3"><a href="https://wa.me/905338712332?text=${encodeURIComponent(whatsappMessage)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg bg-yellow-500 px-3 py-2 text-xs font-bold text-slate-950 transition hover:bg-yellow-400"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>${safeWhatsappInfo}</a><a href="tel:+905338712332" class="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-slate-500 hover:bg-slate-800"><i class="fa-solid fa-phone text-yellow-400" aria-hidden="true"></i>${safeCallNow}</a></div>`;
+      if (key === 'solar') {
+        card.insertAdjacentHTML('beforeend', '<button type="button" onclick="toggleCalculator(this)" aria-controls="calculator-shell" aria-expanded="false" class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-yellow-500/40 bg-yellow-500/10 px-4 py-3 text-sm font-bold text-yellow-300 transition hover:bg-yellow-500/20"><i class="fa-solid fa-calculator" aria-hidden="true"></i><span data-label>' + languageText.calculatorOpen + '</span><i data-icon class="fa-solid fa-chevron-down text-xs" aria-hidden="true"></i></button>');
+      }
+      card.setAttribute('aria-hidden', 'false');
+      card.classList.add('is-opening');
+      if (reveal && window.matchMedia('(max-width: 767px)').matches) {
+        window.requestAnimationFrame(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+      }
+    }
+
+    function toggleCalculator(trigger) {
+      const shell = document.getElementById('calculator-shell');
+      if (!shell) return;
+      const opening = shell.hidden;
+      shell.hidden = !opening;
+      shell.classList.remove('is-opening');
+      const languageText = translations[currentLanguage];
+      trigger.setAttribute('aria-expanded', String(opening));
+      trigger.querySelector('[data-label]').textContent = opening ? languageText.calculatorHide : languageText.calculatorOpen;
+      trigger.querySelector('[data-icon]').className = opening ? 'fa-solid fa-chevron-up text-xs' : 'fa-solid fa-chevron-down text-xs';
+      if (opening) {
+        void shell.offsetWidth;
+        shell.classList.add('is-opening');
+        if (window.matchMedia('(max-width: 767px)').matches) window.requestAnimationFrame(() => shell.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+      }
+    }
+
+    function calculateSavings(value) {
+      const bill = Number(value);
+      const locale = currentLanguage === 'en' ? 'en-US' : 'tr-TR';
+      const decimal = currentLanguage === 'en' ? '.' : ',';
+      const direction = currentLanguage === 'en' ? 'bi-directional' : 'çift yönlü';
+      document.getElementById('bill-display').textContent = `${bill.toLocaleString(locale)} TL`;
+      const kwp = (bill / 1100).toFixed(1).replace('.', decimal);
+      const yearly = Math.round(bill * 12 * 0.88);
+      document.getElementById('system-kwp').textContent = `${kwp} kWp ${direction}`;
+      document.getElementById('yearly-savings').textContent = `~${yearly.toLocaleString(locale)} TL`;
+    }
+
+    function applyLanguage(language) {
+      currentLanguage = language === 'en' ? 'en' : 'tr';
+      const copy = translations[currentLanguage];
+      document.documentElement.lang = currentLanguage;
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const value = copy[element.dataset.i18n];
+        if (value) element.textContent = value;
+      });
+      document.title = copy.pageTitle;
+      document.querySelector('meta[name="description"]').setAttribute('content', copy.metaDescription);
+      document.getElementById('language-toggle').textContent = currentLanguage === 'tr' ? 'EN' : 'TR';
+      document.getElementById('language-toggle').setAttribute('aria-label', currentLanguage === 'tr' ? 'Switch to English' : 'Türkçeye geç');
+      document.getElementById('home-link').setAttribute('aria-label', currentLanguage === 'en' ? 'Bulut Dede Electrical home page' : 'Bulut Dede Elektrik ana sayfa');
+      document.getElementById('emergency-link').setAttribute('aria-label', copy.emergencyCall);
+      document.getElementById('service-tabs').setAttribute('aria-label', copy.servicePrompt);
+      const contactMessage = currentLanguage === 'en' ? 'Hello Bulut Dede Electrical, I would like to request a service.' : 'Merhaba Bulut Dede Elektrik, servis talep ediyorum.';
+      const contactHref = `https://wa.me/905338712332?text=${encodeURIComponent(contactMessage)}`;
+      document.getElementById('contact-whatsapp').href = contactHref;
+      document.getElementById('header-whatsapp').href = contactHref;
+      setTab(activeTab);
+      calculateSavings(document.getElementById('bill-slider').value);
+      try { localStorage.setItem('bulut-dede-language', currentLanguage); } catch (error) { /* storage may be unavailable */ }
+    }
+
+    function toggleLanguage() {
+      applyLanguage(currentLanguage === 'tr' ? 'en' : 'tr');
+    }
+
+    const tabButtons = [...document.querySelectorAll('.tab-btn')];
+    tabButtons.forEach((button, index) => button.addEventListener('keydown', (event) => {
+      if (!['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'].includes(event.key)) return;
+      event.preventDefault();
+      const direction = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1;
+      const next = tabButtons[(index + direction + tabButtons.length) % tabButtons.length];
+      next.focus();
+      next.click();
+    }));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    try { currentLanguage = localStorage.getItem('bulut-dede-language') === 'en' ? 'en' : 'tr'; } catch (error) { currentLanguage = 'tr'; }
+    applyLanguage(currentLanguage);
+  </script>
+</body>
+</html>
