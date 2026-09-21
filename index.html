@@ -15,14 +15,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root { color-scheme: dark; }
-    :root { --wire-yellow: #facc15; --wire-red: #ef4444; --wire-brown: #92400e; }
+    :root { --wire-yellow: #facc15; --wire-amber: #f59e0b; --wire-orange: #f97316; --wire-red: #ef4444; --wire-brown: #92400e; --wire-green: #22c55e; }
     html { scroll-behavior: smooth; }
     body { position: relative; isolation: isolate; min-height: 100vh; background-color: #071329; background-image: radial-gradient(circle at 8% 12%, rgba(250, 204, 21, .15), transparent 25%), radial-gradient(circle at 92% 18%, rgba(56, 189, 248, .18), transparent 27%), radial-gradient(circle at 48% 88%, rgba(239, 68, 68, .1), transparent 30%), linear-gradient(135deg, #08152f 0%, #102344 48%, #0b1833 100%); }
     body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .22; background-image: linear-gradient(120deg, transparent 0 42%, rgba(250, 204, 21, .2) 43%, transparent 44% 100%), linear-gradient(300deg, transparent 0 48%, rgba(56, 189, 248, .16) 49%, transparent 50% 100%); background-size: 360px 360px, 440px 440px; animation: energyDrift 18s ease-in-out infinite alternate; }
     @keyframes energyDrift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 1%, 0) scale(1.04); } }
     .brand-mark { border: 1px solid rgba(148, 163, 184, .35); background: linear-gradient(145deg, rgba(30, 41, 59, .98), rgba(15, 23, 42, .92)); box-shadow: 0 0 24px rgba(250, 204, 21, .12), inset 0 0 18px rgba(239, 68, 68, .06); }
     .brand-bolt { fill: #fff7b2; filter: drop-shadow(0 0 2px rgba(250, 204, 21, .9)); }
-    .brand-accent { background: linear-gradient(90deg, var(--wire-yellow), var(--wire-red), var(--wire-brown)); }
+    .brand-accent { background: linear-gradient(90deg, var(--wire-yellow) 0%, var(--wire-amber) 20%, var(--wire-orange) 40%, var(--wire-red) 60%, var(--wire-brown) 80%, var(--wire-green) 100%); }
     .contact-panel { background: linear-gradient(135deg, rgba(15, 23, 42, .98), rgba(30, 41, 59, .72)); }
     .hero-main { position: relative; isolation: isolate; overflow: clip; }
     .hero-main > * { position: relative; z-index: 1; }
@@ -54,7 +54,7 @@
         <span>
           <strong class="block text-lg font-extrabold leading-none tracking-[.16em] text-white sm:text-xl">BULUT DEDE</strong>
           <span class="mt-1 block text-[10px] font-bold uppercase tracking-[.24em] text-yellow-400 sm:text-xs" data-i18n="brandTagline">Elektrik &amp; Enerji</span>
-          <span class="brand-accent mt-2 block h-0.5 w-16 rounded-full opacity-90"></span>
+          <span class="brand-accent mt-2 block h-0.5 w-24 rounded-full opacity-90"></span>
         </span>
       </a>
       <div class="ml-auto flex shrink-0 items-center justify-end gap-2 sm:gap-3">
