@@ -44,13 +44,15 @@
     #tab-content-card, #tab-content-card > *, #service-tabs, #service-tabs .tab-btn { min-width: 0; max-width: 100%; }
     #tab-content-card h2, #tab-content-card p, #tab-content-card li, #service-tabs .tab-btn span { overflow-wrap: anywhere; }
     @media (max-width: 640px) {
-      header .mx-auto { gap: .5rem; padding-left: .75rem; padding-right: .75rem; }
+      header .mx-auto { gap: .25rem; padding-left: .5rem; padding-right: .5rem; }
       header #home-link { flex: 1 1 auto; min-width: 0; gap: .5rem; }
+      header #home-link .brand-mark { width: 2.25rem; height: 2.25rem; border-radius: .75rem; }
+      header #home-link .brand-mark img { width: 1.75rem; height: 1.75rem; }
       header #home-link > span:last-child { min-width: 0; }
-      header #home-link strong { font-size: .95rem; letter-spacing: .12em; white-space: nowrap; }
-      header #home-link .brand-accent { width: 7rem; }
-      header .header-actions { gap: .375rem; }
-      header .header-actions > a, header #language-menu-toggle { padding: .5rem; }
+      header #home-link strong { font-size: .85rem; letter-spacing: .08em; white-space: nowrap; }
+      header #home-link .brand-accent { width: 5.5rem; }
+      header .header-actions { gap: .25rem; }
+      header .header-actions > a, header #language-menu-toggle { padding: .375rem; }
       #service-tabs .tab-btn { overflow: hidden; }
     }
     @media (prefers-reduced-motion: reduce) {
