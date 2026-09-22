@@ -52,7 +52,9 @@
       header #home-link strong { font-size: .85rem; letter-spacing: .08em; white-space: nowrap; }
       header #home-link .brand-accent { width: 5.5rem; }
       header .header-actions { gap: .25rem; }
-      header .header-actions > a, header #language-menu-toggle { padding: .375rem; }
+      header #language-menu-toggle { gap: .25rem; padding: .25rem; font-size: .65rem; }
+      header #language-menu-toggle .language-flag { width: 1rem; height: .7rem; }
+      header .header-actions > a { padding: .625rem .75rem; }
       #service-tabs .tab-btn { overflow: hidden; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -74,6 +76,10 @@
         </span>
       </a>
       <div class="header-actions ml-auto flex shrink-0 items-center justify-end gap-2 sm:gap-3">
+        <a id="header-whatsapp" href="https://wa.me/905338712332?text=Merhaba%20Bulut%20Dede%20Elektrik%2C%20servis%20talep%20ediyorum." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Hattı +90 533 871 23 32" class="flex items-center gap-2 rounded-lg bg-yellow-500 px-3 py-2.5 text-xs font-bold text-slate-950 shadow-lg shadow-yellow-500/20 transition hover:bg-yellow-400 sm:px-6 sm:py-3 sm:text-sm">
+          <i class="fa-brands fa-whatsapp text-base sm:text-lg" aria-hidden="true"></i>
+          <span class="hidden sm:inline" data-i18n="whatsappLine">WhatsApp Hattı</span>
+        </a>
         <div id="language-switcher" class="relative" role="group" aria-label="Dil seçimi">
           <button id="language-menu-toggle" type="button" onclick="toggleLanguageMenu()" aria-label="Dil seçimi" aria-haspopup="true" aria-expanded="false" class="flex items-center gap-1.5 rounded-lg border border-slate-600/80 bg-[#152544] px-2.5 py-2 text-xs font-black text-slate-100 transition hover:border-yellow-400 hover:text-yellow-300 sm:px-3">
             <span id="selected-language-flag" class="language-flag" aria-hidden="true"></span><span id="selected-language-code">TR</span><i id="language-chevron" class="fa-solid fa-chevron-down text-[9px]" aria-hidden="true"></i>
@@ -88,10 +94,6 @@
           <i class="fa-solid fa-phone text-yellow-400" aria-hidden="true"></i>
           <span class="hidden sm:inline" data-i18n="emergencyCall">7/24 Acil Çağrı</span>
           <span class="hidden xl:inline text-slate-400">+90 533 871 23 32</span>
-        </a>
-        <a id="header-whatsapp" href="https://wa.me/905338712332?text=Merhaba%20Bulut%20Dede%20Elektrik%2C%20servis%20talep%20ediyorum." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Hattı +90 533 871 23 32" class="flex items-center gap-2 rounded-lg bg-yellow-500 px-2.5 py-2 text-xs font-bold text-slate-950 shadow-lg shadow-yellow-500/20 transition hover:bg-yellow-400 sm:px-5 sm:text-sm">
-          <i class="fa-brands fa-whatsapp text-base sm:text-lg" aria-hidden="true"></i>
-          <span class="hidden sm:inline" data-i18n="whatsappLine">WhatsApp Hattı</span>
         </a>
       </div>
     </div>
