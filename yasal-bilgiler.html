@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bulut Dede Elektrik web sitesi kullanım, hizmet, gizlilik ve yasal bilgilendirme metni.">
+  <meta name="theme-color" content="#020617">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; connect-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; upgrade-insecure-requests">
+  <link rel="icon" type="image/png" href="bulut-dede-logo.png">
+  <title>Yasal Bilgiler | Bulut Dede Elektrik</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-height: 100vh; background: #071329; color: #e2e8f0; font-family: Arial, Helvetica, sans-serif; line-height: 1.65; }
+    body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .2; background: linear-gradient(135deg, rgba(250,204,21,.16), transparent 35%), linear-gradient(315deg, rgba(56,189,248,.12), transparent 42%); }
+    a { color: #facc15; }
+    .site-header { position: sticky; top: 0; z-index: 10; border-bottom: 1px solid rgba(71,85,105,.8); background: rgba(12,24,50,.94); backdrop-filter: blur(16px); }
+    .header-inner, .page-wrap { width: min(100% - 32px, 960px); margin: 0 auto; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 78px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; }
+    .brand img { width: 42px; height: 42px; object-fit: contain; border: 1px solid rgba(250,204,21,.45); border-radius: 12px; padding: 4px; background: #152544; }
+    .brand strong { display: block; font-size: 18px; letter-spacing: .16em; }
+    .brand span { display: block; margin-top: 2px; color: #facc15; font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    .back-link { border: 1px solid rgba(71,85,105,.9); border-radius: 9px; padding: 9px 13px; color: #e2e8f0; font-size: 13px; font-weight: 700; text-decoration: none; }
+    .back-link:hover { border-color: #facc15; color: #facc15; }
+    main { padding: 42px 0 56px; }
+    .intro, .legal-card { border: 1px solid rgba(71,85,105,.8); border-radius: 18px; background: rgba(20,36,67,.9); box-shadow: 0 18px 50px rgba(2,6,23,.28); }
+    .intro { margin-bottom: 18px; padding: 26px; }
+    .eyebrow { color: #facc15; font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 8px 0 10px; color: #fff; font-size: clamp(28px, 5vw, 44px); line-height: 1.12; }
+    h2 { margin: 0 0 10px; color: #fff; font-size: 20px; line-height: 1.3; }
+    h3 { margin: 22px 0 7px; color: #facc15; font-size: 15px; }
+    p { margin: 0 0 12px; color: #cbd5e1; }
+    .muted { color: #94a3b8; font-size: 13px; }
+    .notice { margin-top: 18px; border-left: 3px solid #facc15; border-radius: 8px; background: rgba(250,204,21,.08); padding: 12px 14px; color: #fde68a; font-size: 13px; }
+    .legal-card { margin-top: 14px; padding: 24px 26px; }
+    ol, ul { margin: 8px 0 14px; padding-left: 22px; color: #cbd5e1; }
+    li { margin: 5px 0; }
+    strong { color: #f8fafc; }
+    .contact-box { margin-top: 18px; border-top: 1px solid rgba(51,65,85,.8); padding-top: 16px; }
+    footer { border-top: 1px solid rgba(71,85,105,.8); background: rgba(10,23,48,.82); padding: 22px 0; color: #64748b; font-size: 12px; }
+    footer p { color: #64748b; font-size: 12px; }
+    @media (max-width: 640px) {
+      .header-inner, .page-wrap { width: min(100% - 24px, 960px); }
+      .header-inner { min-height: 70px; }
+      .brand strong { font-size: 14px; }
+      .brand span { font-size: 8px; }
+      .brand img { width: 38px; height: 38px; }
+      .back-link { padding: 8px 10px; font-size: 12px; }
+      main { padding: 24px 0 38px; }
+      .intro, .legal-card { padding: 19px; border-radius: 15px; }
+      h2 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="./" aria-label="Bulut Dede Elektrik ana sayfa">
+        <img src="bulut-dede-logo.png" alt="Bulut Dede Elektrik logosu">
+        <span><strong>BULUT DEDE</strong><span>Elektrik &amp; Enerji</span></span>
+      </a>
+      <a class="back-link" href="./">← Ana sayfa</a>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <section class="intro" aria-labelledby="legal-title">
+      <span class="eyebrow">Yasal bilgilendirme</span>
+      <h1 id="legal-title">Kullanım ve hizmet kuralları</h1>
+      <p>Bu sayfa Bulut Dede Elektrik web sitesinin kullanım, hizmet, gizlilik ve iletişim kurallarını açıklar.</p>
+      <p class="muted"><strong>Son güncelleme:</strong> 22 Eylül 2026</p>
+      <div class="notice"><strong>Önemli:</strong> Bu metin genel bilgilendirme amacıyla hazırlanmıştır; hukuki danışmanlık veya resmi kurum görüşü yerine geçmez. Özel durumlarda KKTC’de yetkili bir hukukçuya veya ilgili resmi kuruma danışılmalıdır.</div>
+    </section>
+
+    <article class="legal-card">
+      <h2>1. Sitenin amacı ve resmi kurum olmadığına dair açıklama</h2>
+      <p>Bu web sitesi tanıtım ve iletişim amaçlıdır. Bulut Dede Elektrik; herhangi bir devlet kurumu, Kıb-Tek veya resmi izin mercii değildir ve bu kurumları temsil etmez.</p>
+      <p>Sitedeki açıklamalar hizmet alanlarını tanıtmak ve ön iletişim kurmak için sunulur. Hiçbir içerik tek başına kesin fiyat, kesin süre, kesin kapasite, resmi izin veya bağlantı garantisi olarak yorumlanamaz.</p>
+
+      <h2>2. Elektrik, güneş enerjisi ve proje süreçleri</h2>
+      <p>Güneş enerjisi, elektrik tesisatı, pano, kompanzasyon ve acil servis içerikleri ön bilgilendirme niteliğindedir.</p>
+      <ul>
+        <li>Her iş için yerinde keşif, teknik değerlendirme ve ihtiyaç analizi gerekebilir.</li>
+        <li>Proje, başvuru, izin, sayaç ve şebeke bağlantısı işlemleri ilgili mevzuat, Kıb-Tek şartları ve yetkili kişi veya kurumların onaylarına tabidir.</li>
+        <li>Şebekeye bağlı bir güneş enerjisi sistemi, gerekli resmi onaylar alınmadan kurulmuş veya devreye alınmış kabul edilmez.</li>
+        <li>Malzeme, marka, güç, işçilik, fiyat ve teslim süresi; keşif ve yazılı teklif sonrasında kesinleşir.</li>
+        <li>Elektrik işleri yalnızca yetkin ve yetkili kişiler tarafından, yürürlükteki teknik kurallara uygun şekilde yapılmalıdır.</li>
+      </ul>
+
+      <h2>3. Teklif, fiyat ve randevu</h2>
+      <p>WhatsApp veya telefon üzerinden yapılan ilk görüşmeler ön değerlendirmedir. Bağlayıcı ticari şartlar; kapsamı, malzemeleri, bedeli, ödeme planını, süreyi ve varsa garanti koşullarını içeren yazılı teklif veya sözleşme ile belirlenir.</p>
+      <p>Keşif yapılmadan verilen yaklaşık bilgiler; mevcut tesisat, çatı, gölgelenme, yük profili, malzeme tedariki, resmi süreçler veya saha koşulları nedeniyle değişebilir.</p>
+
+      <h2>4. İletişim ve üçüncü taraf hizmetleri</h2>
+      <p>Sitedeki telefon ve WhatsApp bağlantıları kullanıcıyı ilgili iletişim hizmetlerine yönlendirir. Bu bağlantılara tıklandığında iletişim ilgili üçüncü taraf platformun uygulama ve gizlilik kurallarına tabi olabilir.</p>
+      <p>WhatsApp veya telefon görüşmelerinde gereksiz kişisel, finansal, kimlik veya güvenlik bilgileri paylaşılmamalıdır.</p>
+
+      <h2>5. Gizlilik ve kişisel veriler</h2>
+      <ul>
+        <li>Bu sitede üyelik, ödeme, başvuru formu veya kullanıcı hesabı bulunmamaktadır.</li>
+        <li>Site, kendi sunucusunda reklam profili veya analitik takip amacıyla kişisel veri toplamaz.</li>
+        <li>Dil tercihi, yalnızca ziyaretçinin tarayıcısında <strong>localStorage</strong> kullanılarak saklanabilir; bu işlem hesap veya kimlik oluşturmaz.</li>
+        <li>Kullanıcının telefon veya WhatsApp üzerinden gönüllü olarak ilettiği bilgiler, iletişim talebine cevap vermek ve hizmet görüşmesini yürütmek amacıyla kullanılabilir.</li>
+        <li>Harici platformlar kendi gizlilik politikalarından sorumludur. Bu sitenin dışına çıkıldığında ilgili platformun şartları geçerli olabilir.</li>
+      </ul>
+      <p>Bir iletişim talebi, düzeltme veya silme isteği için aşağıdaki telefon/WhatsApp hattından Bulut Dede Elektrik ile iletişime geçilebilir.</p>
+
+      <h2>6. Çerezler ve benzeri teknolojiler</h2>
+      <p>Site şu anda reklam, pazarlama veya analitik amaçlı çerez kullanmaz. Dil tercihi için kullanılan localStorage kaydı, tarayıcı ayarlarından veya site verileri temizlenerek silinebilir.</p>
+
+      <h2>7. Kullanım kuralları</h2>
+      <p>Siteyi kullanan kişiler:</p>
+      <ul>
+        <li>Siteyi hukuka, kamu düzenine ve başkalarının haklarına aykırı amaçlarla kullanmamalıdır.</li>
+        <li>Yanlış, yanıltıcı, tehditkâr, hakaret içeren veya başkasına ait bilgileri iletişim kanallarına göndermemelidir.</li>
+        <li>Siteye zarar verecek kod, otomatik istek, tarama, saldırı veya yetkisiz erişim girişiminde bulunmamalıdır.</li>
+        <li>Sitedeki teknik açıklamalara dayanarak kendi başına tehlikeli elektrik müdahalesi yapmamalıdır.</li>
+      </ul>
+
+      <h2>8. Telif ve içerik kullanımı</h2>
+      <p>Logo, metin, tasarım, görsel düzen ve siteye ait diğer içerikler Bulut Dede Elektrik’e veya bunları kullanma hakkına sahip kişilere aittir. Yazılı izin olmadan ticari amaçla kopyalanamaz, yeniden yayımlanamaz veya başka bir işletme adına kullanılamaz.</p>
+
+      <h2>9. Harici bağlantılar ve hizmet kesintileri</h2>
+      <p>WhatsApp, telefon operatörleri, internet sağlayıcıları, CDN hizmetleri veya diğer üçüncü taraf hizmetlerde yaşanan kesintilerden site işletmecisi doğrudan sorumlu tutulamaz. Harici bağlantıların içeriği ve güvenlik uygulamaları ilgili hizmet sağlayıcıların sorumluluğundadır.</p>
+
+      <h2>10. Sorumluluğun kapsamı</h2>
+      <p>Sitedeki bilgiler makul özenle hazırlanır; ancak teknik, ticari veya resmi sonuç garantisi vermez. Nihai kararlar keşif, teknik rapor, yazılı teklif, sözleşme ve yetkili kurumların güncel şartlarına göre verilmelidir.</p>
+      <p>Elektrik tesisatına müdahale ciddi yaralanma, yangın veya maddi zarar riski taşıyabilir. Enerji kesilmeden veya yetkin kişi desteği olmadan işlem yapılmamalıdır.</p>
+
+      <h2>11. Metinlerin güncellenmesi</h2>
+      <p>Hizmet kapsamı, iletişim bilgileri, teknik açıklamalar ve bu yasal bilgilendirme metni mevzuat, hizmet modeli veya site işleyişindeki değişikliklere göre güncellenebilir. Güncel metin bu sayfada yayımlandığı tarihten itibaren geçerlidir.</p>
+
+      <div class="contact-box">
+        <h2>12. İletişim</h2>
+        <p><strong>Bulut Dede Elektrik &amp; Enerji</strong><br>Hizmet bölgesi: Kuzey Kıbrıs<br>Telefon / WhatsApp: <a href="tel:+905338712332">+90 533 871 23 32</a></p>
+        <p class="muted">Bu sayfanın amacı, ziyaretçilerin siteyi ve sunulan hizmetlerin genel çerçevesini daha açık şekilde anlamasını sağlamaktır.</p>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="page-wrap">
+      <p>© 2026 Bulut Dede Elektrik &amp; Enerji · <a href="./">Ana sayfaya dön</a></p>
+    </div>
+  </footer>
+</body>
+</html>
