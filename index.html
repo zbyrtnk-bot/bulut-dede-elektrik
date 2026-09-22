@@ -16,8 +16,8 @@
   <style>
     :root { color-scheme: dark; }
     :root { --wire-yellow: #facc15; --wire-amber: #f59e0b; --wire-orange: #f97316; --wire-red: #ef4444; --wire-brown: #92400e; --wire-green: #22c55e; }
-    html { scroll-behavior: smooth; }
-    body { position: relative; isolation: isolate; min-height: 100vh; background-color: #071329; background-image: radial-gradient(circle at 8% 12%, rgba(250, 204, 21, .15), transparent 25%), radial-gradient(circle at 92% 18%, rgba(56, 189, 248, .18), transparent 27%), radial-gradient(circle at 48% 88%, rgba(239, 68, 68, .1), transparent 30%), linear-gradient(135deg, #08152f 0%, #102344 48%, #0b1833 100%); }
+    html { scroll-behavior: smooth; max-width: 100%; overflow-x: hidden; }
+    body { position: relative; isolation: isolate; width: 100%; max-width: 100%; min-height: 100vh; overflow-x: hidden; background-color: #071329; background-image: radial-gradient(circle at 8% 12%, rgba(250, 204, 21, .15), transparent 25%), radial-gradient(circle at 92% 18%, rgba(56, 189, 248, .18), transparent 27%), radial-gradient(circle at 48% 88%, rgba(239, 68, 68, .1), transparent 30%), linear-gradient(135deg, #08152f 0%, #102344 48%, #0b1833 100%); }
     body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .22; background-image: linear-gradient(120deg, transparent 0 42%, rgba(250, 204, 21, .2) 43%, transparent 44% 100%), linear-gradient(300deg, transparent 0 48%, rgba(56, 189, 248, .16) 49%, transparent 50% 100%); background-size: 360px 360px, 440px 440px; animation: energyDrift 18s ease-in-out infinite alternate; }
     @keyframes energyDrift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 1%, 0) scale(1.04); } }
     .brand-mark { border: 1px solid rgba(148, 163, 184, .35); background: linear-gradient(145deg, rgba(30, 41, 59, .98), rgba(15, 23, 42, .92)); box-shadow: 0 0 24px rgba(250, 204, 21, .12), inset 0 0 18px rgba(239, 68, 68, .06); }
@@ -41,6 +41,18 @@
     .tab-btn[aria-selected="false"]:hover { color: #fff; background: rgba(65, 95, 145, .45); }
     .service-panel { box-shadow: 0 20px 60px rgba(14, 165, 233, .09); }
     .range-track { accent-color: #facc15; }
+    #tab-content-card, #tab-content-card > *, #service-tabs, #service-tabs .tab-btn { min-width: 0; max-width: 100%; }
+    #tab-content-card h2, #tab-content-card p, #tab-content-card li, #service-tabs .tab-btn span { overflow-wrap: anywhere; }
+    @media (max-width: 640px) {
+      header .mx-auto { gap: .5rem; padding-left: .75rem; padding-right: .75rem; }
+      header #home-link { flex: 1 1 auto; min-width: 0; gap: .5rem; }
+      header #home-link > span:last-child { min-width: 0; }
+      header #home-link strong { font-size: .95rem; letter-spacing: .12em; white-space: nowrap; }
+      header #home-link .brand-accent { width: 7rem; }
+      header .header-actions { gap: .375rem; }
+      header .header-actions > a, header #language-menu-toggle { padding: .5rem; }
+      #service-tabs .tab-btn { overflow: hidden; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
     }
@@ -59,7 +71,7 @@
           <span class="brand-accent mt-2 block h-0.5 w-40 rounded-full opacity-90"></span>
         </span>
       </a>
-      <div class="ml-auto flex shrink-0 items-center justify-end gap-2 sm:gap-3">
+      <div class="header-actions ml-auto flex shrink-0 items-center justify-end gap-2 sm:gap-3">
         <div id="language-switcher" class="relative" role="group" aria-label="Dil seçimi">
           <button id="language-menu-toggle" type="button" onclick="toggleLanguageMenu()" aria-label="Dil seçimi" aria-haspopup="true" aria-expanded="false" class="flex items-center gap-1.5 rounded-lg border border-slate-600/80 bg-[#152544] px-2.5 py-2 text-xs font-black text-slate-100 transition hover:border-yellow-400 hover:text-yellow-300 sm:px-3">
             <span id="selected-language-flag" class="language-flag" aria-hidden="true"></span><span id="selected-language-code">TR</span><i id="language-chevron" class="fa-solid fa-chevron-down text-[9px]" aria-hidden="true"></i>
