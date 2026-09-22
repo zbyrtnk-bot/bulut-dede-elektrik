@@ -23,6 +23,7 @@
     .brand-mark { border: 1px solid rgba(148, 163, 184, .35); background: linear-gradient(145deg, rgba(30, 41, 59, .98), rgba(15, 23, 42, .92)); box-shadow: 0 0 24px rgba(250, 204, 21, .12), inset 0 0 18px rgba(239, 68, 68, .06); }
     .brand-bolt { fill: #fff7b2; filter: drop-shadow(0 0 2px rgba(250, 204, 21, .9)); }
     .brand-accent { background: linear-gradient(90deg, var(--wire-yellow) 0%, var(--wire-amber) 20%, var(--wire-orange) 40%, var(--wire-red) 60%, var(--wire-brown) 80%, var(--wire-green) 100%); }
+    .language-option[aria-pressed="true"] { background: #facc15; color: #0f172a; box-shadow: 0 0 14px rgba(250, 204, 21, .2); }
     .hero-main { position: relative; isolation: isolate; overflow: clip; }
     .hero-main > * { position: relative; z-index: 1; }
     .hero-main::before { content: ""; position: absolute; inset: 0 0 auto; z-index: 0; height: 560px; pointer-events: none; border-radius: 0 0 3rem 3rem; background-image: linear-gradient(90deg, rgba(7, 19, 41, .12) 0%, rgba(7, 19, 41, .28) 45%, rgba(7, 19, 41, .72) 100%), linear-gradient(180deg, rgba(7, 19, 41, .14) 0%, rgba(7, 19, 41, .82) 94%), url("technician-electrical-hero.png"); background-position: center, center, 70% 16%; background-size: cover, cover, cover; background-repeat: no-repeat; box-shadow: inset 0 -80px 80px rgba(7, 19, 41, .34); }
@@ -57,7 +58,11 @@
         </span>
       </a>
       <div class="ml-auto flex shrink-0 items-center justify-end gap-2 sm:gap-3">
-        <button id="language-toggle" type="button" onclick="toggleLanguage()" aria-label="Switch to English" class="rounded-lg border border-slate-600/80 bg-[#152544] px-2.5 py-2 text-xs font-black tracking-wider text-slate-100 transition hover:border-yellow-400 hover:text-yellow-300 sm:px-3">EN</button>
+        <div id="language-switcher" class="flex items-center gap-0.5 rounded-lg border border-slate-600/80 bg-[#152544] p-1" role="group" aria-label="Dil seçimi">
+          <button type="button" class="language-option rounded-md px-1.5 py-1 text-xs font-black transition hover:text-yellow-300 sm:px-2" data-language="tr" onclick="applyLanguage('tr')" aria-label="Türkçe" aria-pressed="true"><span aria-hidden="true">🇹🇷</span><span class="ml-0.5 hidden sm:inline">TR</span></button>
+          <button type="button" class="language-option rounded-md px-1.5 py-1 text-xs font-black text-slate-100 transition hover:text-yellow-300 sm:px-2" data-language="en" onclick="applyLanguage('en')" aria-label="English" aria-pressed="false"><span aria-hidden="true">🇬🇧</span><span class="ml-0.5 hidden sm:inline">EN</span></button>
+          <button type="button" class="language-option rounded-md px-1.5 py-1 text-xs font-black text-slate-100 transition hover:text-yellow-300 sm:px-2" data-language="ru" onclick="applyLanguage('ru')" aria-label="Русский" aria-pressed="false"><span aria-hidden="true">🇷🇺</span><span class="ml-0.5 hidden sm:inline">RU</span></button>
+        </div>
         <a id="emergency-link" href="tel:+905338712332" aria-label="7/24 acil çağrı +90 533 871 23 32" class="flex items-center gap-2 rounded-lg border border-slate-600/80 bg-[#152544] px-2.5 py-2 text-xs font-semibold text-slate-200 transition hover:border-slate-400 hover:bg-[#1d3154] sm:px-4 sm:text-sm">
           <i class="fa-solid fa-phone text-yellow-400" aria-hidden="true"></i>
           <span class="hidden sm:inline" data-i18n="emergencyCall">7/24 Acil Çağrı</span>
@@ -124,6 +129,9 @@
       },
       en: {
         brandTagline: 'Electrical & Energy', emergencyCall: '24/7 Emergency Call', whatsappLine: 'WhatsApp Support', heroBadge: 'Survey and installation support across North Cyprus', heroTitleLead: 'Beyond the standard', heroTitleAccent: 'safe and smart power.', heroDescription: 'From homes to industry, we provide survey, quotation and installation support for your electrical needs, including solar energy systems.', servicePrompt: 'Choose a service area', detailsHint: 'Details open below', serviceSolar: 'Solar Energy (PV)', serviceInstall: 'Home & Smart Installation', servicePanel: 'Panels & Power Factor Correction', serviceEmergency: '24/7 Emergency Service', billLabel: 'Your average monthly electricity bill', systemLabel: 'Recommended PV capacity', yearlyLabel: 'Estimated annual savings', calculatorOpen: 'Open the GES savings calculator', calculatorHide: 'Hide the GES savings calculator', whatsappInfo: 'Get info on WhatsApp', callNow: 'Call now', contactEyebrow: 'Service and site survey request', contactTitle: "Let's clarify your electrical needs together.", contactDescription: 'Tell us what you need anywhere in North Cyprus through WhatsApp, or use the 24/7 emergency call line.', complianceNote: 'For grid-connected solar systems, project, application and connection processes are coordinated with North Cyprus requirements, KIB-TEK conditions and authorized professionals. Final scope depends on the site survey and official approvals.', whatsappWrite: 'Message us on WhatsApp', call24: 'Call 24/7', footerBusiness: 'Electrical & Energy', footerServices: 'Services', footerContact: 'Contact', footerDescription: 'North Cyprus electrical and energy solutions', legalNotice: 'This website is for informational and contact purposes only; it is not an official government or utility website. Project, permit and grid-connection processes are handled under applicable regulations by authorized professionals.', pageTitle: 'Bulut Dede Electrical | North Cyprus Energy Solutions', metaDescription: 'Bulut Dede Electrical provides survey, quotation and installation support for solar energy, electrical installations, panels and emergency service across North Cyprus.'
+      },
+      ru: {
+        brandTagline: 'Электрика и энергетика', emergencyCall: 'Срочный вызов 24/7', whatsappLine: 'Поддержка WhatsApp', heroBadge: 'Проектирование и монтаж по всему Северному Кипру', heroTitleLead: 'Больше, чем стандарт', heroTitleAccent: 'безопасная и умная энергия.', heroDescription: 'От дома до производства: обследование, расчёт и монтаж электрических систем, включая солнечную энергетику.', servicePrompt: 'Выберите направление', detailsHint: 'Подробности открываются ниже', serviceSolar: 'Солнечная энергия (СЭС)', serviceInstall: 'Домашние и умные системы', servicePanel: 'Электрощиты и компенсация реактивной мощности', serviceEmergency: 'Аварийная служба 24/7', billLabel: 'Ваш средний месячный счёт за электричество', systemLabel: 'Рекомендуемая мощность СЭС', yearlyLabel: 'Расчётная годовая экономия', calculatorOpen: 'Открыть калькулятор экономии СЭС', calculatorHide: 'Скрыть калькулятор экономии СЭС', whatsappInfo: 'Получить информацию в WhatsApp', callNow: 'Позвонить сейчас', contactEyebrow: 'Запрос на обслуживание и осмотр', contactTitle: 'Давайте вместе уточним ваши электрические потребности.', contactDescription: 'Сообщите нам через WhatsApp, какая услуга вам нужна в любой точке Северного Кипра, или воспользуйтесь линией экстренного вызова 24/7.', complianceNote: 'Проектирование, подача заявок и подключение сетевых солнечных систем выполняются в соответствии с требованиями Северного Кипра, условиями KIB-TEK и при участии уполномоченных специалистов. Окончательный объём определяется после осмотра и официальных согласований.', whatsappWrite: 'Написать в WhatsApp', call24: 'Позвонить 24/7', footerBusiness: 'Электрика и энергетика', footerServices: 'Услуги', footerContact: 'Контакты', footerDescription: 'Электрические и энергетические решения Северного Кипра', legalNotice: 'Этот сайт предназначен только для информационных и контактных целей; он не является официальным сайтом государственного учреждения или энергоснабжающей организации. Проектирование, разрешения и подключение к сети выполняются уполномоченными специалистами в соответствии с действующими правилами.', pageTitle: 'Bulut Dede Электрика | Энергетические решения Северного Кипра', metaDescription: 'Bulut Dede предлагает обследование, расчёт и монтаж солнечных энергетических систем, электромонтажных решений, электрощитов и аварийное обслуживание на Северном Кипре.'
       }
     };
 
@@ -139,6 +147,12 @@
         tesisat: { title: 'Villa, Home & Smart Home Infrastructure', desc: 'Complete rough-in and finish electrical work, smart lighting automation and protection against grid surges and voltage fluctuations.', bullets: ['Halogen-free, fire-resistant conduit', 'Smartphone-controlled lighting', 'Local load distribution and grounding'], icon: 'fa-bolt' },
         pano: { title: 'Main Distribution Panels & Power Factor Correction', desc: 'Power factor correction panels, automatic generator transfer and regulator installation for businesses, hotels and residential sites.', bullets: ['Schneider / Siemens switchgear', 'Thermal-camera overheating inspection', 'Periodic maintenance and measurement reports'], icon: 'fa-industry' },
         ariza: { title: '24/7 Island-Wide Emergency Electrical Service', desc: 'Fast mobile-service response for power cuts, blown fuses, phase loss and sudden voltage drops.', bullets: ['Average 30–45 minute response', 'Direct team dispatch from your location', 'Guaranteed, documented repairs'], icon: 'fa-kit-medical' }
+      },
+      ru: {
+        solar: { title: 'Солнечная энергия (СЭС) и подключение к сети', desc: 'Преобразуйте солнечный потенциал Северного Кипра в электричество. Обследование, расчёт и монтаж сетевых и автономных систем с аккумуляторами при координации официальных процессов уполномоченными специалистами.', bullets: ['Координация заявок и разрешений KIB-TEK', 'Ночное хранение энергии в литиевых аккумуляторах', 'Высокоэффективные панели half-cut'], icon: 'fa-solar-panel' },
+        tesisat: { title: 'Виллы, дома и инфраструктура умного дома', desc: 'Полный комплекс черновых и чистовых электромонтажных работ, автоматизация освещения и защита от скачков и перепадов напряжения в сети.', bullets: ['Безгалогенная огнестойкая прокладка', 'Управление освещением со смартфона', 'Распределение нагрузки и заземление'], icon: 'fa-bolt' },
+        pano: { title: 'Главные электрощиты и компенсация реактивной мощности', desc: 'Установка компенсирующих щитов, автоматического ввода генератора и стабилизаторов для предприятий, отелей и жилых объектов.', bullets: ['Коммутационное оборудование Schneider / Siemens', 'Проверка перегрева тепловизором', 'Периодическое обслуживание и отчёты измерений'], icon: 'fa-industry' },
+        ariza: { title: 'Аварийная электрическая служба 24/7 по всему острову', desc: 'Быстрое реагирование мобильной бригады при отключениях электричества, сгоревших предохранителях, потере фазы и внезапном падении напряжения.', bullets: ['Среднее время прибытия 30–45 минут', 'Прямое направление бригады по вашей геолокации', 'Гарантированный ремонт с документированием'], icon: 'fa-kit-medical' }
       }
     };
 
@@ -161,7 +175,7 @@
       activeTab = key;
       const card = document.getElementById('tab-content-card');
       const languageText = translations[currentLanguage];
-      const whatsappMessage = currentLanguage === 'en' ? `Hello Bulut Dede Electrical, I would like information about ${item.title}.` : `Merhaba Bulut Dede Elektrik, ${item.title} hakkında bilgi almak istiyorum.`;
+      const whatsappMessage = currentLanguage === 'en' ? `Hello Bulut Dede Electrical, I would like information about ${item.title}.` : currentLanguage === 'ru' ? `Здравствуйте, Bulut Dede. Я хотел(а) бы получить информацию об услуге: ${item.title}.` : `Merhaba Bulut Dede Elektrik, ${item.title} hakkında bilgi almak istiyorum.`;
       const calculatorShell = document.getElementById('calculator-shell');
       if (calculatorShell) {
         calculatorShell.hidden = true;
@@ -210,9 +224,9 @@
 
     function calculateSavings(value) {
       const bill = Number(value);
-      const locale = currentLanguage === 'en' ? 'en-US' : 'tr-TR';
+      const locale = currentLanguage === 'en' ? 'en-US' : currentLanguage === 'ru' ? 'ru-RU' : 'tr-TR';
       const decimal = currentLanguage === 'en' ? '.' : ',';
-      const direction = currentLanguage === 'en' ? 'bi-directional' : 'çift yönlü';
+      const direction = currentLanguage === 'en' ? 'bi-directional' : currentLanguage === 'ru' ? 'двунаправленная' : 'çift yönlü';
       document.getElementById('bill-display').textContent = `${bill.toLocaleString(locale)} TL`;
       const kwp = (bill / 1100).toFixed(1).replace('.', decimal);
       const yearly = Math.round(bill * 12 * 0.88);
@@ -221,7 +235,7 @@
     }
 
     function applyLanguage(language) {
-      currentLanguage = language === 'en' ? 'en' : 'tr';
+      currentLanguage = ['tr', 'en', 'ru'].includes(language) ? language : 'tr';
       const copy = translations[currentLanguage];
       document.documentElement.lang = currentLanguage;
       document.querySelectorAll('[data-i18n]').forEach((element) => {
@@ -230,21 +244,18 @@
       });
       document.title = copy.pageTitle;
       document.querySelector('meta[name="description"]').setAttribute('content', copy.metaDescription);
-      document.getElementById('language-toggle').textContent = currentLanguage === 'tr' ? 'EN' : 'TR';
-      document.getElementById('language-toggle').setAttribute('aria-label', currentLanguage === 'tr' ? 'Switch to English' : 'Türkçeye geç');
-      document.getElementById('home-link').setAttribute('aria-label', currentLanguage === 'en' ? 'Bulut Dede Electrical home page' : 'Bulut Dede Elektrik ana sayfa');
+      document.querySelectorAll('.language-option').forEach((button) => {
+        button.setAttribute('aria-pressed', button.dataset.language === currentLanguage ? 'true' : 'false');
+      });
+      document.getElementById('home-link').setAttribute('aria-label', currentLanguage === 'en' ? 'Bulut Dede Electrical home page' : currentLanguage === 'ru' ? 'Главная страница Bulut Dede' : 'Bulut Dede Elektrik ana sayfa');
       document.getElementById('emergency-link').setAttribute('aria-label', copy.emergencyCall);
       document.getElementById('service-tabs').setAttribute('aria-label', copy.servicePrompt);
-      const contactMessage = currentLanguage === 'en' ? 'Hello Bulut Dede Electrical, I would like to request a service.' : 'Merhaba Bulut Dede Elektrik, servis talep ediyorum.';
+      const contactMessage = currentLanguage === 'en' ? 'Hello Bulut Dede Electrical, I would like to request a service.' : currentLanguage === 'ru' ? 'Здравствуйте, Bulut Dede. Я хотел(а) бы заказать услугу.' : 'Merhaba Bulut Dede Elektrik, servis talep ediyorum.';
       const contactHref = `https://wa.me/905338712332?text=${encodeURIComponent(contactMessage)}`;
       document.getElementById('header-whatsapp').href = contactHref;
       setTab(activeTab);
       calculateSavings(document.getElementById('bill-slider').value);
       try { localStorage.setItem('bulut-dede-language', currentLanguage); } catch (error) { /* storage may be unavailable */ }
-    }
-
-    function toggleLanguage() {
-      applyLanguage(currentLanguage === 'tr' ? 'en' : 'tr');
     }
 
     const tabButtons = [...document.querySelectorAll('.tab-btn')];
@@ -258,7 +269,10 @@
     }));
 
     document.getElementById('year').textContent = new Date().getFullYear();
-    try { currentLanguage = localStorage.getItem('bulut-dede-language') === 'en' ? 'en' : 'tr'; } catch (error) { currentLanguage = 'tr'; }
+    try {
+      const savedLanguage = localStorage.getItem('bulut-dede-language');
+      currentLanguage = ['tr', 'en', 'ru'].includes(savedLanguage) ? savedLanguage : 'tr';
+    } catch (error) { currentLanguage = 'tr'; }
     applyLanguage(currentLanguage);
   </script>
 </body>
