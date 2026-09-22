@@ -23,7 +23,6 @@
     .brand-mark { border: 1px solid rgba(148, 163, 184, .35); background: linear-gradient(145deg, rgba(30, 41, 59, .98), rgba(15, 23, 42, .92)); box-shadow: 0 0 24px rgba(250, 204, 21, .12), inset 0 0 18px rgba(239, 68, 68, .06); }
     .brand-bolt { fill: #fff7b2; filter: drop-shadow(0 0 2px rgba(250, 204, 21, .9)); }
     .brand-accent { background: linear-gradient(90deg, var(--wire-yellow) 0%, var(--wire-amber) 20%, var(--wire-orange) 40%, var(--wire-red) 60%, var(--wire-brown) 80%, var(--wire-green) 100%); }
-    .contact-panel { background: linear-gradient(135deg, rgba(15, 23, 42, .98), rgba(30, 41, 59, .72)); }
     .hero-main { position: relative; isolation: isolate; overflow: clip; }
     .hero-main > * { position: relative; z-index: 1; }
     .hero-main::before { content: ""; position: absolute; inset: 0 0 auto; z-index: 0; height: 560px; pointer-events: none; border-radius: 0 0 3rem 3rem; background-image: linear-gradient(90deg, rgba(7, 19, 41, .12) 0%, rgba(7, 19, 41, .28) 45%, rgba(7, 19, 41, .72) 100%), linear-gradient(180deg, rgba(7, 19, 41, .14) 0%, rgba(7, 19, 41, .82) 94%), url("technician-electrical-hero.png"); background-position: center, center, 70% 16%; background-size: cover, cover, cover; background-repeat: no-repeat; box-shadow: inset 0 -80px 80px rgba(7, 19, 41, .34); }
@@ -108,26 +107,11 @@
 
   </main>
 
-  <section id="contact" class="border-t border-slate-700/80 bg-[#0a1730]/90 px-4 py-8 sm:px-6 sm:py-10" aria-labelledby="contact-title">
-    <div class="contact-panel mx-auto flex max-w-7xl flex-col gap-6 rounded-2xl border border-slate-800 p-5 shadow-2xl shadow-slate-950/40 sm:flex-row sm:items-center sm:justify-between sm:p-7">
-      <div class="max-w-2xl">
-        <span class="text-xs font-bold uppercase tracking-[.18em] text-yellow-400" data-i18n="contactEyebrow">Servis ve keşif talebi</span>
-        <h2 id="contact-title" class="mt-2 text-2xl font-black tracking-tight text-white sm:text-3xl" data-i18n="contactTitle">Elektrik ihtiyacınızı birlikte netleştirelim.</h2>
-        <p class="mt-2 text-sm leading-6 text-slate-400" data-i18n="contactDescription">Kuzey Kıbrıs genelinde hizmet almak istediğiniz konuyu WhatsApp üzerinden iletin veya 7/24 acil çağrı hattını kullanın.</p>
-        <p class="mt-3 max-w-2xl text-xs leading-5 text-slate-500" data-i18n="complianceNote">Şebekeye bağlı güneş enerjisi sistemlerinde proje, başvuru ve bağlantı süreçleri; KKTC mevzuatı, Kıb-Tek şartları ve yetkili uzmanların koordinasyonuyla yürütülür. Nihai kapsam keşif ve resmi onaylara göre belirlenir.</p>
-      </div>
-      <div class="flex shrink-0 flex-wrap gap-2">
-        <a id="contact-whatsapp" href="https://wa.me/905338712332?text=Merhaba%20Bulut%20Dede%20Elektrik%2C%20servis%20talep%20ediyorum." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg bg-yellow-500 px-4 py-3 text-sm font-bold text-slate-950 transition hover:bg-yellow-400"><i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i><span data-i18n="whatsappWrite">WhatsApp'tan yaz</span></a>
-        <a href="tel:+905338712332" aria-label="7/24 ara +90 533 871 23 32" class="inline-flex items-center gap-2 rounded-lg border border-slate-600 bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:border-yellow-400"><i class="fa-solid fa-phone text-yellow-400" aria-hidden="true"></i><span data-i18n="call24">7/24 ara</span></a>
-      </div>
-    </div>
-  </section>
-
   <footer class="border-t border-slate-700/80 bg-[#0a1730]/85">
     <div class="mx-auto max-w-7xl px-4 py-6 text-xs text-slate-500 sm:px-6">
       <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <span>© <span id="year"></span> Bulut Dede <span data-i18n="footerBusiness">Elektrik &amp; Enerji</span></span>
-        <div class="flex items-center gap-4"><a href="#services" class="transition hover:text-slate-300" data-i18n="footerServices">Hizmetler</a><a href="#contact" class="transition hover:text-slate-300" data-i18n="footerContact">İletişim</a><span data-i18n="footerDescription">Kuzey Kıbrıs elektrik ve enerji çözümleri</span></div>
+        <div class="flex items-center gap-4"><a href="#services" class="transition hover:text-slate-300" data-i18n="footerServices">Hizmetler</a><a href="tel:+905338712332" class="transition hover:text-slate-300" data-i18n="footerContact">İletişim</a><span data-i18n="footerDescription">Kuzey Kıbrıs elektrik ve enerji çözümleri</span></div>
       </div>
       <p class="mt-4 max-w-5xl border-t border-slate-800 pt-3 leading-5 text-slate-600" data-i18n="legalNotice">Bu web sitesi tanıtım ve iletişim amaçlıdır; resmi kurum sitesi değildir. Proje, izin ve bağlantı işlemleri ilgili mevzuat ve yetkili kişiler aracılığıyla yürütülür.</p>
     </div>
@@ -253,7 +237,6 @@
       document.getElementById('service-tabs').setAttribute('aria-label', copy.servicePrompt);
       const contactMessage = currentLanguage === 'en' ? 'Hello Bulut Dede Electrical, I would like to request a service.' : 'Merhaba Bulut Dede Elektrik, servis talep ediyorum.';
       const contactHref = `https://wa.me/905338712332?text=${encodeURIComponent(contactMessage)}`;
-      document.getElementById('contact-whatsapp').href = contactHref;
       document.getElementById('header-whatsapp').href = contactHref;
       setTab(activeTab);
       calculateSavings(document.getElementById('bill-slider').value);
