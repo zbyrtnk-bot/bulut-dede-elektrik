@@ -254,7 +254,7 @@
       const service = document.getElementById('request-service').selectedOptions[0]?.textContent.trim();
       if (!phone || !region || !service) return;
       const copy = translations[currentLanguage];
-      const message = [copy.requestTitle, `${copy.requestPhoneLabel}: ${phone}`, `${copy.requestRegionLabel}: ${region}`, `${copy.requestServiceLabel}: ${service}`].join('\\n');
+      const message = [copy.requestTitle, `${copy.requestPhoneLabel}: ${phone}`, `${copy.requestRegionLabel}: ${region}`, `${copy.requestServiceLabel}: ${service}`].join('\n');
       const url = `https://wa.me/905338712332?text=${encodeURIComponent(message)}`;
       const whatsappWindow = window.open(url, '_blank');
       if (whatsappWindow) whatsappWindow.opener = null;
