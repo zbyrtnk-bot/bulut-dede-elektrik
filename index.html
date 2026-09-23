@@ -158,7 +158,7 @@
               </select>
             </label>
           </div>
-          <button type="submit" class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-yellow-500 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span data-i18n="requestSubmit">Talep gönder</span></button>
+          <button id="discovery-request-submit" type="submit" class="inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-lg bg-yellow-500 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span data-i18n="requestSubmit">Talep gönder</span></button>
           <p class="text-xs leading-5 text-slate-500" data-i18n="requestNotice">WhatsApp mesajı hazırlanır; siz göndermeden bize iletilmez.</p>
         </form>
       </article>
@@ -253,6 +253,9 @@
       const copy = translations[currentLanguage];
       const message = [copy.requestTitle, `${copy.requestPhoneLabel}: ${phone}`, `${copy.requestRegionLabel}: ${region}`, `${copy.requestServiceLabel}: ${service}`].join('\n');
       const url = `https://wa.me/905338712332?text=${encodeURIComponent(message)}`;
+      const submitButton = document.getElementById('discovery-request-submit');
+      submitButton?.classList.remove('bg-yellow-500', 'hover:bg-yellow-400', 'focus-visible:outline-yellow-400');
+      submitButton?.classList.add('bg-emerald-500', 'hover:bg-emerald-400', 'focus-visible:outline-emerald-400');
       const whatsappWindow = window.open(url, '_blank');
       if (whatsappWindow) whatsappWindow.opener = null;
     }
