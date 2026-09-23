@@ -52,8 +52,8 @@
       header #home-link strong { font-size: .85rem; letter-spacing: .08em; white-space: nowrap; }
       header #home-link .brand-accent { width: 5.5rem; }
       header .header-actions { gap: .25rem; }
-      header #language-menu-toggle { gap: .25rem; padding: .25rem; font-size: .65rem; }
-      header #language-menu-toggle .language-flag { width: 1rem; height: .7rem; }
+      header #language-menu-toggle { gap: .5rem; padding: .625rem .75rem; font-size: .875rem; }
+      header #language-menu-toggle .language-flag { width: 1.25rem; height: .875rem; }
       header .header-actions > a { padding: .625rem .75rem; }
       #service-tabs .tab-btn { overflow: hidden; }
     }
@@ -75,7 +75,7 @@
           <span class="brand-accent mt-2 block h-0.5 w-40 rounded-full opacity-90"></span>
         </span>
       </a>
-      <div class="header-actions ml-auto flex shrink-0 items-center justify-end gap-2 sm:gap-3">
+      <div class="header-actions relative ml-auto flex shrink-0 items-center justify-end gap-2 sm:gap-3">
         <a id="header-whatsapp" href="https://wa.me/905338712332?text=Merhaba%20Bulut%20Dede%20Elektrik%2C%20servis%20talep%20ediyorum." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Hattı +90 533 871 23 32" class="flex items-center gap-2 rounded-lg bg-yellow-500 px-3 py-2.5 text-xs font-bold text-slate-950 shadow-lg shadow-yellow-500/20 transition hover:bg-yellow-400 sm:px-6 sm:py-3 sm:text-sm">
           <i class="fa-brands fa-whatsapp text-base sm:text-lg" aria-hidden="true"></i>
           <span class="hidden sm:inline" data-i18n="whatsappLine">WhatsApp Hattı</span>
@@ -85,14 +85,31 @@
           <span class="hidden sm:inline" data-i18n="emergencyCall">7/24 Acil Çağrı</span>
           <span class="hidden xl:inline text-slate-400">+90 533 871 23 32</span>
         </a>
-        <div id="language-switcher" class="relative" role="group" aria-label="Dil seçimi">
-          <button id="language-menu-toggle" type="button" onclick="toggleLanguageMenu()" aria-label="Dil seçimi" aria-haspopup="true" aria-expanded="false" class="flex items-center gap-1.5 rounded-lg border border-slate-600/80 bg-[#152544] px-2.5 py-2 text-xs font-black text-slate-100 transition hover:border-yellow-400 hover:text-yellow-300 sm:px-3">
-            <span id="selected-language-flag" class="language-flag" aria-hidden="true"></span><span id="selected-language-code">TR</span><i id="language-chevron" class="fa-solid fa-chevron-down text-[9px]" aria-hidden="true"></i>
-          </button>
-          <div id="language-menu" hidden class="absolute right-0 top-full z-[60] mt-2 min-w-[152px] rounded-xl border border-slate-600/90 bg-[#101f3b] p-1.5 shadow-2xl shadow-slate-950/60" role="menu" aria-label="Dil seçenekleri">
-            <button type="button" class="language-option flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs font-bold text-slate-100 transition hover:bg-slate-700/80" data-language="tr" data-flag="tr" onclick="selectLanguage('tr')" role="menuitemradio" aria-label="Türkçe" aria-checked="true"><span class="language-flag" aria-hidden="true"></span><span class="flex-1">Türkçe</span><span class="text-[10px] text-slate-400">TR</span></button>
-            <button type="button" class="language-option flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs font-bold text-slate-100 transition hover:bg-slate-700/80" data-language="en" data-flag="en" onclick="selectLanguage('en')" role="menuitemradio" aria-label="English" aria-checked="false"><span class="language-flag" aria-hidden="true"></span><span class="flex-1">English</span><span class="text-[10px] text-slate-400">EN</span></button>
-            <button type="button" class="language-option flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs font-bold text-slate-100 transition hover:bg-slate-700/80" data-language="ru" data-flag="ru" onclick="selectLanguage('ru')" role="menuitemradio" aria-label="Русский" aria-checked="false"><span class="language-flag" aria-hidden="true"></span><span class="flex-1">Русский</span><span class="text-[10px] text-slate-400">RU</span></button>
+        <button id="site-menu-toggle" type="button" onclick="toggleSiteMenu()" aria-label="Menüyü aç" aria-controls="site-menu" aria-expanded="false" class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-600/80 bg-[#152544] text-slate-100 transition hover:border-yellow-400 hover:text-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400">
+          <i id="site-menu-icon" class="fa-solid fa-bars text-base" aria-hidden="true"></i>
+        </button>
+        <div id="site-menu" hidden role="region" aria-labelledby="site-menu-service-label" class="absolute right-0 top-full z-[70] mt-2 max-h-[calc(100dvh-6rem)] w-80 max-w-[calc(100vw-1rem)] overflow-y-auto overscroll-contain rounded-2xl border border-slate-600/90 bg-[#101f3b] p-3 shadow-2xl shadow-slate-950/70">
+          <section aria-labelledby="site-menu-service-label">
+            <h2 id="site-menu-service-label" class="px-1 text-sm font-bold text-slate-200" data-i18n="servicePrompt">Hizmet alanını seçin</h2>
+          <div id="service-tabs" class="mt-2 grid grid-cols-1 gap-1 rounded-xl border border-slate-700/80 bg-[#142443]/70 p-1" role="tablist" aria-label="Hizmet kategorileri">
+            <button type="button" onclick="chooseService('solar')" id="tab-solar" class="tab-btn flex w-full items-center gap-2 rounded-xl px-3 py-3 text-left text-sm font-bold transition sm:gap-3 sm:px-4" role="tab" aria-controls="tab-content-card" aria-selected="true" aria-expanded="true"><i class="fa-solid fa-solar-panel text-base" aria-hidden="true"></i><span data-i18n="serviceSolar">Güneş Enerjisi (GES)</span></button>
+            <button type="button" onclick="chooseService('tesisat')" id="tab-tesisat" class="tab-btn flex w-full items-center gap-2 rounded-xl px-3 py-3 text-left text-sm font-bold transition sm:gap-3 sm:px-4" role="tab" aria-controls="tab-content-card" aria-selected="false" aria-expanded="false"><i class="fa-solid fa-bolt text-base" aria-hidden="true"></i><span data-i18n="serviceInstall">Konut &amp; Akıllı Tesisat</span></button>
+            <button type="button" onclick="chooseService('pano')" id="tab-pano" class="tab-btn flex w-full items-center gap-2 rounded-xl px-3 py-3 text-left text-sm font-bold transition sm:gap-3 sm:px-4" role="tab" aria-controls="tab-content-card" aria-selected="false" aria-expanded="false"><i class="fa-solid fa-industry text-base" aria-hidden="true"></i><span data-i18n="servicePanel">Pano &amp; Kompanzasyon</span></button>
+            <button type="button" onclick="chooseService('ariza')" id="tab-ariza" class="tab-btn flex w-full items-center gap-2 rounded-xl px-3 py-3 text-left text-sm font-bold transition sm:gap-3 sm:px-4" role="tab" aria-controls="tab-content-card" aria-selected="false" aria-expanded="false"><i class="fa-solid fa-kit-medical text-base" aria-hidden="true"></i><span data-i18n="serviceEmergency">7/24 Acil Arıza</span></button>
+          </div>
+          </section>
+          <div class="mt-3 border-t border-slate-700/80 pt-3">
+            <div id="language-switcher" class="relative w-full" role="group" aria-label="Dil seçimi">
+              <button id="language-menu-toggle" type="button" onclick="toggleLanguageMenu()" aria-label="Dil seçimi" aria-haspopup="true" aria-expanded="false" class="flex min-h-11 w-full items-center justify-between gap-2 rounded-lg border border-slate-600/80 bg-[#152544] px-3 py-2 text-sm font-bold text-slate-100 transition hover:border-yellow-400 hover:text-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400">
+              <span class="inline-flex items-center gap-2"><i class="fa-solid fa-language text-yellow-400" aria-hidden="true"></i><span data-i18n="languageLabel">Dil seçimi</span></span>
+              <span class="inline-flex items-center gap-2"><span id="selected-language-flag" class="language-flag" aria-hidden="true"></span><span id="selected-language-code">TR</span><i id="language-chevron" class="fa-solid fa-chevron-down text-[9px]" aria-hidden="true"></i></span>
+            </button>/button>
+              <div id="language-menu" hidden class="mt-2 w-full rounded-xl border border-slate-600/90 bg-[#101f3b] p-1.5 shadow-xl shadow-slate-950/50" role="menu" aria-label="Dil seçenekleri">
+                <button type="button" class="language-option flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs font-bold text-slate-100 transition hover:bg-slate-700/80" data-language="tr" data-flag="tr" onclick="selectLanguage('tr')" role="menuitemradio" aria-label="Türkçe" aria-checked="true"><span class="language-flag" aria-hidden="true"></span><span class="flex-1">Türkçe</span><span class="text-[10px] text-slate-400">TR</span></button>
+                <button type="button" class="language-option flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs font-bold text-slate-100 transition hover:bg-slate-700/80" data-language="en" data-flag="en" onclick="selectLanguage('en')" role="menuitemradio" aria-label="English" aria-checked="false"><span class="language-flag" aria-hidden="true"></span><span class="flex-1">English</span><span class="text-[10px] text-slate-400">EN</span></button>
+                <button type="button" class="language-option flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs font-bold text-slate-100 transition hover:bg-slate-700/80" data-language="ru" data-flag="ru" onclick="selectLanguage('ru')" role="menuitemradio" aria-label="Русский" aria-checked="false"><span class="language-flag" aria-hidden="true"></span><span class="flex-1">Русский</span><span class="text-[10px] text-slate-400">RU</span></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -105,17 +122,6 @@
         <span class="mb-4 inline-block rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1.5 text-xs font-semibold text-yellow-400" data-i18n="heroBadge">Kuzey Kıbrıs genelinde anahtar teslim çözümler</span>
         <h1 id="hero-title" class="max-w-xl text-3xl font-black tracking-tight text-white sm:text-5xl sm:leading-[1.05]"><span data-i18n="heroTitleLead">Standartların ötesinde</span><br><span class="bg-gradient-to-r from-yellow-300 via-red-400 to-amber-700 bg-clip-text text-transparent" data-i18n="heroTitleAccent">güvenli ve akıllı güç.</span></h1>
         <p class="mt-4 max-w-xl text-sm leading-7 text-slate-400 sm:text-base" data-i18n="heroDescription">Evden sanayiye; arıza müdahalesinden güneş enerjisi sistemlerine kadar elektrik ihtiyaçlarınız için keşif, teklif ve uygulama desteği sunuyoruz.</p>
-      </div>
-
-      <div class="flex items-center justify-between gap-4 px-1">
-        <h2 class="text-sm font-bold text-white sm:text-base" data-i18n="servicePrompt">Hizmet alanını seçin</h2>
-        <span class="text-xs text-slate-500" data-i18n="detailsHint">Detaylar aşağıda açılır</span>
-      </div>
-      <div id="service-tabs" class="grid grid-cols-2 gap-2 rounded-2xl border border-slate-700/80 bg-[#142443]/90 p-1.5" role="tablist" aria-label="Hizmet kategorileri">
-        <button type="button" onclick="setTab('solar', true)" id="tab-solar" class="tab-btn flex items-center gap-2 rounded-xl px-3 py-3 text-left text-xs font-bold transition sm:gap-3 sm:px-4" role="tab" aria-controls="tab-content-card" aria-selected="true" aria-expanded="true"><i class="fa-solid fa-solar-panel text-base" aria-hidden="true"></i><span data-i18n="serviceSolar">Güneş Enerjisi (GES)</span></button>
-        <button type="button" onclick="setTab('tesisat', true)" id="tab-tesisat" class="tab-btn flex items-center gap-2 rounded-xl px-3 py-3 text-left text-xs font-bold transition sm:gap-3 sm:px-4" role="tab" aria-controls="tab-content-card" aria-selected="false" aria-expanded="false"><i class="fa-solid fa-bolt text-base" aria-hidden="true"></i><span data-i18n="serviceInstall">Konut &amp; Akıllı Tesisat</span></button>
-        <button type="button" onclick="setTab('pano', true)" id="tab-pano" class="tab-btn flex items-center gap-2 rounded-xl px-3 py-3 text-left text-xs font-bold transition sm:gap-3 sm:px-4" role="tab" aria-controls="tab-content-card" aria-selected="false" aria-expanded="false"><i class="fa-solid fa-industry text-base" aria-hidden="true"></i><span data-i18n="servicePanel">Pano &amp; Kompanzasyon</span></button>
-        <button type="button" onclick="setTab('ariza', true)" id="tab-ariza" class="tab-btn flex items-center gap-2 rounded-xl px-3 py-3 text-left text-xs font-bold transition sm:gap-3 sm:px-4" role="tab" aria-controls="tab-content-card" aria-selected="false" aria-expanded="false"><i class="fa-solid fa-kit-medical text-base" aria-hidden="true"></i><span data-i18n="serviceEmergency">7/24 Acil Arıza</span></button>
       </div>
 
       <article id="tab-content-card" class="service-panel min-h-[220px] space-y-4 rounded-2xl border border-slate-700/80 bg-[#142443]/95 p-5 shadow-xl" role="tabpanel" aria-live="polite" aria-hidden="false" tabindex="-1"></article>
@@ -148,13 +154,13 @@
   <script>
     const translations = {
       tr: {
-        brandTagline: 'Elektrik & Enerji', emergencyCall: '7/24 Acil Çağrı', whatsappLine: 'WhatsApp Hattı', heroBadge: 'Kuzey Kıbrıs genelinde keşif ve uygulama desteği', heroTitleLead: 'Standartların ötesinde', heroTitleAccent: 'güvenli ve akıllı güç.', heroDescription: 'Evden sanayiye; arıza müdahalesinden güneş enerjisi sistemlerine kadar elektrik ihtiyaçlarınız için keşif, teklif ve uygulama desteği sunuyoruz.', servicePrompt: 'Hizmet alanını seçin', detailsHint: 'Detaylar aşağıda açılır', serviceSolar: 'Güneş Enerjisi (GES)', serviceInstall: 'Konut & Akıllı Tesisat', servicePanel: 'Pano & Kompanzasyon', serviceEmergency: '7/24 Acil Arıza', billLabel: 'Aylık ortalama elektrik faturanız', systemLabel: 'Önerilen GES gücü', yearlyLabel: 'Yıllık tahmini kazanç', calculatorOpen: 'Fatura ve GES tasarruf hesaplayıcısını aç', calculatorHide: 'Fatura ve GES tasarruf hesaplayıcısını gizle', whatsappInfo: "WhatsApp'tan bilgi al", callNow: 'Hemen ara', contactEyebrow: 'Servis ve keşif talebi', contactTitle: 'Elektrik ihtiyacınızı birlikte netleştirelim.', contactDescription: 'Kuzey Kıbrıs genelinde hizmet almak istediğiniz konuyu WhatsApp üzerinden iletin veya 7/24 acil çağrı hattını kullanın.', complianceNote: 'Şebekeye bağlı güneş enerjisi sistemlerinde proje, başvuru ve bağlantı süreçleri; KKTC mevzuatı, Kıb-Tek şartları ve yetkili uzmanların koordinasyonuyla yürütülür. Nihai kapsam keşif ve resmi onaylara göre belirlenir.', whatsappWrite: "WhatsApp'tan yaz", call24: '7/24 ara', footerBusiness: 'Elektrik & Enerji', footerServices: 'Hizmetler', footerContact: 'İletişim', footerLegal: 'Yasal Bilgiler', footerDescription: 'Kuzey Kıbrıs elektrik ve enerji çözümleri', legalNotice: 'Bu web sitesi tanıtım ve iletişim amaçlıdır; resmi kurum sitesi değildir. Proje, izin ve bağlantı işlemleri ilgili mevzuat ve yetkili kişiler aracılığıyla yürütülür.', pageTitle: 'Bulut Dede Elektrik | Kuzey Kıbrıs Enerji Çözümleri', metaDescription: "Bulut Dede Elektrik; Kuzey Kıbrıs'ta güneş enerjisi, elektrik tesisatı, pano ve 7/24 acil servis için keşif, teklif ve uygulama desteği sunar."
+        menuOpen: 'Menüyü aç', menuClose: 'Menüyü kapat', languageLabel: 'Dil seçimi', brandTagline: 'Elektrik & Enerji', emergencyCall: '7/24 Acil Çağrı', whatsappLine: 'WhatsApp Hattı', heroBadge: 'Kuzey Kıbrıs genelinde keşif ve uygulama desteği', heroTitleLead: 'Standartların ötesinde', heroTitleAccent: 'güvenli ve akıllı güç.', heroDescription: 'Evden sanayiye; arıza müdahalesinden güneş enerjisi sistemlerine kadar elektrik ihtiyaçlarınız için keşif, teklif ve uygulama desteği sunuyoruz.', servicePrompt: 'Hizmet alanını seçin', detailsHint: 'Detaylar aşağıda açılır', serviceSolar: 'Güneş Enerjisi (GES)', serviceInstall: 'Konut & Akıllı Tesisat', servicePanel: 'Pano & Kompanzasyon', serviceEmergency: '7/24 Acil Arıza', billLabel: 'Aylık ortalama elektrik faturanız', systemLabel: 'Önerilen GES gücü', yearlyLabel: 'Yıllık tahmini kazanç', calculatorOpen: 'Fatura ve GES tasarruf hesaplayıcısını aç', calculatorHide: 'Fatura ve GES tasarruf hesaplayıcısını gizle', whatsappInfo: "WhatsApp'tan bilgi al", callNow: 'Hemen ara', contactEyebrow: 'Servis ve keşif talebi', contactTitle: 'Elektrik ihtiyacınızı birlikte netleştirelim.', contactDescription: 'Kuzey Kıbrıs genelinde hizmet almak istediğiniz konuyu WhatsApp üzerinden iletin veya 7/24 acil çağrı hattını kullanın.', complianceNote: 'Şebekeye bağlı güneş enerjisi sistemlerinde proje, başvuru ve bağlantı süreçleri; KKTC mevzuatı, Kıb-Tek şartları ve yetkili uzmanların koordinasyonuyla yürütülür. Nihai kapsam keşif ve resmi onaylara göre belirlenir.', whatsappWrite: "WhatsApp'tan yaz", call24: '7/24 ara', footerBusiness: 'Elektrik & Enerji', footerServices: 'Hizmetler', footerContact: 'İletişim', footerLegal: 'Yasal Bilgiler', footerDescription: 'Kuzey Kıbrıs elektrik ve enerji çözümleri', legalNotice: 'Bu web sitesi tanıtım ve iletişim amaçlıdır; resmi kurum sitesi değildir. Proje, izin ve bağlantı işlemleri ilgili mevzuat ve yetkili kişiler aracılığıyla yürütülür.', pageTitle: 'Bulut Dede Elektrik | Kuzey Kıbrıs Enerji Çözümleri', metaDescription: "Bulut Dede Elektrik; Kuzey Kıbrıs'ta güneş enerjisi, elektrik tesisatı, pano ve 7/24 acil servis için keşif, teklif ve uygulama desteği sunar."
       },
       en: {
-        brandTagline: 'Electrical & Energy', emergencyCall: '24/7 Emergency Call', whatsappLine: 'WhatsApp Support', heroBadge: 'Survey and installation support across North Cyprus', heroTitleLead: 'Beyond the standard', heroTitleAccent: 'safe and smart power.', heroDescription: 'From homes to industry, we provide survey, quotation and installation support for your electrical needs, including solar energy systems.', servicePrompt: 'Choose a service area', detailsHint: 'Details open below', serviceSolar: 'Solar Energy (PV)', serviceInstall: 'Home & Smart Installation', servicePanel: 'Panels & Power Factor Correction', serviceEmergency: '24/7 Emergency Service', billLabel: 'Your average monthly electricity bill', systemLabel: 'Recommended PV capacity', yearlyLabel: 'Estimated annual savings', calculatorOpen: 'Open the GES savings calculator', calculatorHide: 'Hide the GES savings calculator', whatsappInfo: 'Get info on WhatsApp', callNow: 'Call now', contactEyebrow: 'Service and site survey request', contactTitle: "Let's clarify your electrical needs together.", contactDescription: 'Tell us what you need anywhere in North Cyprus through WhatsApp, or use the 24/7 emergency call line.', complianceNote: 'For grid-connected solar systems, project, application and connection processes are coordinated with North Cyprus requirements, KIB-TEK conditions and authorized professionals. Final scope depends on the site survey and official approvals.', whatsappWrite: 'Message us on WhatsApp', call24: 'Call 24/7', footerBusiness: 'Electrical & Energy', footerServices: 'Services', footerContact: 'Contact', footerLegal: 'Legal Information', footerDescription: 'North Cyprus electrical and energy solutions', legalNotice: 'This website is for informational and contact purposes only; it is not an official government or utility website. Project, permit and grid-connection processes are handled under applicable regulations by authorized professionals.', pageTitle: 'Bulut Dede Electrical | North Cyprus Energy Solutions', metaDescription: 'Bulut Dede Electrical provides survey, quotation and installation support for solar energy, electrical installations, panels and emergency service across North Cyprus.'
+        menuOpen: 'Open menu', menuClose: 'Close menu', languageLabel: 'Language', brandTagline: 'Electrical & Energy', emergencyCall: '24/7 Emergency Call', whatsappLine: 'WhatsApp Support', heroBadge: 'Survey and installation support across North Cyprus', heroTitleLead: 'Beyond the standard', heroTitleAccent: 'safe and smart power.', heroDescription: 'From homes to industry, we provide survey, quotation and installation support for your electrical needs, including solar energy systems.', servicePrompt: 'Choose a service area', detailsHint: 'Details open below', serviceSolar: 'Solar Energy (PV)', serviceInstall: 'Home & Smart Installation', servicePanel: 'Panels & Power Factor Correction', serviceEmergency: '24/7 Emergency Service', billLabel: 'Your average monthly electricity bill', systemLabel: 'Recommended PV capacity', yearlyLabel: 'Estimated annual savings', calculatorOpen: 'Open the GES savings calculator', calculatorHide: 'Hide the GES savings calculator', whatsappInfo: 'Get info on WhatsApp', callNow: 'Call now', contactEyebrow: 'Service and site survey request', contactTitle: "Let's clarify your electrical needs together.", contactDescription: 'Tell us what you need anywhere in North Cyprus through WhatsApp, or use the 24/7 emergency call line.', complianceNote: 'For grid-connected solar systems, project, application and connection processes are coordinated with North Cyprus requirements, KIB-TEK conditions and authorized professionals. Final scope depends on the site survey and official approvals.', whatsappWrite: 'Message us on WhatsApp', call24: 'Call 24/7', footerBusiness: 'Electrical & Energy', footerServices: 'Services', footerContact: 'Contact', footerLegal: 'Legal Information', footerDescription: 'North Cyprus electrical and energy solutions', legalNotice: 'This website is for informational and contact purposes only; it is not an official government or utility website. Project, permit and grid-connection processes are handled under applicable regulations by authorized professionals.', pageTitle: 'Bulut Dede Electrical | North Cyprus Energy Solutions', metaDescription: 'Bulut Dede Electrical provides survey, quotation and installation support for solar energy, electrical installations, panels and emergency service across North Cyprus.'
       },
       ru: {
-        brandTagline: 'Электрика и энергетика', emergencyCall: 'Срочный вызов 24/7', whatsappLine: 'Поддержка WhatsApp', heroBadge: 'Проектирование и монтаж по всему Северному Кипру', heroTitleLead: 'Больше, чем стандарт', heroTitleAccent: 'безопасная и умная энергия.', heroDescription: 'От дома до производства: обследование, расчёт и монтаж электрических систем, включая солнечную энергетику.', servicePrompt: 'Выберите направление', detailsHint: 'Подробности открываются ниже', serviceSolar: 'Солнечная энергия (СЭС)', serviceInstall: 'Домашние и умные системы', servicePanel: 'Электрощиты и компенсация реактивной мощности', serviceEmergency: 'Аварийная служба 24/7', billLabel: 'Ваш средний месячный счёт за электричество', systemLabel: 'Рекомендуемая мощность СЭС', yearlyLabel: 'Расчётная годовая экономия', calculatorOpen: 'Открыть калькулятор экономии СЭС', calculatorHide: 'Скрыть калькулятор экономии СЭС', whatsappInfo: 'Получить информацию в WhatsApp', callNow: 'Позвонить сейчас', contactEyebrow: 'Запрос на обслуживание и осмотр', contactTitle: 'Давайте вместе уточним ваши электрические потребности.', contactDescription: 'Сообщите нам через WhatsApp, какая услуга вам нужна в любой точке Северного Кипра, или воспользуйтесь линией экстренного вызова 24/7.', complianceNote: 'Проектирование, подача заявок и подключение сетевых солнечных систем выполняются в соответствии с требованиями Северного Кипра, условиями KIB-TEK и при участии уполномоченных специалистов. Окончательный объём определяется после осмотра и официальных согласований.', whatsappWrite: 'Написать в WhatsApp', call24: 'Позвонить 24/7', footerBusiness: 'Электрика и энергетика', footerServices: 'Услуги', footerContact: 'Контакты', footerLegal: 'Юридическая информация', footerDescription: 'Электрические и энергетические решения Северного Кипра', legalNotice: 'Этот сайт предназначен только для информационных и контактных целей; он не является официальным сайтом государственного учреждения или энергоснабжающей организации. Проектирование, разрешения и подключение к сети выполняются уполномоченными специалистами в соответствии с действующими правилами.', pageTitle: 'Bulut Dede Электрика | Энергетические решения Северного Кипра', metaDescription: 'Bulut Dede предлагает обследование, расчёт и монтаж солнечных энергетических систем, электромонтажных решений, электрощитов и аварийное обслуживание на Северном Кипре.'
+        menuOpen: 'Открыть меню', menuClose: 'Закрыть меню', languageLabel: 'Язык', brandTagline: 'Электрика и энергетика', emergencyCall: 'Срочный вызов 24/7', whatsappLine: 'Поддержка WhatsApp', heroBadge: 'Проектирование и монтаж по всему Северному Кипру', heroTitleLead: 'Больше, чем стандарт', heroTitleAccent: 'безопасная и умная энергия.', heroDescription: 'От дома до производства: обследование, расчёт и монтаж электрических систем, включая солнечную энергетику.', servicePrompt: 'Выберите направление', detailsHint: 'Подробности открываются ниже', serviceSolar: 'Солнечная энергия (СЭС)', serviceInstall: 'Домашние и умные системы', servicePanel: 'Электрощиты и компенсация реактивной мощности', serviceEmergency: 'Аварийная служба 24/7', billLabel: 'Ваш средний месячный счёт за электричество', systemLabel: 'Рекомендуемая мощность СЭС', yearlyLabel: 'Расчётная годовая экономия', calculatorOpen: 'Открыть калькулятор экономии СЭС', calculatorHide: 'Скрыть калькулятор экономии СЭС', whatsappInfo: 'Получить информацию в WhatsApp', callNow: 'Позвонить сейчас', contactEyebrow: 'Запрос на обслуживание и осмотр', contactTitle: 'Давайте вместе уточним ваши электрические потребности.', contactDescription: 'Сообщите нам через WhatsApp, какая услуга вам нужна в любой точке Северного Кипра, или воспользуйтесь линией экстренного вызова 24/7.', complianceNote: 'Проектирование, подача заявок и подключение сетевых солнечных систем выполняются в соответствии с требованиями Северного Кипра, условиями KIB-TEK и при участии уполномоченных специалистов. Окончательный объём определяется после осмотра и официальных согласований.', whatsappWrite: 'Написать в WhatsApp', call24: 'Позвонить 24/7', footerBusiness: 'Электрика и энергетика', footerServices: 'Услуги', footerContact: 'Контакты', footerLegal: 'Юридическая информация', footerDescription: 'Электрические и энергетические решения Северного Кипра', legalNotice: 'Этот сайт предназначен только для информационных и контактных целей; он не является официальным сайтом государственного учреждения или энергоснабжающей организации. Проектирование, разрешения и подключение к сети выполняются уполномоченными специалистами в соответствии с действующими правилами.', pageTitle: 'Bulut Dede Электрика | Энергетические решения Северного Кипра', metaDescription: 'Bulut Dede предлагает обследование, расчёт и монтаж солнечных энергетических систем, электромонтажных решений, электрощитов и аварийное обслуживание на Северном Кипре.'
       }
     };
 
@@ -263,6 +269,39 @@
       document.getElementById('yearly-savings').textContent = `~${yearly.toLocaleString(locale)} TL`;
     }
 
+    function updateSiteMenuButton() {
+      const menu = document.getElementById('site-menu');
+      const toggle = document.getElementById('site-menu-toggle');
+      const icon = document.getElementById('site-menu-icon');
+      if (!menu || !toggle || !icon) return;
+      const isOpen = !menu.hidden;
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? translations[currentLanguage].menuClose : translations[currentLanguage].menuOpen);
+      icon.className = isOpen ? 'fa-solid fa-xmark text-base' : 'fa-solid fa-bars text-base';
+    }
+
+    function toggleSiteMenu() {
+      const menu = document.getElementById('site-menu');
+      if (!menu) return;
+      menu.hidden = !menu.hidden;
+      if (menu.hidden) closeLanguageMenu();
+      updateSiteMenuButton();
+    }
+
+    function closeSiteMenu(restoreFocus = false) {
+      const menu = document.getElementById('site-menu');
+      if (!menu || menu.hidden) return;
+      menu.hidden = true;
+      closeLanguageMenu();
+      updateSiteMenuButton();
+      if (restoreFocus) document.getElementById('site-menu-toggle').focus();
+    }
+
+    function chooseService(key) {
+      setTab(key, true);
+      closeSiteMenu(true);
+    }
+
     function toggleLanguageMenu() {
       const menu = document.getElementById('language-menu');
       const toggle = document.getElementById('language-menu-toggle');
@@ -285,6 +324,7 @@
     function selectLanguage(language) {
       applyLanguage(language);
       closeLanguageMenu();
+      closeSiteMenu(true);
     }
 
     function applyLanguage(language) {
@@ -299,6 +339,8 @@
       document.querySelector('meta[name="description"]').setAttribute('content', copy.metaDescription);
       document.getElementById('selected-language-flag').innerHTML = languageFlags[currentLanguage];
       document.getElementById('selected-language-code').textContent = currentLanguage.toUpperCase();
+      document.getElementById('language-menu-toggle').setAttribute('aria-label', copy.languageLabel);
+      updateSiteMenuButton();
       document.querySelectorAll('.language-option').forEach((button) => {
         button.setAttribute('aria-checked', button.dataset.language === currentLanguage ? 'true' : 'false');
       });
@@ -320,7 +362,7 @@
       const direction = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1;
       const next = tabButtons[(index + direction + tabButtons.length) % tabButtons.length];
       next.focus();
-      next.click();
+      setTab(next.id.replace('tab-', ''), false);
     }));
 
     document.querySelectorAll('[data-flag]').forEach((option) => {
@@ -329,12 +371,20 @@
     document.addEventListener('click', (event) => {
       const switcher = document.getElementById('language-switcher');
       if (switcher && !switcher.contains(event.target)) closeLanguageMenu();
+      const menu = document.getElementById('site-menu');
+      const toggle = document.getElementById('site-menu-toggle');
+      if (menu && toggle && !menu.hidden && !menu.contains(event.target) && !toggle.contains(event.target)) closeSiteMenu();
     });
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
+      if (event.key !== 'Escape') return;
+      const languageMenu = document.getElementById('language-menu');
+      if (languageMenu && !languageMenu.hidden) {
         closeLanguageMenu();
         document.getElementById('language-menu-toggle').focus();
+        return;
       }
+      const siteMenu = document.getElementById('site-menu');
+      if (siteMenu && !siteMenu.hidden) closeSiteMenu(true);
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
