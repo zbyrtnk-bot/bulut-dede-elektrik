@@ -25,7 +25,7 @@
     .brand-accent { background: linear-gradient(90deg, var(--wire-yellow) 0%, var(--wire-amber) 20%, var(--wire-orange) 40%, var(--wire-red) 60%, var(--wire-brown) 80%, var(--wire-green) 100%); }
     .language-flag { display: inline-flex; width: 20px; height: 14px; flex: 0 0 auto; overflow: hidden; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,.18); }
     .language-flag svg { display: block; width: 100%; height: 100%; }
-    .language-option[aria-checked="true"] { background: #facc15; color: #0f172a; box-shadow: 0 0 14px rgba(250, 204, 21, .2); }
+    .language-option[aria-pressed="true"] { background: #facc15; color: #0f172a; box-shadow: 0 0 14px rgba(250, 204, 21, .2); }
     .hero-main { position: relative; isolation: isolate; overflow: clip; }
     .hero-main > * { position: relative; z-index: 1; }
     .hero-main::before { content: ""; position: absolute; inset: 0 0 auto; z-index: 0; height: 560px; pointer-events: none; border-radius: 0 0 3rem 3rem; background-image: linear-gradient(90deg, rgba(7, 19, 41, .12) 0%, rgba(7, 19, 41, .28) 45%, rgba(7, 19, 41, .72) 100%), linear-gradient(180deg, rgba(7, 19, 41, .14) 0%, rgba(7, 19, 41, .82) 94%), url("technician-electrical-hero.png"); background-position: center, center, 70% 16%; background-size: cover, cover, cover; background-repeat: no-repeat; box-shadow: inset 0 -80px 80px rgba(7, 19, 41, .34); }
@@ -99,18 +99,17 @@
           </div>
           </section>
           <div class="mt-3 border-t border-slate-700/80 pt-3">
-            <label id="language-switcher" class="relative block w-full rounded-lg focus-within:ring-2 focus-within:ring-yellow-400">
-              <span class="flex min-h-11 w-full items-center justify-between gap-2 rounded-lg border border-slate-600/80 bg-[#152544] px-3 py-2 text-sm font-bold text-slate-100 transition">
+            <div id="language-switcher" class="w-full">
+              <button id="language-toggle" type="button" onclick="toggleLanguageOptions()" aria-label="Dil seçimi" aria-controls="language-options" aria-expanded="false" class="flex min-h-11 w-full items-center justify-between gap-2 rounded-lg border border-slate-600/80 bg-[#152544] px-3 py-2 text-sm font-bold text-slate-100 transition hover:border-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400">
                 <span class="inline-flex items-center gap-2"><i class="fa-solid fa-language text-yellow-400" aria-hidden="true"></i><span data-i18n="languageLabel">Dil seçimi</span></span>
                 <span class="inline-flex items-center gap-2"><span id="selected-language-flag" class="language-flag" aria-hidden="true"></span><span id="selected-language-code">TR</span><i class="fa-solid fa-chevron-down text-[9px]" aria-hidden="true"></i></span>
-              </span>
-              <select id="language-select" aria-label="Dil seçimi" onchange="selectLanguage(this.value)" class="absolute inset-0 h-full w-full cursor-pointer opacity-0">
-                <option value="tr">Türkçe</option>
-                <option value="en">English</option>
-                <option value="ru">Русский</option>
-              </select>
-            </label>
-            <!-- Dil seçenekleri tek seçicide açılır; altında ek buton bulunmaz. -->
+              </button>
+              <div id="language-options" hidden class="mt-2 space-y-1" role="group" aria-label="Dil seçenekleri">
+                <button type="button" data-language="tr" data-flag="tr" aria-pressed="true" aria-label="Türkçe" onclick="selectLanguage('tr')" class="language-option flex min-h-10 w-full items-center justify-between rounded-lg border border-slate-700/80 bg-[#142443]/70 px-3 py-2 text-sm font-semibold text-slate-200 transition hover:border-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400"><span class="inline-flex items-center gap-2"><span class="language-flag" aria-hidden="true"></span><span>Türkçe</span></span><i class="fa-solid fa-check text-xs" aria-hidden="true"></i></button>
+                <button type="button" data-language="en" data-flag="en" aria-pressed="false" aria-label="English" onclick="selectLanguage('en')" class="language-option flex min-h-10 w-full items-center justify-between rounded-lg border border-slate-700/80 bg-[#142443]/70 px-3 py-2 text-sm font-semibold text-slate-200 transition hover:border-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400"><span class="inline-flex items-center gap-2"><span class="language-flag" aria-hidden="true"></span><span>English</span></span><i class="fa-solid fa-check text-xs" aria-hidden="true"></i></button>
+                <button type="button" data-language="ru" data-flag="ru" aria-pressed="false" aria-label="Русский" onclick="selectLanguage('ru')" class="language-option flex min-h-10 w-full items-center justify-between rounded-lg border border-slate-700/80 bg-[#142443]/70 px-3 py-2 text-sm font-semibold text-slate-200 transition hover:border-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400"><span class="inline-flex items-center gap-2"><span class="language-flag" aria-hidden="true"></span><span>Русский</span></span><i class="fa-solid fa-check text-xs" aria-hidden="true"></i></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -282,13 +281,31 @@
       const menu = document.getElementById('site-menu');
       if (!menu) return;
       menu.hidden = !menu.hidden;
+      if (menu.hidden) closeLanguageOptions();
       updateSiteMenuButton();
+    }
+
+    function toggleLanguageOptions() {
+      const options = document.getElementById('language-options');
+      const toggle = document.getElementById('language-toggle');
+      if (!options || !toggle) return;
+      options.hidden = !options.hidden;
+      toggle.setAttribute('aria-expanded', String(!options.hidden));
+    }
+
+    function closeLanguageOptions() {
+      const options = document.getElementById('language-options');
+      const toggle = document.getElementById('language-toggle');
+      if (!options || !toggle) return;
+      options.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
     }
 
     function closeSiteMenu(restoreFocus = false) {
       const menu = document.getElementById('site-menu');
       if (!menu || menu.hidden) return;
       menu.hidden = true;
+      closeLanguageOptions();
       updateSiteMenuButton();
       if (restoreFocus) document.getElementById('site-menu-toggle').focus();
     }
@@ -315,9 +332,11 @@
       document.querySelector('meta[name="description"]').setAttribute('content', copy.metaDescription);
       document.getElementById('selected-language-flag').innerHTML = languageFlags[currentLanguage];
       document.getElementById('selected-language-code').textContent = currentLanguage.toUpperCase();
-      const languageSelect = document.getElementById('language-select');
-      languageSelect.value = currentLanguage;
-      languageSelect.setAttribute('aria-label', copy.languageLabel);
+      const languageToggle = document.getElementById('language-toggle');
+      if (languageToggle) languageToggle.setAttribute('aria-label', copy.languageLabel);
+      document.querySelectorAll('[data-language]').forEach((option) => {
+        option.setAttribute('aria-pressed', String(option.dataset.language === currentLanguage));
+      });
       updateSiteMenuButton();
       document.getElementById('home-link').setAttribute('aria-label', currentLanguage === 'en' ? 'Bulut Dede Electrical home page' : currentLanguage === 'ru' ? 'Главная страница Bulut Dede' : 'Bulut Dede Elektrik ana sayfa');
       document.getElementById('emergency-link').setAttribute('aria-label', copy.emergencyCall);
