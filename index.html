@@ -52,8 +52,8 @@
       header #home-link strong { font-size: .85rem; letter-spacing: .08em; white-space: nowrap; }
       header #home-link .brand-accent { width: 5.5rem; }
       header .header-actions { gap: .25rem; }
-      header #language-menu-toggle { gap: .5rem; padding: .625rem .75rem; font-size: .875rem; }
-      header #language-menu-toggle .language-flag { width: 1.25rem; height: .875rem; }
+      
+      
       header .header-actions > a { padding: .625rem .75rem; }
       #service-tabs .tab-btn { overflow: hidden; }
     }
@@ -99,17 +99,17 @@
           </div>
           </section>
           <div class="mt-3 border-t border-slate-700/80 pt-3">
-            <div id="language-switcher" class="relative w-full" role="group" aria-label="Dil seçimi">
-              <button id="language-menu-toggle" type="button" onclick="toggleLanguageMenu()" aria-label="Dil seçimi" aria-haspopup="true" aria-expanded="false" class="flex min-h-11 w-full items-center justify-between gap-2 rounded-lg border border-slate-600/80 bg-[#152544] px-3 py-2 text-sm font-bold text-slate-100 transition hover:border-yellow-400 hover:text-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400">
-              <span class="inline-flex items-center gap-2"><i class="fa-solid fa-language text-yellow-400" aria-hidden="true"></i><span data-i18n="languageLabel">Dil seçimi</span></span>
-              <span class="inline-flex items-center gap-2"><span id="selected-language-flag" class="language-flag" aria-hidden="true"></span><span id="selected-language-code">TR</span><i id="language-chevron" class="fa-solid fa-chevron-down text-[9px]" aria-hidden="true"></i></span>
-            </button>/button>
-              <div id="language-menu" hidden class="mt-2 w-full rounded-xl border border-slate-600/90 bg-[#101f3b] p-1.5 shadow-xl shadow-slate-950/50" role="menu" aria-label="Dil seçenekleri">
-                <button type="button" class="language-option flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs font-bold text-slate-100 transition hover:bg-slate-700/80" data-language="tr" data-flag="tr" onclick="selectLanguage('tr')" role="menuitemradio" aria-label="Türkçe" aria-checked="true"><span class="language-flag" aria-hidden="true"></span><span class="flex-1">Türkçe</span><span class="text-[10px] text-slate-400">TR</span></button>
-                <button type="button" class="language-option flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs font-bold text-slate-100 transition hover:bg-slate-700/80" data-language="en" data-flag="en" onclick="selectLanguage('en')" role="menuitemradio" aria-label="English" aria-checked="false"><span class="language-flag" aria-hidden="true"></span><span class="flex-1">English</span><span class="text-[10px] text-slate-400">EN</span></button>
-                <button type="button" class="language-option flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-xs font-bold text-slate-100 transition hover:bg-slate-700/80" data-language="ru" data-flag="ru" onclick="selectLanguage('ru')" role="menuitemradio" aria-label="Русский" aria-checked="false"><span class="language-flag" aria-hidden="true"></span><span class="flex-1">Русский</span><span class="text-[10px] text-slate-400">RU</span></button>
-              </div>
-            </div>
+            <label id="language-switcher" class="relative block w-full rounded-lg focus-within:ring-2 focus-within:ring-yellow-400">
+              <span class="flex min-h-11 w-full items-center justify-between gap-2 rounded-lg border border-slate-600/80 bg-[#152544] px-3 py-2 text-sm font-bold text-slate-100 transition">
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-language text-yellow-400" aria-hidden="true"></i><span data-i18n="languageLabel">Dil seçimi</span></span>
+                <span class="inline-flex items-center gap-2"><span id="selected-language-flag" class="language-flag" aria-hidden="true"></span><span id="selected-language-code">TR</span><i class="fa-solid fa-chevron-down text-[9px]" aria-hidden="true"></i></span>
+              </span>
+              <select id="language-select" aria-label="Dil seçimi" onchange="selectLanguage(this.value)" class="absolute inset-0 h-full w-full cursor-pointer opacity-0">
+                <option value="tr">Türkçe</option>
+                <option value="en">English</option>
+                <option value="ru">Русский</option>
+              </select>
+            </label>
           </div>
         </div>
       </div>
@@ -284,7 +284,6 @@
       const menu = document.getElementById('site-menu');
       if (!menu) return;
       menu.hidden = !menu.hidden;
-      if (menu.hidden) closeLanguageMenu();
       updateSiteMenuButton();
     }
 
@@ -292,7 +291,6 @@
       const menu = document.getElementById('site-menu');
       if (!menu || menu.hidden) return;
       menu.hidden = true;
-      closeLanguageMenu();
       updateSiteMenuButton();
       if (restoreFocus) document.getElementById('site-menu-toggle').focus();
     }
@@ -302,28 +300,8 @@
       closeSiteMenu(true);
     }
 
-    function toggleLanguageMenu() {
-      const menu = document.getElementById('language-menu');
-      const toggle = document.getElementById('language-menu-toggle');
-      const isOpening = menu.hidden;
-      menu.hidden = !isOpening;
-      toggle.setAttribute('aria-expanded', String(isOpening));
-      document.getElementById('language-chevron').className = isOpening ? 'fa-solid fa-chevron-up text-[9px]' : 'fa-solid fa-chevron-down text-[9px]';
-      if (isOpening) menu.querySelector(`[data-language="${currentLanguage}"]`).focus();
-    }
-
-    function closeLanguageMenu() {
-      const menu = document.getElementById('language-menu');
-      const toggle = document.getElementById('language-menu-toggle');
-      if (!menu || menu.hidden) return;
-      menu.hidden = true;
-      toggle.setAttribute('aria-expanded', 'false');
-      document.getElementById('language-chevron').className = 'fa-solid fa-chevron-down text-[9px]';
-    }
-
     function selectLanguage(language) {
       applyLanguage(language);
-      closeLanguageMenu();
       closeSiteMenu(true);
     }
 
@@ -339,11 +317,10 @@
       document.querySelector('meta[name="description"]').setAttribute('content', copy.metaDescription);
       document.getElementById('selected-language-flag').innerHTML = languageFlags[currentLanguage];
       document.getElementById('selected-language-code').textContent = currentLanguage.toUpperCase();
-      document.getElementById('language-menu-toggle').setAttribute('aria-label', copy.languageLabel);
+      const languageSelect = document.getElementById('language-select');
+      languageSelect.value = currentLanguage;
+      languageSelect.setAttribute('aria-label', copy.languageLabel);
       updateSiteMenuButton();
-      document.querySelectorAll('.language-option').forEach((button) => {
-        button.setAttribute('aria-checked', button.dataset.language === currentLanguage ? 'true' : 'false');
-      });
       document.getElementById('home-link').setAttribute('aria-label', currentLanguage === 'en' ? 'Bulut Dede Electrical home page' : currentLanguage === 'ru' ? 'Главная страница Bulut Dede' : 'Bulut Dede Elektrik ana sayfa');
       document.getElementById('emergency-link').setAttribute('aria-label', copy.emergencyCall);
       document.getElementById('service-tabs').setAttribute('aria-label', copy.servicePrompt);
@@ -369,20 +346,12 @@
       option.querySelector('.language-flag').innerHTML = languageFlags[option.dataset.flag];
     });
     document.addEventListener('click', (event) => {
-      const switcher = document.getElementById('language-switcher');
-      if (switcher && !switcher.contains(event.target)) closeLanguageMenu();
       const menu = document.getElementById('site-menu');
       const toggle = document.getElementById('site-menu-toggle');
       if (menu && toggle && !menu.hidden && !menu.contains(event.target) && !toggle.contains(event.target)) closeSiteMenu();
     });
     document.addEventListener('keydown', (event) => {
       if (event.key !== 'Escape') return;
-      const languageMenu = document.getElementById('language-menu');
-      if (languageMenu && !languageMenu.hidden) {
-        closeLanguageMenu();
-        document.getElementById('language-menu-toggle').focus();
-        return;
-      }
       const siteMenu = document.getElementById('site-menu');
       if (siteMenu && !siteMenu.hidden) closeSiteMenu(true);
     });
