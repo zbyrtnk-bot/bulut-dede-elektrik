@@ -124,7 +124,49 @@
         <p class="mt-4 max-w-xl text-sm leading-7 text-slate-400 sm:text-base" data-i18n="heroDescription">Evden sanayiye; arıza müdahalesinden güneş enerjisi sistemlerine kadar elektrik ihtiyaçlarınız için keşif, teklif ve uygulama desteği sunuyoruz.</p>
       </div>
 
-      <article id="tab-content-card" class="service-panel min-h-[220px] space-y-4 rounded-2xl border border-slate-700/80 bg-[#142443]/95 p-5 shadow-xl" role="tabpanel" aria-live="polite" aria-hidden="false" tabindex="-1"></article>
+      <article id="discovery-request-card" class="service-panel space-y-4 rounded-2xl border border-slate-700/80 bg-[#142443]/95 p-5 shadow-xl" aria-labelledby="request-title">
+        <div>
+          <h2 id="request-title" class="text-lg font-bold text-white" data-i18n="requestTitle">Kısa keşif talebi</h2>
+          <p class="mt-1 text-sm leading-6 text-slate-400" data-i18n="requestDescription">Bölgenizi ve hizmet ihtiyacınızı seçin; talebinizi WhatsApp üzerinden iletin.</p>
+        </div>
+        <form id="discovery-request-form" class="space-y-4" onsubmit="submitDiscoveryRequest(event)">
+          <label for="request-phone" class="block space-y-2">
+            <span class="block text-sm font-semibold text-slate-200" data-i18n="requestPhoneLabel">1. Telefon numaranız</span>
+            <input id="request-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+90 5XX XXX XX XX" data-i18n-placeholder="requestPhonePlaceholder" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
+          </label>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <label for="request-region" class="block space-y-2">
+              <span class="block text-sm font-semibold text-slate-200" data-i18n="requestRegionLabel">2. Bölgeni seç</span>
+              <select id="request-region" name="region" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
+                <option value="" selected disabled data-i18n="requestRegionPlaceholder">Bölge seç</option>
+                <option value="girne" data-i18n="regionKyrenia">Girne</option>
+                <option value="lefkosa" data-i18n="regionNicosia">Lefkoşa</option>
+                <option value="gazimagusa" data-i18n="regionFamagusta">Gazimağusa</option>
+                <option value="iskele" data-i18n="regionIskele">İskele</option>
+                <option value="guzelyurt" data-i18n="regionGuzelyurt">Güzelyurt</option>
+                <option value="lefke" data-i18n="regionLefke">Lefke</option>
+                <option value="karpaz" data-i18n="regionKarpaz">Karpaz</option>
+                <option value="other" data-i18n="regionOther">Diğer</option>
+              </select>
+            </label>
+            <label for="request-service" class="block space-y-2">
+              <span class="block text-sm font-semibold text-slate-200" data-i18n="requestServiceLabel">3. Hizmeti seç</span>
+              <select id="request-service" name="service" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
+                <option value="" selected disabled data-i18n="requestServicePlaceholder">Hizmet seç</option>
+                <option value="solar" data-i18n="serviceSolar">Güneş Enerjisi (GES)</option>
+                <option value="tesisat" data-i18n="serviceInstall">Konut &amp; Akıllı Tesisat</option>
+                <option value="pano" data-i18n="servicePanel">Pano &amp; Kompanzasyon</option>
+                <option value="ariza" data-i18n="serviceEmergency">7/24 Acil Arıza</option>
+                <option value="other" data-i18n="serviceOther">Diğer</option>
+              </select>
+            </label>
+          </div>
+          <button type="submit" class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-yellow-500 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span data-i18n="requestSubmit">Talep gönder</span></button>
+          <p class="text-xs leading-5 text-slate-500" data-i18n="requestNotice">WhatsApp mesajı hazırlanır; siz göndermeden bize iletilmez.</p>
+        </form>
+      </article>
+
+      <article id="tab-content-card" hidden class="service-panel min-h-[220px] space-y-4 rounded-2xl border border-slate-700/80 bg-[#142443]/95 p-5 shadow-xl" role="tabpanel" aria-live="polite" aria-hidden="true" tabindex="-1"></article>
 
       <section id="calculator-shell" hidden class="service-calculator rounded-2xl border border-slate-700/80 bg-gradient-to-br from-[#182a4a] to-[#0d1932]/90 p-5" aria-labelledby="simulator-title">
         <div class="mb-3 flex items-center justify-between gap-4">
@@ -154,13 +196,13 @@
   <script>
     const translations = {
       tr: {
-        menuOpen: 'Menüyü aç', menuClose: 'Menüyü kapat', languageLabel: 'Dil seçimi', brandTagline: 'Elektrik & Enerji', emergencyCall: '7/24 Acil Çağrı', whatsappLine: 'WhatsApp Hattı', heroBadge: 'Kuzey Kıbrıs genelinde keşif ve uygulama desteği', heroTitleLead: 'Standartların ötesinde', heroTitleAccent: 'güvenli ve akıllı güç.', heroDescription: 'Evden sanayiye; arıza müdahalesinden güneş enerjisi sistemlerine kadar elektrik ihtiyaçlarınız için keşif, teklif ve uygulama desteği sunuyoruz.', servicePrompt: 'Hizmet alanını seçin', detailsHint: 'Detaylar aşağıda açılır', serviceSolar: 'Güneş Enerjisi (GES)', serviceInstall: 'Konut & Akıllı Tesisat', servicePanel: 'Pano & Kompanzasyon', serviceEmergency: '7/24 Acil Arıza', billLabel: 'Aylık ortalama elektrik faturanız', systemLabel: 'Önerilen GES gücü', yearlyLabel: 'Yıllık tahmini kazanç', calculatorOpen: 'Fatura ve GES tasarruf hesaplayıcısını aç', calculatorHide: 'Fatura ve GES tasarruf hesaplayıcısını gizle', whatsappInfo: "WhatsApp'tan bilgi al", callNow: 'Hemen ara', contactEyebrow: 'Servis ve keşif talebi', contactTitle: 'Elektrik ihtiyacınızı birlikte netleştirelim.', contactDescription: 'Kuzey Kıbrıs genelinde hizmet almak istediğiniz konuyu WhatsApp üzerinden iletin veya 7/24 acil çağrı hattını kullanın.', complianceNote: 'Şebekeye bağlı güneş enerjisi sistemlerinde proje, başvuru ve bağlantı süreçleri; KKTC mevzuatı, Kıb-Tek şartları ve yetkili uzmanların koordinasyonuyla yürütülür. Nihai kapsam keşif ve resmi onaylara göre belirlenir.', whatsappWrite: "WhatsApp'tan yaz", call24: '7/24 ara', footerBusiness: 'Elektrik & Enerji', footerServices: 'Hizmetler', footerContact: 'İletişim', footerLegal: 'Yasal Bilgiler', footerDescription: 'Kuzey Kıbrıs elektrik ve enerji çözümleri', legalNotice: 'Bu web sitesi tanıtım ve iletişim amaçlıdır; resmi kurum sitesi değildir. Proje, izin ve bağlantı işlemleri ilgili mevzuat ve yetkili kişiler aracılığıyla yürütülür.', pageTitle: 'Bulut Dede Elektrik | Kuzey Kıbrıs Enerji Çözümleri', metaDescription: "Bulut Dede Elektrik; Kuzey Kıbrıs'ta güneş enerjisi, elektrik tesisatı, pano ve 7/24 acil servis için keşif, teklif ve uygulama desteği sunar."
+        menuOpen: 'Menüyü aç', menuClose: 'Menüyü kapat', languageLabel: 'Dil seçimi', brandTagline: 'Elektrik & Enerji', emergencyCall: '7/24 Acil Çağrı', whatsappLine: 'WhatsApp Hattı', heroBadge: 'Kuzey Kıbrıs genelinde keşif ve uygulama desteği', heroTitleLead: 'Standartların ötesinde', heroTitleAccent: 'güvenli ve akıllı güç.', heroDescription: 'Evden sanayiye; arıza müdahalesinden güneş enerjisi sistemlerine kadar elektrik ihtiyaçlarınız için keşif, teklif ve uygulama desteği sunuyoruz.', requestTitle: 'Kısa keşif talebi', requestDescription: 'Bölgenizi ve hizmet ihtiyacınızı seçin; talebinizi WhatsApp üzerinden iletin.', requestPhoneLabel: '1. Telefon numaranız', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Bölgeni seç', requestRegionPlaceholder: 'Bölge seç', requestServiceLabel: '3. Hizmeti seç', requestServicePlaceholder: 'Hizmet seç', requestSubmit: 'Talep gönder', requestNotice: 'WhatsApp mesajı hazırlanır; siz göndermeden bize iletilmez.', regionKyrenia: 'Girne', regionNicosia: 'Lefkoşa', regionFamagusta: 'Gazimağusa', regionIskele: 'İskele', regionGuzelyurt: 'Güzelyurt', regionLefke: 'Lefke', regionKarpaz: 'Karpaz', regionOther: 'Diğer', serviceOther: 'Diğer', servicePrompt: 'Hizmet alanını seçin', detailsHint: 'Detaylar aşağıda açılır', serviceSolar: 'Güneş Enerjisi (GES)', serviceInstall: 'Konut & Akıllı Tesisat', servicePanel: 'Pano & Kompanzasyon', serviceEmergency: '7/24 Acil Arıza', billLabel: 'Aylık ortalama elektrik faturanız', systemLabel: 'Önerilen GES gücü', yearlyLabel: 'Yıllık tahmini kazanç', calculatorOpen: 'Fatura ve GES tasarruf hesaplayıcısını aç', calculatorHide: 'Fatura ve GES tasarruf hesaplayıcısını gizle', whatsappInfo: "WhatsApp'tan bilgi al", callNow: 'Hemen ara', contactEyebrow: 'Servis ve keşif talebi', contactTitle: 'Elektrik ihtiyacınızı birlikte netleştirelim.', contactDescription: 'Kuzey Kıbrıs genelinde hizmet almak istediğiniz konuyu WhatsApp üzerinden iletin veya 7/24 acil çağrı hattını kullanın.', complianceNote: 'Şebekeye bağlı güneş enerjisi sistemlerinde proje, başvuru ve bağlantı süreçleri; KKTC mevzuatı, Kıb-Tek şartları ve yetkili uzmanların koordinasyonuyla yürütülür. Nihai kapsam keşif ve resmi onaylara göre belirlenir.', whatsappWrite: "WhatsApp'tan yaz", call24: '7/24 ara', footerBusiness: 'Elektrik & Enerji', footerServices: 'Hizmetler', footerContact: 'İletişim', footerLegal: 'Yasal Bilgiler', footerDescription: 'Kuzey Kıbrıs elektrik ve enerji çözümleri', legalNotice: 'Bu web sitesi tanıtım ve iletişim amaçlıdır; resmi kurum sitesi değildir. Proje, izin ve bağlantı işlemleri ilgili mevzuat ve yetkili kişiler aracılığıyla yürütülür.', pageTitle: 'Bulut Dede Elektrik | Kuzey Kıbrıs Enerji Çözümleri', metaDescription: "Bulut Dede Elektrik; Kuzey Kıbrıs'ta güneş enerjisi, elektrik tesisatı, pano ve 7/24 acil servis için keşif, teklif ve uygulama desteği sunar."
       },
       en: {
-        menuOpen: 'Open menu', menuClose: 'Close menu', languageLabel: 'Language', brandTagline: 'Electrical & Energy', emergencyCall: '24/7 Emergency Call', whatsappLine: 'WhatsApp Support', heroBadge: 'Survey and installation support across North Cyprus', heroTitleLead: 'Beyond the standard', heroTitleAccent: 'safe and smart power.', heroDescription: 'From homes to industry, we provide survey, quotation and installation support for your electrical needs, including solar energy systems.', servicePrompt: 'Choose a service area', detailsHint: 'Details open below', serviceSolar: 'Solar Energy (PV)', serviceInstall: 'Home & Smart Installation', servicePanel: 'Panels & Power Factor Correction', serviceEmergency: '24/7 Emergency Service', billLabel: 'Your average monthly electricity bill', systemLabel: 'Recommended PV capacity', yearlyLabel: 'Estimated annual savings', calculatorOpen: 'Open the GES savings calculator', calculatorHide: 'Hide the GES savings calculator', whatsappInfo: 'Get info on WhatsApp', callNow: 'Call now', contactEyebrow: 'Service and site survey request', contactTitle: "Let's clarify your electrical needs together.", contactDescription: 'Tell us what you need anywhere in North Cyprus through WhatsApp, or use the 24/7 emergency call line.', complianceNote: 'For grid-connected solar systems, project, application and connection processes are coordinated with North Cyprus requirements, KIB-TEK conditions and authorized professionals. Final scope depends on the site survey and official approvals.', whatsappWrite: 'Message us on WhatsApp', call24: 'Call 24/7', footerBusiness: 'Electrical & Energy', footerServices: 'Services', footerContact: 'Contact', footerLegal: 'Legal Information', footerDescription: 'North Cyprus electrical and energy solutions', legalNotice: 'This website is for informational and contact purposes only; it is not an official government or utility website. Project, permit and grid-connection processes are handled under applicable regulations by authorized professionals.', pageTitle: 'Bulut Dede Electrical | North Cyprus Energy Solutions', metaDescription: 'Bulut Dede Electrical provides survey, quotation and installation support for solar energy, electrical installations, panels and emergency service across North Cyprus.'
+        menuOpen: 'Open menu', menuClose: 'Close menu', languageLabel: 'Language', brandTagline: 'Electrical & Energy', emergencyCall: '24/7 Emergency Call', whatsappLine: 'WhatsApp Support', heroBadge: 'Survey and installation support across North Cyprus', heroTitleLead: 'Beyond the standard', heroTitleAccent: 'safe and smart power.', heroDescription: 'From homes to industry, we provide survey, quotation and installation support for your electrical needs, including solar energy systems.', requestTitle: 'Quick site visit request', requestDescription: 'Choose your area and service, then send your request through WhatsApp.', requestPhoneLabel: '1. Your phone number', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Select your area', requestRegionPlaceholder: 'Choose an area', requestServiceLabel: '3. Select a service', requestServicePlaceholder: 'Choose a service', requestSubmit: 'Send request', requestNotice: 'A WhatsApp message will be prepared; it is sent only when you send it.', regionKyrenia: 'Kyrenia', regionNicosia: 'Nicosia', regionFamagusta: 'Famagusta', regionIskele: 'İskele', regionGuzelyurt: 'Güzelyurt', regionLefke: 'Lefke', regionKarpaz: 'Karpaz', regionOther: 'Other', serviceOther: 'Other', servicePrompt: 'Choose a service area', detailsHint: 'Details open below', serviceSolar: 'Solar Energy (PV)', serviceInstall: 'Home & Smart Installation', servicePanel: 'Panels & Power Factor Correction', serviceEmergency: '24/7 Emergency Service', billLabel: 'Your average monthly electricity bill', systemLabel: 'Recommended PV capacity', yearlyLabel: 'Estimated annual savings', calculatorOpen: 'Open the GES savings calculator', calculatorHide: 'Hide the GES savings calculator', whatsappInfo: 'Get info on WhatsApp', callNow: 'Call now', contactEyebrow: 'Service and site survey request', contactTitle: "Let's clarify your electrical needs together.", contactDescription: 'Tell us what you need anywhere in North Cyprus through WhatsApp, or use the 24/7 emergency call line.', complianceNote: 'For grid-connected solar systems, project, application and connection processes are coordinated with North Cyprus requirements, KIB-TEK conditions and authorized professionals. Final scope depends on the site survey and official approvals.', whatsappWrite: 'Message us on WhatsApp', call24: 'Call 24/7', footerBusiness: 'Electrical & Energy', footerServices: 'Services', footerContact: 'Contact', footerLegal: 'Legal Information', footerDescription: 'North Cyprus electrical and energy solutions', legalNotice: 'This website is for informational and contact purposes only; it is not an official government or utility website. Project, permit and grid-connection processes are handled under applicable regulations by authorized professionals.', pageTitle: 'Bulut Dede Electrical | North Cyprus Energy Solutions', metaDescription: 'Bulut Dede Electrical provides survey, quotation and installation support for solar energy, electrical installations, panels and emergency service across North Cyprus.'
       },
       ru: {
-        menuOpen: 'Открыть меню', menuClose: 'Закрыть меню', languageLabel: 'Язык', brandTagline: 'Электрика и энергетика', emergencyCall: 'Срочный вызов 24/7', whatsappLine: 'Поддержка WhatsApp', heroBadge: 'Проектирование и монтаж по всему Северному Кипру', heroTitleLead: 'Больше, чем стандарт', heroTitleAccent: 'безопасная и умная энергия.', heroDescription: 'От дома до производства: обследование, расчёт и монтаж электрических систем, включая солнечную энергетику.', servicePrompt: 'Выберите направление', detailsHint: 'Подробности открываются ниже', serviceSolar: 'Солнечная энергия (СЭС)', serviceInstall: 'Домашние и умные системы', servicePanel: 'Электрощиты и компенсация реактивной мощности', serviceEmergency: 'Аварийная служба 24/7', billLabel: 'Ваш средний месячный счёт за электричество', systemLabel: 'Рекомендуемая мощность СЭС', yearlyLabel: 'Расчётная годовая экономия', calculatorOpen: 'Открыть калькулятор экономии СЭС', calculatorHide: 'Скрыть калькулятор экономии СЭС', whatsappInfo: 'Получить информацию в WhatsApp', callNow: 'Позвонить сейчас', contactEyebrow: 'Запрос на обслуживание и осмотр', contactTitle: 'Давайте вместе уточним ваши электрические потребности.', contactDescription: 'Сообщите нам через WhatsApp, какая услуга вам нужна в любой точке Северного Кипра, или воспользуйтесь линией экстренного вызова 24/7.', complianceNote: 'Проектирование, подача заявок и подключение сетевых солнечных систем выполняются в соответствии с требованиями Северного Кипра, условиями KIB-TEK и при участии уполномоченных специалистов. Окончательный объём определяется после осмотра и официальных согласований.', whatsappWrite: 'Написать в WhatsApp', call24: 'Позвонить 24/7', footerBusiness: 'Электрика и энергетика', footerServices: 'Услуги', footerContact: 'Контакты', footerLegal: 'Юридическая информация', footerDescription: 'Электрические и энергетические решения Северного Кипра', legalNotice: 'Этот сайт предназначен только для информационных и контактных целей; он не является официальным сайтом государственного учреждения или энергоснабжающей организации. Проектирование, разрешения и подключение к сети выполняются уполномоченными специалистами в соответствии с действующими правилами.', pageTitle: 'Bulut Dede Электрика | Энергетические решения Северного Кипра', metaDescription: 'Bulut Dede предлагает обследование, расчёт и монтаж солнечных энергетических систем, электромонтажных решений, электрощитов и аварийное обслуживание на Северном Кипре.'
+        menuOpen: 'Открыть меню', menuClose: 'Закрыть меню', languageLabel: 'Язык', brandTagline: 'Электрика и энергетика', emergencyCall: 'Срочный вызов 24/7', whatsappLine: 'Поддержка WhatsApp', heroBadge: 'Проектирование и монтаж по всему Северному Кипру', heroTitleLead: 'Больше, чем стандарт', heroTitleAccent: 'безопасная и умная энергия.', heroDescription: 'От дома до производства: обследование, расчёт и монтаж электрических систем, включая солнечную энергетику.', requestTitle: 'Краткая заявка на выезд', requestDescription: 'Выберите район и услугу, затем отправьте заявку через WhatsApp.', requestPhoneLabel: '1. Ваш номер телефона', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Выберите район', requestRegionPlaceholder: 'Выберите район', requestServiceLabel: '3. Выберите услугу', requestServicePlaceholder: 'Выберите услугу', requestSubmit: 'Отправить заявку', requestNotice: 'Будет подготовлено сообщение WhatsApp; оно отправится только после вашего подтверждения.', regionKyrenia: 'Кирения', regionNicosia: 'Никосия', regionFamagusta: 'Фамагуста', regionIskele: 'Искеле', regionGuzelyurt: 'Гюзельюрт', regionLefke: 'Лефке', regionKarpaz: 'Карпаз', regionOther: 'Другое', serviceOther: 'Другое', servicePrompt: 'Выберите направление', detailsHint: 'Подробности открываются ниже', serviceSolar: 'Солнечная энергия (СЭС)', serviceInstall: 'Домашние и умные системы', servicePanel: 'Электрощиты и компенсация реактивной мощности', serviceEmergency: 'Аварийная служба 24/7', billLabel: 'Ваш средний месячный счёт за электричество', systemLabel: 'Рекомендуемая мощность СЭС', yearlyLabel: 'Расчётная годовая экономия', calculatorOpen: 'Открыть калькулятор экономии СЭС', calculatorHide: 'Скрыть калькулятор экономии СЭС', whatsappInfo: 'Получить информацию в WhatsApp', callNow: 'Позвонить сейчас', contactEyebrow: 'Запрос на обслуживание и осмотр', contactTitle: 'Давайте вместе уточним ваши электрические потребности.', contactDescription: 'Сообщите нам через WhatsApp, какая услуга вам нужна в любой точке Северного Кипра, или воспользуйтесь линией экстренного вызова 24/7.', complianceNote: 'Проектирование, подача заявок и подключение сетевых солнечных систем выполняются в соответствии с требованиями Северного Кипра, условиями KIB-TEK и при участии уполномоченных специалистов. Окончательный объём определяется после осмотра и официальных согласований.', whatsappWrite: 'Написать в WhatsApp', call24: 'Позвонить 24/7', footerBusiness: 'Электрика и энергетика', footerServices: 'Услуги', footerContact: 'Контакты', footerLegal: 'Юридическая информация', footerDescription: 'Электрические и энергетические решения Северного Кипра', legalNotice: 'Этот сайт предназначен только для информационных и контактных целей; он не является официальным сайтом государственного учреждения или энергоснабжающей организации. Проектирование, разрешения и подключение к сети выполняются уполномоченными специалистами в соответствии с действующими правилами.', pageTitle: 'Bulut Dede Электрика | Энергетические решения Северного Кипра', metaDescription: 'Bulut Dede предлагает обследование, расчёт и монтаж солнечных энергетических систем, электромонтажных решений, электрощитов и аварийное обслуживание на Северном Кипре.'
       }
     };
 
@@ -193,6 +235,7 @@
 
     let currentLanguage = 'tr';
     let activeTab = 'solar';
+    let hasChosenService = false;
 
     function escapeHtml(value) {
       return String(value).replace(/[&<>\"']/g, (character) => ({
@@ -204,19 +247,34 @@
       })[character]);
     }
 
+    function submitDiscoveryRequest(event) {
+      event.preventDefault();
+      const phone = document.getElementById('request-phone').value.trim();
+      const region = document.getElementById('request-region').selectedOptions[0]?.textContent.trim();
+      const service = document.getElementById('request-service').selectedOptions[0]?.textContent.trim();
+      if (!phone || !region || !service) return;
+      const copy = translations[currentLanguage];
+      const message = [copy.requestTitle, `${copy.requestPhoneLabel}: ${phone}`, `${copy.requestRegionLabel}: ${region}`, `${copy.requestServiceLabel}: ${service}`].join('\\n');
+      const url = `https://wa.me/905338712332?text=${encodeURIComponent(message)}`;
+      const whatsappWindow = window.open(url, '_blank');
+      if (whatsappWindow) whatsappWindow.opener = null;
+    }
+
     function setTab(key, reveal = false) {
       const item = serviceData[currentLanguage][key];
       if (!item) return;
       activeTab = key;
       const card = document.getElementById('tab-content-card');
       const languageText = translations[currentLanguage];
+      card.hidden = !hasChosenService;
+      card.setAttribute('aria-hidden', String(!hasChosenService));
       const calculatorShell = document.getElementById('calculator-shell');
       if (calculatorShell) {
         calculatorShell.hidden = true;
         calculatorShell.classList.remove('is-opening');
       }
       document.querySelectorAll('.tab-btn').forEach((button) => {
-        const active = button.id === `tab-${key}`;
+        const active = hasChosenService && button.id === `tab-${key}`;
         button.setAttribute('aria-selected', active ? 'true' : 'false');
         button.setAttribute('aria-expanded', active ? 'true' : 'false');
       });
@@ -230,7 +288,7 @@
       if (key === 'solar') {
         card.insertAdjacentHTML('beforeend', '<button type="button" onclick="toggleCalculator(this)" aria-controls="calculator-shell" aria-expanded="false" class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-yellow-500/40 bg-yellow-500/10 px-4 py-3 text-sm font-bold text-yellow-300 transition hover:bg-yellow-500/20"><i class="fa-solid fa-calculator" aria-hidden="true"></i><span data-label>' + languageText.calculatorOpen + '</span><i data-icon class="fa-solid fa-chevron-down text-xs" aria-hidden="true"></i></button>');
       }
-      card.setAttribute('aria-hidden', 'false');
+      card.setAttribute('aria-hidden', String(!hasChosenService));
       card.classList.add('is-opening');
       if (reveal && window.matchMedia('(max-width: 767px)').matches) {
         window.requestAnimationFrame(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }));
@@ -311,6 +369,7 @@
     }
 
     function chooseService(key) {
+      hasChosenService = true;
       setTab(key, true);
       closeSiteMenu(true);
     }
@@ -327,6 +386,10 @@
       document.querySelectorAll('[data-i18n]').forEach((element) => {
         const value = copy[element.dataset.i18n];
         if (value) element.textContent = value;
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
+        const value = copy[element.dataset.i18nPlaceholder];
+        if (value) element.placeholder = value;
       });
       document.title = copy.pageTitle;
       document.querySelector('meta[name="description"]').setAttribute('content', copy.metaDescription);
@@ -356,6 +419,7 @@
       const direction = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1;
       const next = tabButtons[(index + direction + tabButtons.length) % tabButtons.length];
       next.focus();
+      hasChosenService = true;
       setTab(next.id.replace('tab-', ''), false);
     }));
 
