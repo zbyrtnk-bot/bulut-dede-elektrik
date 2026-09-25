@@ -231,17 +231,19 @@
             <i class="fa-solid fa-phone text-base text-yellow-400 sm:text-lg" aria-hidden="true"></i>
             <span class="hidden sm:inline" data-i18n="emergencyCall">7/24 Acil Çağrı</span>
           </button>
-          <div id="header-contact-options" hidden role="group" aria-labelledby="header-contact-title" class="absolute right-0 top-full z-[80] mt-2 w-64 max-w-[calc(100vw-1rem)] rounded-2xl border border-slate-600/90 bg-[#101f3b] p-3 shadow-2xl shadow-slate-950/70">
+          <div id="header-contact-options" hidden role="group" aria-labelledby="header-contact-title" class="absolute right-0 top-full z-[80] mt-2 w-72 max-w-[calc(100vw-1rem)] rounded-2xl border border-slate-600/90 bg-[#101f3b] p-3 shadow-2xl shadow-slate-950/70">
             <h2 id="header-contact-title" class="mb-2 px-1 text-sm font-bold text-slate-200" data-i18n="contactChoice">İletişim yöntemi</h2>
             <a id="header-whatsapp" href="https://wa.me/905338712332?text=Merhaba%20Bulut%20Dede%20Elektrik%2C%20servis%20talep%20ediyorum." target="_blank" rel="noopener noreferrer" onclick="closeHeaderContactMenu()" class="flex min-h-11 w-full items-center gap-3 rounded-xl bg-emerald-500 px-3 py-3 text-left text-sm font-bold text-slate-950 transition hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400">
               <i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i>
               <span data-i18n="whatsappLine">WhatsApp ile yazış</span>
               <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-xs" aria-hidden="true"></i>
             </a>
-            <a id="header-phone-call" href="tel:+905338712332" onclick="closeHeaderContactMenu()" class="mt-2 flex min-h-11 w-full items-center gap-3 rounded-xl border border-slate-600/80 bg-[#152544] px-3 py-3 text-left text-sm font-bold text-slate-100 transition hover:border-yellow-400 hover:bg-[#1d3154] focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400">
+            <a id="header-phone-call" href="tel:+905338712332" onclick="closeHeaderContactMenu()" class="mt-2 flex min-h-11 w-full items-center gap-3 rounded-xl border border-slate-600/80 bg-[#152544] px-3 py-2.5 text-left text-sm font-bold text-slate-100 transition hover:border-yellow-400 hover:bg-[#1d3154] focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400">
               <i class="fa-solid fa-phone text-base text-yellow-400" aria-hidden="true"></i>
-              <span data-i18n="phoneCall">Telefonla ara</span>
-              <span class="ml-auto whitespace-nowrap text-xs font-medium text-slate-400">+90 533 871 23 32</span>
+              <span class="min-w-0 flex-1">
+                <span class="block" data-i18n="phoneCall">Telefonla ara</span>
+                <span class="mt-0.5 block text-xs font-medium text-slate-400">+90 533 871 23 32</span>
+              </span>
             </a>
           </div>
         </div>
