@@ -96,15 +96,17 @@
       position: absolute;
       top: 0;
       right: auto;
-      bottom: 0;
+      bottom: -36px;
       left: 0;
       z-index: 0;
       width: 100%;
-      height: 100%;
+      height: calc(100% + 36px);
       overflow: hidden;
       pointer-events: none;
       isolation: isolate;
       transform: none;
+      -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 68%, transparent 100%);
+      mask-image: linear-gradient(180deg, #000 0%, #000 68%, transparent 100%);
       background: linear-gradient(180deg, #60a5fa 0%, #93c5fd 48%, #dbeafe 78%, #0f2c50 100%);
     }
     #site-header .header-sky-photo {
@@ -119,8 +121,6 @@
       object-position: center 38%;
       opacity: .88;
       filter: brightness(1.06) saturate(1.02) contrast(1.04);
-      -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 84%, transparent 100%);
-      mask-image: linear-gradient(180deg, #000 0%, #000 84%, transparent 100%);
       transition: opacity 1800ms ease, filter 1800ms ease;
     }
     #site-header .header-sky-daylight {
@@ -160,19 +160,9 @@
     .language-option[aria-pressed="true"] { background: #facc15; color: #0f172a; box-shadow: 0 0 14px rgba(250, 204, 21, .2); }
     .hero-main { position: relative; isolation: isolate; overflow: clip; }
     .hero-main > * { position: relative; z-index: 1; }
-    .hero-main::after {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto;
-      z-index: 0;
-      height: 48px;
-      pointer-events: none;
-      background: linear-gradient(180deg, #0f2c50 0%, rgba(15, 44, 80, .68) 38%, rgba(15, 44, 80, 0) 100%);
-    }
     .hero-main::before { content: ""; position: absolute; inset: 0 0 auto; z-index: 0; height: 560px; pointer-events: none; border-radius: 0 0 3rem 3rem; background-image: linear-gradient(90deg, rgba(7, 19, 41, .12) 0%, rgba(7, 19, 41, .28) 45%, rgba(7, 19, 41, .72) 100%), linear-gradient(180deg, rgba(7, 19, 41, .14) 0%, rgba(7, 19, 41, .82) 94%), url("technician-electrical-hero.png"); background-position: center, center, 70% 16%; background-size: cover, cover, cover; background-repeat: no-repeat; box-shadow: inset 0 -80px 80px rgba(7, 19, 41, .34); }
     @media (max-width: 640px) {
       .hero-main::before { height: 530px; background-position: center, center, 100% 12%; background-image: linear-gradient(90deg, rgba(7, 19, 41, .48) 0%, rgba(7, 19, 41, .42) 52%, rgba(7, 19, 41, .64) 100%), linear-gradient(180deg, rgba(7, 19, 41, .16) 0%, rgba(7, 19, 41, .84) 94%), url("technician-electrical-hero.png"); }
-      .hero-main::after { height: 64px; }
     }
     #discovery-request-modal[hidden] { display: none !important; }
     .service-panel { scroll-margin-top: 92px; }
