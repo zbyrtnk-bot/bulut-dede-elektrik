@@ -87,21 +87,79 @@
     #site-header[data-sky="day"] #emergency-link .fa-phone { color: #a16207; }
     #site-header[data-sky="night"] #emergency-link .text-slate-400 { color: #94a3b8; }
     #site-header[data-sky="day"] #emergency-link .text-slate-400 { color: #475569; }
-    #site-header #header-sky-indicator {
-      transition: background-color 1200ms ease, border-color 1200ms ease, color 1200ms ease, box-shadow 1200ms ease;
+    .header-sky-scene {
+      position: relative;
+      display: flex;
+      flex: 1 1 96px;
+      min-width: 28px;
+      height: 56px;
+      align-self: center;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+      pointer-events: none;
+      isolation: isolate;
     }
-    #site-header[data-sky="night"] #header-sky-indicator {
-      background-color: #e2e8f0;
-      border-color: #f8fafc;
-      color: #1e293b;
-      box-shadow: 0 2px 10px rgba(15, 23, 42, .35);
+    #site-header .header-sky-celestial {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      bottom: 19px;
+      display: flex;
+      width: 16px;
+      height: 16px;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(-50%);
+      transition: color 1800ms ease, filter 1800ms ease;
     }
-    #site-header[data-sky="day"] #header-sky-indicator {
-      background-color: #facc15;
-      border-color: #fef08a;
-      color: #713f12;
-      box-shadow: 0 2px 10px rgba(161, 98, 7, .3);
+    #site-header #header-sky-icon {
+      font-size: 15px;
+      line-height: 1;
     }
+    #site-header .header-sky-landscape {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    #site-header .sky-mountain-back {
+      fill: #cbd5e1;
+      opacity: .8;
+      transition: fill 1800ms ease;
+    }
+    #site-header .sky-mountain-front {
+      fill: #94a3b8;
+      opacity: .82;
+      transition: fill 1800ms ease;
+    }
+    #site-header .sky-ridge-detail {
+      fill: none;
+      stroke: #64748b;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: .9;
+      opacity: .42;
+      transition: stroke 1800ms ease;
+    }
+    #site-header .sky-night-stars {
+      fill: #e2e8f0;
+      opacity: 0;
+      transition: opacity 1800ms ease;
+    }
+    #site-header[data-sky="day"] .header-sky-celestial {
+      color: #f59e0b;
+      filter: drop-shadow(0 0 5px rgba(245, 158, 11, .65));
+    }
+    #site-header[data-sky="night"] .header-sky-celestial {
+      color: #e2e8f0;
+      filter: drop-shadow(0 0 5px rgba(191, 219, 254, .5));
+    }
+    #site-header[data-sky="night"] .sky-mountain-back { fill: #334b70; opacity: .72; }
+    #site-header[data-sky="night"] .sky-mountain-front { fill: #1e355a; opacity: .95; }
+    #site-header[data-sky="night"] .sky-ridge-detail { stroke: #93a9c7; opacity: .3; }
+    #site-header[data-sky="night"] .sky-night-stars { opacity: .86; }
     #site-header[data-sky="day"] #header-sky-icon { animation: headerSunrise 900ms ease-out both; }
     #site-header[data-sky="night"] #header-sky-icon { animation: headerMoonrise 900ms ease-out both; }
     @keyframes headerSunrise {
@@ -134,7 +192,7 @@
     #tab-content-card h2, #tab-content-card p, #tab-content-card li, #service-tabs .tab-btn span { overflow-wrap: anywhere; }
     @media (max-width: 640px) {
       header .mx-auto { gap: .25rem; padding-left: .5rem; padding-right: .5rem; }
-      header #home-link { flex: 1 1 auto; min-width: 0; gap: .5rem; }
+      header #home-link { flex: 0 1 auto; min-width: 0; gap: .5rem; }
       header #home-link .brand-mark { width: 3rem; height: 3rem; border-radius: .75rem; }
       header #home-link .brand-mark img { width: 2.5rem; height: 2.5rem; }
       header #home-link > span:last-child { min-width: 0; }
@@ -157,7 +215,6 @@
       <a id="home-link" href="#top" class="flex min-w-0 shrink-0 items-center gap-3" aria-label="Bulut Dede Elektrik ana sayfa">
         <span class="brand-mark relative flex h-14 w-14 items-center justify-center rounded-xl" aria-hidden="true">
           <img src="bulut-dede-logo.png" class="h-12 w-12 object-contain" alt="" aria-hidden="true">
-          <span id="header-sky-indicator" class="absolute -right-2 -top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full border text-[10px]" title="Night theme"><i id="header-sky-icon" class="fa-solid fa-moon" aria-hidden="true"></i></span>
         </span>
         <span>
           <strong class="block text-lg font-extrabold leading-none tracking-[.16em] text-white sm:text-xl">BULUT DEDE</strong>
@@ -165,6 +222,17 @@
           <span class="brand-accent mt-2 block h-0.5 w-40 rounded-full opacity-90"></span>
         </span>
       </a>
+      <div class="header-sky-scene" aria-hidden="true">
+        <span id="header-sky-indicator" class="header-sky-celestial" title="Night theme"><i id="header-sky-icon" class="fa-solid fa-moon" aria-hidden="true"></i></span>
+        <svg class="header-sky-landscape" viewBox="0 0 320 64" preserveAspectRatio="none" focusable="false">
+          <path class="sky-mountain-back" d="M0 64V52L15 49 28 40 38 46 52 42 66 31 78 42 92 37 108 24 121 39 137 30 151 43 166 35 180 47 196 40 211 50 227 38 241 48 258 34 272 46 288 39 302 49 320 43V64Z"></path>
+          <path class="sky-mountain-front" d="M0 64V57L19 53 34 47 48 52 63 44 80 51 96 46 110 39 124 49 141 42 157 51 173 44 188 54 203 47 219 55 235 46 251 54 267 44 283 54 300 48 320 54V64Z"></path>
+          <path class="sky-ridge-detail" d="M28 40l10 6m28-15 11 11m30-18 12 15m16-9 14 13m15-8 14 12m17-7 16 10m16-12 14 10m17-14 14 12m16-7 14 10"></path>
+          <g class="sky-night-stars">
+            <circle cx="77" cy="16" r="1.1"></circle><circle cx="161" cy="10" r="1"></circle><circle cx="238" cy="18" r="1.1"></circle>
+          </g>
+        </svg>
+      </div>
       <div class="header-actions relative ml-auto flex shrink-0 items-center justify-end gap-2 sm:gap-3">
         <a id="header-whatsapp" href="https://wa.me/905338712332?text=Merhaba%20Bulut%20Dede%20Elektrik%2C%20servis%20talep%20ediyorum." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Hattı +90 533 871 23 32" class="flex h-11 w-11 items-center justify-center gap-2 rounded-lg bg-yellow-500 px-3 py-2.5 text-xs font-bold text-slate-950 shadow-lg shadow-yellow-500/20 transition hover:bg-yellow-400 sm:w-auto sm:px-6 sm:py-3 sm:text-sm">
           <i class="fa-brands fa-whatsapp text-base sm:text-lg" aria-hidden="true"></i>
