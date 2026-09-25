@@ -64,19 +64,26 @@
     #site-header[data-sky="night"] #emergency-link,
     #site-header[data-sky="night"] #site-menu-toggle {
       background-color: transparent;
-      border-color: rgba(71, 85, 105, .8);
+      border-color: transparent;
+      box-shadow: none;
       color: #e2e8f0;
     }
     #site-header[data-sky="day"] #emergency-link,
     #site-header[data-sky="day"] #site-menu-toggle {
       background-color: transparent;
-      border-color: rgba(148, 163, 184, .8);
+      border-color: transparent;
+      box-shadow: none;
       color: #1e293b;
+    }
+    #site-header[data-sky="night"] #emergency-link:hover,
+    #site-header[data-sky="night"] #site-menu-toggle:hover {
+      background-color: rgba(255, 255, 255, .1);
+      border-color: transparent;
     }
     #site-header[data-sky="day"] #emergency-link:hover,
     #site-header[data-sky="day"] #site-menu-toggle:hover {
-      background-color: rgba(255, 255, 255, .18);
-      border-color: #b45309;
+      background-color: rgba(255, 255, 255, .16);
+      border-color: transparent;
       color: #1e293b;
     }
     #site-header #emergency-link .fa-phone,
