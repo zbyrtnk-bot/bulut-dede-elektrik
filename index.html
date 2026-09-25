@@ -41,6 +41,17 @@
     #site-header[data-sky="night"] {
       border-bottom-color: transparent;
     }
+    #site-header::after {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      right: 0;
+      bottom: -14px;
+      left: 0;
+      height: 28px;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(7, 19, 41, 0) 0%, rgba(7, 19, 41, .1) 35%, rgba(7, 19, 41, .22) 50%, rgba(7, 19, 41, .1) 65%, rgba(7, 19, 41, 0) 100%);
+    }
 
     #site-header .brand-mark {
       border: 0;
@@ -96,17 +107,15 @@
       position: absolute;
       top: 0;
       right: auto;
-      bottom: -36px;
+      bottom: 0;
       left: 0;
       z-index: 0;
       width: 100%;
-      height: calc(100% + 36px);
+      height: 100%;
       overflow: hidden;
       pointer-events: none;
       isolation: isolate;
       transform: none;
-      -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 68%, transparent 100%);
-      mask-image: linear-gradient(180deg, #000 0%, #000 68%, transparent 100%);
       background: linear-gradient(180deg, #60a5fa 0%, #93c5fd 48%, #dbeafe 78%, #0f2c50 100%);
     }
     #site-header .header-sky-photo {
