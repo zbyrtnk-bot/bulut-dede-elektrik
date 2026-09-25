@@ -20,7 +20,7 @@
     body { position: relative; isolation: isolate; width: 100%; max-width: 100%; min-height: 100vh; overflow-x: hidden; background-color: #071329; background-image: radial-gradient(circle at 8% 12%, rgba(250, 204, 21, .15), transparent 25%), radial-gradient(circle at 92% 18%, rgba(56, 189, 248, .18), transparent 27%), radial-gradient(circle at 48% 88%, rgba(239, 68, 68, .1), transparent 30%), linear-gradient(135deg, #08152f 0%, #102344 48%, #0b1833 100%); }
     body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .22; background-image: linear-gradient(120deg, transparent 0 42%, rgba(250, 204, 21, .2) 43%, transparent 44% 100%), linear-gradient(300deg, transparent 0 48%, rgba(56, 189, 248, .16) 49%, transparent 50% 100%); background-size: 360px 360px, 440px 440px; animation: energyDrift 18s ease-in-out infinite alternate; }
     @keyframes energyDrift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 1%, 0) scale(1.04); } }
-    .brand-mark { border: 1px solid rgba(148, 163, 184, .35); background: linear-gradient(145deg, rgba(30, 41, 59, .98), rgba(15, 23, 42, .92)); box-shadow: 0 0 24px rgba(250, 204, 21, .12), inset 0 0 18px rgba(239, 68, 68, .06); }
+    .brand-mark { border: 0; background: transparent; box-shadow: none; }
     .brand-bolt { fill: #fff7b2; filter: drop-shadow(0 0 2px rgba(250, 204, 21, .9)); }
     .brand-accent { background: linear-gradient(90deg, var(--wire-yellow) 0%, var(--wire-amber) 20%, var(--wire-orange) 40%, var(--wire-red) 60%, var(--wire-brown) 80%, var(--wire-green) 100%); }
 
@@ -37,17 +37,9 @@
       border-color: rgba(148, 163, 184, .8);
     }
     #site-header .brand-mark {
-      transition: background 1800ms ease, border-color 1800ms ease, box-shadow 1800ms ease;
-    }
-    #site-header[data-sky="night"] .brand-mark {
-      background: linear-gradient(145deg, rgba(30, 41, 59, .98), rgba(15, 23, 42, .92));
-      border-color: rgba(148, 163, 184, .35);
-      box-shadow: 0 0 24px rgba(250, 204, 21, .12), inset 0 0 18px rgba(239, 68, 68, .06);
-    }
-    #site-header[data-sky="day"] .brand-mark {
-      background: linear-gradient(145deg, rgba(255, 255, 255, .98), rgba(219, 234, 254, .96));
-      border-color: rgba(100, 116, 139, .55);
-      box-shadow: 0 0 20px rgba(59, 130, 246, .12), inset 0 0 14px rgba(250, 204, 21, .08);
+      border: 0;
+      background: transparent;
+      box-shadow: none;
     }
     #site-header #home-link strong,
     #site-header #home-link [data-i18n="brandTagline"] {
