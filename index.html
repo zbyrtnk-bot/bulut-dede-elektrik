@@ -100,19 +100,7 @@
       pointer-events: none;
       isolation: isolate;
       transform: translateX(-50%);
-    }
-    #site-header .header-sky-celestial {
-      position: absolute;
-      z-index: 2;
-      top: calc(30% - 8px);
-      left: 50%;
-      display: flex;
-      width: 16px;
-      height: 16px;
-      align-items: center;
-      justify-content: center;
-      transform: translateX(-50%);
-      transition: color 1800ms ease, filter 1800ms ease;
+      background: linear-gradient(180deg, #38bdf8 0%, #7dd3fc 48%, #dbeafe 78%, #0f2c50 100%);
     }
     #site-header .header-sky-photo {
       position: absolute;
@@ -123,36 +111,42 @@
       height: 100%;
       object-fit: cover;
       object-position: center 22%;
-      opacity: .82;
-      filter: brightness(1.02) saturate(.9) contrast(.97);
+      opacity: .78;
+      filter: brightness(1.08) saturate(.82) contrast(.98);
       transition: opacity 1800ms ease, filter 1800ms ease;
     }
-    #site-header #header-sky-icon {
-      font-size: 15px;
-      line-height: 1;
+    #site-header .header-sky-daylight {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(14, 165, 233, .56) 0%, rgba(56, 189, 248, .34) 48%, rgba(125, 211, 252, .08) 78%, transparent 100%);
+      opacity: 1;
+      transition: opacity 1800ms ease;
     }
-    #site-header[data-sky="day"] .header-sky-celestial {
-      color: #f59e0b;
-      filter: drop-shadow(0 0 5px rgba(245, 158, 11, .65));
-    }
-    #site-header[data-sky="night"] .header-sky-celestial {
-      color: #e2e8f0;
-      filter: drop-shadow(0 0 5px rgba(191, 219, 254, .5));
+    #site-header .header-sky-stars {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 76%;
+      fill: #f8fafc;
+      opacity: 0;
+      filter: drop-shadow(0 0 2px rgba(191, 219, 254, .9));
+      transition: opacity 1800ms ease;
     }
     #site-header[data-sky="night"] .header-sky-photo {
-      opacity: .72;
-      filter: brightness(.36) saturate(.85) hue-rotate(165deg);
+      opacity: .76;
+      filter: brightness(.3) saturate(.78) hue-rotate(165deg);
     }
-    #site-header[data-sky="day"] #header-sky-icon { animation: headerSunrise 900ms ease-out both; }
-    #site-header[data-sky="night"] #header-sky-icon { animation: headerMoonrise 900ms ease-out both; }
-    @keyframes headerSunrise {
-      from { opacity: 0; transform: translateY(6px) scale(.45) rotate(-35deg); }
-      to { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+    #site-header[data-sky="night"] .header-sky-daylight { opacity: 0; }
+    #site-header[data-sky="night"] .header-sky-stars { opacity: .96; }
+    @keyframes starTwinkle {
+      from { opacity: .48; }
+      to { opacity: 1; }
     }
-    @keyframes headerMoonrise {
-      from { opacity: 0; transform: translateY(6px) scale(.45) rotate(25deg); }
-      to { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
-    }
+    #site-header .header-sky-stars .twinkle { animation: starTwinkle 3s ease-in-out infinite alternate; }
+    #site-header .header-sky-stars .twinkle-slow { animation: starTwinkle 4.2s ease-in-out .8s infinite alternate; }
     .language-flag { display: inline-flex; width: 20px; height: 14px; flex: 0 0 auto; overflow: hidden; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,.18); }
     .language-flag svg { display: block; width: 100%; height: 100%; }
     .language-option[aria-pressed="true"] { background: #facc15; color: #0f172a; box-shadow: 0 0 14px rgba(250, 204, 21, .2); }
@@ -197,8 +191,19 @@
 <body class="min-h-screen font-sans text-slate-100 selection:bg-yellow-400 selection:text-slate-950">
   <header id="site-header" data-sky="night" class="sticky top-0 z-50 border-b border-slate-700/80 bg-[#0c1832]/90 backdrop-blur-xl">
   <div class="header-sky-scene" aria-hidden="true">
-    <span id="header-sky-indicator" class="header-sky-celestial" title="Night theme"><i id="header-sky-icon" class="fa-solid fa-moon" aria-hidden="true"></i></span>
     <img class="header-sky-photo" src="besparmak-mountain.jpg" alt="" aria-hidden="true">
+    <div class="header-sky-daylight"></div>
+    <svg class="header-sky-stars" viewBox="0 0 700 100" preserveAspectRatio="none" focusable="false">
+      <circle cx="34" cy="18" r="1.4" class="twinkle"></circle><circle cx="82" cy="46" r="1"></circle>
+      <circle cx="126" cy="24" r="1.2" class="twinkle-slow"></circle><circle cx="174" cy="58" r=".9"></circle>
+      <circle cx="218" cy="14" r="1.1"></circle><circle cx="257" cy="39" r="1.5" class="twinkle"></circle>
+      <circle cx="302" cy="21" r=".9"></circle><circle cx="349" cy="54" r="1.1" class="twinkle-slow"></circle>
+      <circle cx="391" cy="12" r="1.3"></circle><circle cx="432" cy="36" r=".9" class="twinkle"></circle>
+      <circle cx="478" cy="58" r="1.4"></circle><circle cx="518" cy="19" r="1" class="twinkle-slow"></circle>
+      <circle cx="557" cy="42" r="1.2"></circle><circle cx="603" cy="14" r=".9" class="twinkle"></circle>
+      <circle cx="646" cy="51" r="1.5" class="twinkle-slow"></circle><circle cx="680" cy="28" r="1"></circle>
+      <path d="M149 39v6m-3-3h6M535 64v5m-2.5-2.5h5M624 31v5m-2.5-2.5h5" stroke="#f8fafc" stroke-width=".7" opacity=".82"></path>
+    </svg>
   </div>
 
     <div class="mx-auto relative z-10 flex max-w-7xl flex-nowrap items-center gap-4 px-4 py-4 sm:px-6">
@@ -336,13 +341,13 @@
   <script>
     const translations = {
       tr: {
-        menuOpen: 'Menüyü aç', menuClose: 'Menüyü kapat', languageLabel: 'Dil seçimi', brandTagline: 'Elektrik & Enerji', emergencyCall: '7/24 Acil Çağrı', whatsappLine: 'WhatsApp Hattı', skyDay: 'Gündüz teması', skyNight: 'Gece teması', photoCreditPrefix: 'Beşparmak fotoğrafı:', photoCreditSuffix: '· CC BY-SA 4.0 · üst menüde kırpılarak gösterilmiştir.', instagramAccount: 'Instagram hesabımız', heroTitleLead: 'Standartların ötesinde', heroTitleAccent: 'güvenli ve akıllı güç.', heroDescription: "Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da evden sanayiye elektrik ihtiyaçları için keşif, teklif ve uygulama desteği sunuyoruz.", requestTitle: 'Kısa keşif talebi', requestDescription: 'Bölgenizi ve hizmet ihtiyacınızı seçin; talebinizi WhatsApp üzerinden iletin.', requestPhoneLabel: '1. Telefon numaranız', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Bölgeni seç', requestRegionPlaceholder: 'Bölge seç', requestServiceLabel: '3. Hizmeti seç', requestServicePlaceholder: 'Hizmet seç', requestSubmit: 'Talep gönder', requestNotice: 'WhatsApp mesajı hazırlanır; siz göndermeden bize iletilmez.', regionKyrenia: "Girne", regionNicosia: "Lefkoşa", regionCatalkoy: "Çatalköy", regionAlsancak: "Alsancak", regionLapta: "Lapta", serviceOther: 'Diğer', servicePrompt: 'Hizmet alanını seçin', detailsHint: 'Detaylar aşağıda açılır', serviceSolar: 'Güneş Enerjisi (GES)', serviceInstall: 'Konut & Akıllı Tesisat', servicePanel: 'Pano & Kompanzasyon', serviceEmergency: '7/24 Acil Arıza', billLabel: 'Aylık ortalama elektrik faturanız', systemLabel: 'Önerilen GES gücü', yearlyLabel: 'Yıllık tahmini kazanç', calculatorOpen: 'Fatura ve GES tasarruf hesaplayıcısını aç', calculatorHide: 'Fatura ve GES tasarruf hesaplayıcısını gizle', whatsappInfo: "WhatsApp'tan bilgi al", callNow: 'Hemen ara', contactEyebrow: 'Servis ve keşif talebi', contactTitle: 'Elektrik ihtiyacınızı birlikte netleştirelim.', contactDescription: "Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da hizmet talebinizi WhatsApp üzerinden iletin veya 7/24 acil çağrı hattını kullanın.", complianceNote: 'Şebekeye bağlı güneş enerjisi sistemlerinde proje, başvuru ve bağlantı süreçleri; KKTC mevzuatı, Kıb-Tek şartları ve yetkili uzmanların koordinasyonuyla yürütülür. Nihai kapsam keşif ve resmi onaylara göre belirlenir.', whatsappWrite: "WhatsApp'tan yaz", call24: '7/24 ara', footerBusiness: 'Elektrik & Enerji', footerServices: 'Hizmetler', footerContact: 'İletişim', footerLegal: 'Yasal Bilgiler', footerDescription: "Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da elektrik ve enerji çözümleri", legalNotice: 'Bu web sitesi tanıtım ve iletişim amaçlıdır; resmi kurum sitesi değildir. Proje, izin ve bağlantı işlemleri ilgili mevzuat ve yetkili kişiler aracılığıyla yürütülür.', pageTitle: "Bulut Dede Elektrik | Enerji Çözümleri", metaDescription: "Bulut Dede Elektrik; Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da güneş enerjisi, elektrik tesisatı, pano ve acil servis için keşif ve uygulama desteği sunar."
+        menuOpen: 'Menüyü aç', menuClose: 'Menüyü kapat', languageLabel: 'Dil seçimi', brandTagline: 'Elektrik & Enerji', emergencyCall: '7/24 Acil Çağrı', whatsappLine: 'WhatsApp Hattı', photoCreditPrefix: 'Beşparmak fotoğrafı:', photoCreditSuffix: '· CC BY-SA 4.0 · üst menüde kırpılarak gösterilmiştir.', instagramAccount: 'Instagram hesabımız', heroTitleLead: 'Standartların ötesinde', heroTitleAccent: 'güvenli ve akıllı güç.', heroDescription: "Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da evden sanayiye elektrik ihtiyaçları için keşif, teklif ve uygulama desteği sunuyoruz.", requestTitle: 'Kısa keşif talebi', requestDescription: 'Bölgenizi ve hizmet ihtiyacınızı seçin; talebinizi WhatsApp üzerinden iletin.', requestPhoneLabel: '1. Telefon numaranız', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Bölgeni seç', requestRegionPlaceholder: 'Bölge seç', requestServiceLabel: '3. Hizmeti seç', requestServicePlaceholder: 'Hizmet seç', requestSubmit: 'Talep gönder', requestNotice: 'WhatsApp mesajı hazırlanır; siz göndermeden bize iletilmez.', regionKyrenia: "Girne", regionNicosia: "Lefkoşa", regionCatalkoy: "Çatalköy", regionAlsancak: "Alsancak", regionLapta: "Lapta", serviceOther: 'Diğer', servicePrompt: 'Hizmet alanını seçin', detailsHint: 'Detaylar aşağıda açılır', serviceSolar: 'Güneş Enerjisi (GES)', serviceInstall: 'Konut & Akıllı Tesisat', servicePanel: 'Pano & Kompanzasyon', serviceEmergency: '7/24 Acil Arıza', billLabel: 'Aylık ortalama elektrik faturanız', systemLabel: 'Önerilen GES gücü', yearlyLabel: 'Yıllık tahmini kazanç', calculatorOpen: 'Fatura ve GES tasarruf hesaplayıcısını aç', calculatorHide: 'Fatura ve GES tasarruf hesaplayıcısını gizle', whatsappInfo: "WhatsApp'tan bilgi al", callNow: 'Hemen ara', contactEyebrow: 'Servis ve keşif talebi', contactTitle: 'Elektrik ihtiyacınızı birlikte netleştirelim.', contactDescription: "Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da hizmet talebinizi WhatsApp üzerinden iletin veya 7/24 acil çağrı hattını kullanın.", complianceNote: 'Şebekeye bağlı güneş enerjisi sistemlerinde proje, başvuru ve bağlantı süreçleri; KKTC mevzuatı, Kıb-Tek şartları ve yetkili uzmanların koordinasyonuyla yürütülür. Nihai kapsam keşif ve resmi onaylara göre belirlenir.', whatsappWrite: "WhatsApp'tan yaz", call24: '7/24 ara', footerBusiness: 'Elektrik & Enerji', footerServices: 'Hizmetler', footerContact: 'İletişim', footerLegal: 'Yasal Bilgiler', footerDescription: "Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da elektrik ve enerji çözümleri", legalNotice: 'Bu web sitesi tanıtım ve iletişim amaçlıdır; resmi kurum sitesi değildir. Proje, izin ve bağlantı işlemleri ilgili mevzuat ve yetkili kişiler aracılığıyla yürütülür.', pageTitle: "Bulut Dede Elektrik | Enerji Çözümleri", metaDescription: "Bulut Dede Elektrik; Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da güneş enerjisi, elektrik tesisatı, pano ve acil servis için keşif ve uygulama desteği sunar."
       },
       en: {
-        menuOpen: 'Open menu', menuClose: 'Close menu', languageLabel: 'Language', brandTagline: 'Electrical & Energy', emergencyCall: '24/7 Emergency Call', whatsappLine: 'WhatsApp Support', skyDay: 'Day theme', skyNight: 'Night theme', photoCreditPrefix: 'Beşparmak Mountains photo:', photoCreditSuffix: '· CC BY-SA 4.0 · cropped for the header.', instagramAccount: 'Our Instagram', heroTitleLead: 'Beyond the standard', heroTitleAccent: 'safe and smart power.', heroDescription: "We provide survey, quotation and installation support for residential, commercial and solar electrical needs in Nicosia, Kyrenia, Çatalköy, Alsancak and Lapta.", requestTitle: 'Quick site visit request', requestDescription: 'Choose your area and service, then send your request through WhatsApp.', requestPhoneLabel: '1. Your phone number', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Select your area', requestRegionPlaceholder: 'Choose an area', requestServiceLabel: '3. Select a service', requestServicePlaceholder: 'Choose a service', requestSubmit: 'Send request', requestNotice: 'A WhatsApp message will be prepared; it is sent only when you send it.', regionKyrenia: "Kyrenia", regionNicosia: "Nicosia", regionCatalkoy: "Çatalköy", regionAlsancak: "Alsancak", regionLapta: "Lapta", serviceOther: 'Other', servicePrompt: 'Choose a service area', detailsHint: 'Details open below', serviceSolar: 'Solar Energy (PV)', serviceInstall: 'Home & Smart Installation', servicePanel: 'Panels & Power Factor Correction', serviceEmergency: '24/7 Emergency Service', billLabel: 'Your average monthly electricity bill', systemLabel: 'Recommended PV capacity', yearlyLabel: 'Estimated annual savings', calculatorOpen: 'Open the GES savings calculator', calculatorHide: 'Hide the GES savings calculator', whatsappInfo: 'Get info on WhatsApp', callNow: 'Call now', contactEyebrow: 'Service and site survey request', contactTitle: "Let's clarify your electrical needs together.", contactDescription: "Request service in Nicosia, Kyrenia, Çatalköy, Alsancak or Lapta on WhatsApp, or call our 24/7 emergency line.", complianceNote: 'For grid-connected solar systems, project, application and connection processes are coordinated with North Cyprus requirements, KIB-TEK conditions and authorized professionals. Final scope depends on the site survey and official approvals.', whatsappWrite: 'Message us on WhatsApp', call24: 'Call 24/7', footerBusiness: 'Electrical & Energy', footerServices: 'Services', footerContact: 'Contact', footerLegal: 'Legal Information', footerDescription: "Electrical and energy services in Nicosia, Kyrenia, Çatalköy, Alsancak and Lapta", legalNotice: 'This website is for informational and contact purposes only; it is not an official government or utility website. Project, permit and grid-connection processes are handled under applicable regulations by authorized professionals.', pageTitle: "Bulut Dede Electrical | Energy Solutions", metaDescription: "Bulut Dede Electrical provides solar, electrical installation, panel and emergency service surveys in Nicosia, Kyrenia, Çatalköy, Alsancak and Lapta."
+        menuOpen: 'Open menu', menuClose: 'Close menu', languageLabel: 'Language', brandTagline: 'Electrical & Energy', emergencyCall: '24/7 Emergency Call', whatsappLine: 'WhatsApp Support', photoCreditPrefix: 'Beşparmak Mountains photo:', photoCreditSuffix: '· CC BY-SA 4.0 · cropped for the header.', instagramAccount: 'Our Instagram', heroTitleLead: 'Beyond the standard', heroTitleAccent: 'safe and smart power.', heroDescription: "We provide survey, quotation and installation support for residential, commercial and solar electrical needs in Nicosia, Kyrenia, Çatalköy, Alsancak and Lapta.", requestTitle: 'Quick site visit request', requestDescription: 'Choose your area and service, then send your request through WhatsApp.', requestPhoneLabel: '1. Your phone number', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Select your area', requestRegionPlaceholder: 'Choose an area', requestServiceLabel: '3. Select a service', requestServicePlaceholder: 'Choose a service', requestSubmit: 'Send request', requestNotice: 'A WhatsApp message will be prepared; it is sent only when you send it.', regionKyrenia: "Kyrenia", regionNicosia: "Nicosia", regionCatalkoy: "Çatalköy", regionAlsancak: "Alsancak", regionLapta: "Lapta", serviceOther: 'Other', servicePrompt: 'Choose a service area', detailsHint: 'Details open below', serviceSolar: 'Solar Energy (PV)', serviceInstall: 'Home & Smart Installation', servicePanel: 'Panels & Power Factor Correction', serviceEmergency: '24/7 Emergency Service', billLabel: 'Your average monthly electricity bill', systemLabel: 'Recommended PV capacity', yearlyLabel: 'Estimated annual savings', calculatorOpen: 'Open the GES savings calculator', calculatorHide: 'Hide the GES savings calculator', whatsappInfo: 'Get info on WhatsApp', callNow: 'Call now', contactEyebrow: 'Service and site survey request', contactTitle: "Let's clarify your electrical needs together.", contactDescription: "Request service in Nicosia, Kyrenia, Çatalköy, Alsancak or Lapta on WhatsApp, or call our 24/7 emergency line.", complianceNote: 'For grid-connected solar systems, project, application and connection processes are coordinated with North Cyprus requirements, KIB-TEK conditions and authorized professionals. Final scope depends on the site survey and official approvals.', whatsappWrite: 'Message us on WhatsApp', call24: 'Call 24/7', footerBusiness: 'Electrical & Energy', footerServices: 'Services', footerContact: 'Contact', footerLegal: 'Legal Information', footerDescription: "Electrical and energy services in Nicosia, Kyrenia, Çatalköy, Alsancak and Lapta", legalNotice: 'This website is for informational and contact purposes only; it is not an official government or utility website. Project, permit and grid-connection processes are handled under applicable regulations by authorized professionals.', pageTitle: "Bulut Dede Electrical | Energy Solutions", metaDescription: "Bulut Dede Electrical provides solar, electrical installation, panel and emergency service surveys in Nicosia, Kyrenia, Çatalköy, Alsancak and Lapta."
       },
       ru: {
-        menuOpen: 'Открыть меню', menuClose: 'Закрыть меню', languageLabel: 'Язык', brandTagline: 'Электрика и энергетика', emergencyCall: 'Срочный вызов 24/7', whatsappLine: 'Поддержка WhatsApp', skyDay: 'Дневная тема', skyNight: 'Ночная тема', photoCreditPrefix: 'Фото гор Бешпармак:', photoCreditSuffix: '· CC BY-SA 4.0 · кадрировано для верхнего меню.', instagramAccount: 'Наш Instagram', heroTitleLead: 'Больше, чем стандарт', heroTitleAccent: 'безопасная и умная энергия.', heroDescription: "Мы предлагаем обследование, расчёт и монтаж бытовых, коммерческих и солнечных электрических систем в Никосии, Кирении, Çatalköy, Alsancak и Lapta.", requestTitle: 'Краткая заявка на выезд', requestDescription: 'Выберите район и услугу, затем отправьте заявку через WhatsApp.', requestPhoneLabel: '1. Ваш номер телефона', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Выберите район', requestRegionPlaceholder: 'Выберите район', requestServiceLabel: '3. Выберите услугу', requestServicePlaceholder: 'Выберите услугу', requestSubmit: 'Отправить заявку', requestNotice: 'Будет подготовлено сообщение WhatsApp; оно отправится только после вашего подтверждения.', regionKyrenia: "Кирения", regionNicosia: "Никосия", regionCatalkoy: "Çatalköy", regionAlsancak: "Alsancak", regionLapta: "Lapta", serviceOther: 'Другое', servicePrompt: 'Выберите направление', detailsHint: 'Подробности открываются ниже', serviceSolar: 'Солнечная энергия (СЭС)', serviceInstall: 'Домашние и умные системы', servicePanel: 'Электрощиты и компенсация реактивной мощности', serviceEmergency: 'Аварийная служба 24/7', billLabel: 'Ваш средний месячный счёт за электричество', systemLabel: 'Рекомендуемая мощность СЭС', yearlyLabel: 'Расчётная годовая экономия', calculatorOpen: 'Открыть калькулятор экономии СЭС', calculatorHide: 'Скрыть калькулятор экономии СЭС', whatsappInfo: 'Получить информацию в WhatsApp', callNow: 'Позвонить сейчас', contactEyebrow: 'Запрос на обслуживание и осмотр', contactTitle: 'Давайте вместе уточним ваши электрические потребности.', contactDescription: "Оставьте заявку в WhatsApp для обслуживания в Никосии, Кирении, Çatalköy, Alsancak или Lapta либо позвоните на линию экстренной связи 24/7.", complianceNote: 'Проектирование, подача заявок и подключение сетевых солнечных систем выполняются в соответствии с требованиями Северного Кипра, условиями KIB-TEK и при участии уполномоченных специалистов. Окончательный объём определяется после осмотра и официальных согласований.', whatsappWrite: 'Написать в WhatsApp', call24: 'Позвонить 24/7', footerBusiness: 'Электрика и энергетика', footerServices: 'Услуги', footerContact: 'Контакты', footerLegal: 'Юридическая информация', footerDescription: "Электрические и энергетические решения в Никосии, Кирении, Çatalköy, Alsancak и Lapta", legalNotice: 'Этот сайт предназначен только для информационных и контактных целей; он не является официальным сайтом государственного учреждения или энергоснабжающей организации. Проектирование, разрешения и подключение к сети выполняются уполномоченными специалистами в соответствии с действующими правилами.', pageTitle: "Bulut Dede Электрика | Энергетические решения", metaDescription: "Bulut Dede предлагает обследование, расчёт и монтаж солнечных систем, электропроводки, щитов и аварийное обслуживание в Никосии, Кирении, Çatalköy, Alsancak и Lapta."
+        menuOpen: 'Открыть меню', menuClose: 'Закрыть меню', languageLabel: 'Язык', brandTagline: 'Электрика и энергетика', emergencyCall: 'Срочный вызов 24/7', whatsappLine: 'Поддержка WhatsApp', photoCreditPrefix: 'Фото гор Бешпармак:', photoCreditSuffix: '· CC BY-SA 4.0 · кадрировано для верхнего меню.', instagramAccount: 'Наш Instagram', heroTitleLead: 'Больше, чем стандарт', heroTitleAccent: 'безопасная и умная энергия.', heroDescription: "Мы предлагаем обследование, расчёт и монтаж бытовых, коммерческих и солнечных электрических систем в Никосии, Кирении, Çatalköy, Alsancak и Lapta.", requestTitle: 'Краткая заявка на выезд', requestDescription: 'Выберите район и услугу, затем отправьте заявку через WhatsApp.', requestPhoneLabel: '1. Ваш номер телефона', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Выберите район', requestRegionPlaceholder: 'Выберите район', requestServiceLabel: '3. Выберите услугу', requestServicePlaceholder: 'Выберите услугу', requestSubmit: 'Отправить заявку', requestNotice: 'Будет подготовлено сообщение WhatsApp; оно отправится только после вашего подтверждения.', regionKyrenia: "Кирения", regionNicosia: "Никосия", regionCatalkoy: "Çatalköy", regionAlsancak: "Alsancak", regionLapta: "Lapta", serviceOther: 'Другое', servicePrompt: 'Выберите направление', detailsHint: 'Подробности открываются ниже', serviceSolar: 'Солнечная энергия (СЭС)', serviceInstall: 'Домашние и умные системы', servicePanel: 'Электрощиты и компенсация реактивной мощности', serviceEmergency: 'Аварийная служба 24/7', billLabel: 'Ваш средний месячный счёт за электричество', systemLabel: 'Рекомендуемая мощность СЭС', yearlyLabel: 'Расчётная годовая экономия', calculatorOpen: 'Открыть калькулятор экономии СЭС', calculatorHide: 'Скрыть калькулятор экономии СЭС', whatsappInfo: 'Получить информацию в WhatsApp', callNow: 'Позвонить сейчас', contactEyebrow: 'Запрос на обслуживание и осмотр', contactTitle: 'Давайте вместе уточним ваши электрические потребности.', contactDescription: "Оставьте заявку в WhatsApp для обслуживания в Никосии, Кирении, Çatalköy, Alsancak или Lapta либо позвоните на линию экстренной связи 24/7.", complianceNote: 'Проектирование, подача заявок и подключение сетевых солнечных систем выполняются в соответствии с требованиями Северного Кипра, условиями KIB-TEK и при участии уполномоченных специалистов. Окончательный объём определяется после осмотра и официальных согласований.', whatsappWrite: 'Написать в WhatsApp', call24: 'Позвонить 24/7', footerBusiness: 'Электрика и энергетика', footerServices: 'Услуги', footerContact: 'Контакты', footerLegal: 'Юридическая информация', footerDescription: "Электрические и энергетические решения в Никосии, Кирении, Çatalköy, Alsancak и Lapta", legalNotice: 'Этот сайт предназначен только для информационных и контактных целей; он не является официальным сайтом государственного учреждения или энергоснабжающей организации. Проектирование, разрешения и подключение к сети выполняются уполномоченными специалистами в соответствии с действующими правилами.', pageTitle: "Bulut Dede Электрика | Энергетические решения", metaDescription: "Bulut Dede предлагает обследование, расчёт и монтаж солнечных систем, электропроводки, щитов и аварийное обслуживание в Никосии, Кирении, Çatalköy, Alsancak и Lapta."
       }
     };
 
@@ -439,11 +444,6 @@
       const isDay = now.getTime() >= solarTimes.sunrise && now.getTime() < solarTimes.sunset;
       const sky = isDay ? 'day' : 'night';
       header.dataset.sky = sky;
-      const indicator = document.getElementById('header-sky-indicator');
-      const icon = document.getElementById('header-sky-icon');
-      const copy = translations[currentLanguage] || translations.tr;
-      if (icon) icon.className = isDay ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-      if (indicator) indicator.title = isDay ? copy.skyDay : copy.skyNight;
     }
     let activeTab = 'solar';
     let hasChosenService = false;
