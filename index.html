@@ -88,17 +88,26 @@
     #site-header[data-sky="night"] #emergency-link .text-slate-400 { color: #94a3b8; }
     #site-header[data-sky="day"] #emergency-link .text-slate-400 { color: #475569; }
     .header-sky-scene {
-      position: relative;
-      display: flex;
-      flex: 1 1 96px;
-      min-width: 28px;
-      height: 56px;
-      align-self: center;
-      align-items: flex-end;
-      justify-content: center;
+      position: absolute;
+      inset: 0;
+      z-index: 0;
       overflow: hidden;
       pointer-events: none;
       isolation: isolate;
+    }
+    #site-header .header-sky-celestial {
+      position: absolute;
+      z-index: 2;
+      top: auto;
+      bottom: 42px;
+      left: 50%;
+      display: flex;
+      width: 16px;
+      height: 16px;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(-50%);
+      transition: color 1800ms ease, filter 1800ms ease;
     }
     #site-header .header-sky-celestial {
       position: absolute;
@@ -211,7 +220,19 @@
 </head>
 <body class="min-h-screen font-sans text-slate-100 selection:bg-yellow-400 selection:text-slate-950">
   <header id="site-header" data-sky="night" class="sticky top-0 z-50 border-b border-slate-700/80 bg-[#0c1832]/90 backdrop-blur-xl">
-    <div class="mx-auto flex max-w-7xl flex-nowrap items-center gap-4 px-4 py-4 sm:px-6">
+  <div class="header-sky-scene" aria-hidden="true">
+    <span id="header-sky-indicator" class="header-sky-celestial" title="Night theme"><i id="header-sky-icon" class="fa-solid fa-moon" aria-hidden="true"></i></span>
+    <svg class="header-sky-landscape" viewBox="0 0 320 64" preserveAspectRatio="none" focusable="false">
+      <path class="sky-mountain-back" d="M0 64V53L20 50 39 43 53 34 70 47 82 50 105 30 125 46 139 49 160 26 180 45 194 49 215 30 235 46 247 50 268 34 287 47 305 50 320 53V64Z"></path>
+      <path class="sky-mountain-front" d="M0 64V57L24 53 49 49 73 54 98 47 126 54 151 48 177 54 203 47 230 53 258 47 286 54 320 49V64Z"></path>
+      <path class="sky-ridge-detail" d="M53 34L43 46M105 30L94 44M160 26L146 42M215 30L204 44M268 34L255 46"></path>
+      <g class="sky-night-stars">
+        <circle cx="77" cy="16" r="1.1"></circle><circle cx="161" cy="10" r="1"></circle><circle cx="238" cy="18" r="1.1"></circle>
+      </g>
+    </svg>
+  </div>
+
+    <div class="mx-auto relative z-10 flex max-w-7xl flex-nowrap items-center gap-4 px-4 py-4 sm:px-6">
       <a id="home-link" href="#top" class="flex min-w-0 shrink-0 items-center gap-3" aria-label="Bulut Dede Elektrik ana sayfa">
         <span class="brand-mark relative flex h-14 w-14 items-center justify-center rounded-xl" aria-hidden="true">
           <img src="bulut-dede-logo.png" class="h-12 w-12 object-contain" alt="" aria-hidden="true">
@@ -222,17 +243,6 @@
           <span class="brand-accent mt-2 block h-0.5 w-40 rounded-full opacity-90"></span>
         </span>
       </a>
-      <div class="header-sky-scene" aria-hidden="true">
-        <span id="header-sky-indicator" class="header-sky-celestial" title="Night theme"><i id="header-sky-icon" class="fa-solid fa-moon" aria-hidden="true"></i></span>
-        <svg class="header-sky-landscape" viewBox="0 0 320 64" preserveAspectRatio="none" focusable="false">
-          <path class="sky-mountain-back" d="M0 64V52L15 49 28 40 38 46 52 42 66 31 78 42 92 37 108 24 121 39 137 30 151 43 166 35 180 47 196 40 211 50 227 38 241 48 258 34 272 46 288 39 302 49 320 43V64Z"></path>
-          <path class="sky-mountain-front" d="M0 64V57L19 53 34 47 48 52 63 44 80 51 96 46 110 39 124 49 141 42 157 51 173 44 188 54 203 47 219 55 235 46 251 54 267 44 283 54 300 48 320 54V64Z"></path>
-          <path class="sky-ridge-detail" d="M28 40l10 6m28-15 11 11m30-18 12 15m16-9 14 13m15-8 14 12m17-7 16 10m16-12 14 10m17-14 14 12m16-7 14 10"></path>
-          <g class="sky-night-stars">
-            <circle cx="77" cy="16" r="1.1"></circle><circle cx="161" cy="10" r="1"></circle><circle cx="238" cy="18" r="1.1"></circle>
-          </g>
-        </svg>
-      </div>
       <div class="header-actions relative ml-auto flex shrink-0 items-center justify-end gap-2 sm:gap-3">
         <a id="header-whatsapp" href="https://wa.me/905338712332?text=Merhaba%20Bulut%20Dede%20Elektrik%2C%20servis%20talep%20ediyorum." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Hattı +90 533 871 23 32" class="flex h-11 w-11 items-center justify-center gap-2 rounded-lg bg-yellow-500 px-3 py-2.5 text-xs font-bold text-slate-950 shadow-lg shadow-yellow-500/20 transition hover:bg-yellow-400 sm:w-auto sm:px-6 sm:py-3 sm:text-sm">
           <i class="fa-brands fa-whatsapp text-base sm:text-lg" aria-hidden="true"></i>
