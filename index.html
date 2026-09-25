@@ -37,6 +37,21 @@
       background-color: rgba(239, 246, 255, .97);
       border-color: rgba(148, 163, 184, .8);
     }
+    #site-header[data-sky="day"],
+    #site-header[data-sky="night"] {
+      border-bottom-color: transparent;
+    }
+    #site-header::after {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      right: 0;
+      bottom: -27px;
+      left: 0;
+      height: 56px;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(7, 19, 41, 0) 0%, rgba(7, 19, 41, .22) 38%, rgba(7, 19, 41, .66) 74%, rgba(7, 19, 41, .9) 100%);
+    }
     #site-header .brand-mark {
       border: 0;
       background: transparent;
