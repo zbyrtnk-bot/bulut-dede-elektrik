@@ -162,6 +162,7 @@
     .hero-main > * { position: relative; z-index: 1; }
     .hero-main::before { content: ""; position: absolute; inset: 0 0 auto; z-index: 0; height: 560px; pointer-events: none; border-radius: 0 0 3rem 3rem; background-image: linear-gradient(90deg, rgba(7, 19, 41, .12) 0%, rgba(7, 19, 41, .28) 45%, rgba(7, 19, 41, .72) 100%), linear-gradient(180deg, rgba(7, 19, 41, .14) 0%, rgba(7, 19, 41, .82) 94%), url("technician-electrical-hero.png"); background-position: center, center, 70% 16%; background-size: cover, cover, cover; background-repeat: no-repeat; box-shadow: inset 0 -80px 80px rgba(7, 19, 41, .34); }
     @media (max-width: 640px) { .hero-main::before { height: 530px; background-position: center, center, 100% 12%; background-image: linear-gradient(90deg, rgba(7, 19, 41, .48) 0%, rgba(7, 19, 41, .42) 52%, rgba(7, 19, 41, .64) 100%), linear-gradient(180deg, rgba(7, 19, 41, .16) 0%, rgba(7, 19, 41, .84) 94%), url("technician-electrical-hero.png"); } }
+    #discovery-request-modal[hidden] { display: none !important; }
     .service-panel { scroll-margin-top: 92px; }
     .service-panel.is-opening { animation: servicePanelOpen .32s ease both; }
     .service-calculator { scroll-margin-top: 92px; }
@@ -251,44 +252,7 @@
           <i id="site-menu-icon" class="fa-solid fa-bars text-base" aria-hidden="true"></i>
         </button>
         <div id="site-menu" hidden role="region" aria-labelledby="site-menu-service-label" class="absolute right-0 top-full z-[70] mt-2 max-h-[calc(100dvh-6rem)] w-80 max-w-[calc(100vw-1rem)] overflow-y-auto overscroll-contain rounded-2xl border border-slate-600/90 bg-[#101f3b] p-3 shadow-2xl shadow-slate-950/70">
-  <article id="discovery-request-card" class="service-panel space-y-4 rounded-2xl border border-slate-700/80 bg-[#142443]/95 p-5 shadow-xl" aria-labelledby="request-title">
-          <div>
-            <h2 id="request-title" class="text-lg font-bold text-white" data-i18n="requestTitle">Kısa keşif talebi</h2>
-            <p class="mt-1 text-sm leading-6 text-slate-400" data-i18n="requestDescription">Bölgenizi ve hizmet ihtiyacınızı seçin; talebinizi WhatsApp üzerinden iletin.</p>
-          </div>
-          <form id="discovery-request-form" class="space-y-4" onsubmit="submitDiscoveryRequest(event)">
-            <label for="request-phone" class="block space-y-2">
-              <span class="block text-sm font-semibold text-slate-200" data-i18n="requestPhoneLabel">1. Telefon numaranız</span>
-              <input id="request-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+90 5XX XXX XX XX" data-i18n-placeholder="requestPhonePlaceholder" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
-            </label>
-            <div class="grid grid-cols-1 gap-3">
-              <label for="request-region" class="block space-y-2">
-                <span class="block text-sm font-semibold text-slate-200" data-i18n="requestRegionLabel">2. Bölgeni seç</span>
-                <select id="request-region" name="region" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
-                  <option value="" selected disabled data-i18n="requestRegionPlaceholder">Bölge seç</option>
-                  <option value="lefkosa" data-i18n="regionNicosia">Lefkoşa</option>
-                  <option value="girne" data-i18n="regionKyrenia">Girne</option>
-                  <option value="catalkoy" data-i18n="regionCatalkoy">Çatalköy</option>
-                  <option value="alsancak" data-i18n="regionAlsancak">Alsancak</option>
-                  <option value="lapta" data-i18n="regionLapta">Lapta</option>
-                </select>
-              </label>
-              <label for="request-service" class="block space-y-2">
-                <span class="block text-sm font-semibold text-slate-200" data-i18n="requestServiceLabel">3. Hizmeti seç</span>
-                <select id="request-service" name="service" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
-                  <option value="" selected disabled data-i18n="requestServicePlaceholder">Hizmet seç</option>
-                  <option value="solar" data-i18n="serviceSolar">Güneş Enerjisi (GES)</option>
-                  <option value="tesisat" data-i18n="serviceInstall">Konut &amp; Akıllı Tesisat</option>
-                  <option value="pano" data-i18n="servicePanel">Pano &amp; Kompanzasyon</option>
-                  <option value="ariza" data-i18n="serviceEmergency">7/24 Acil Arıza</option>
-                  <option value="other" data-i18n="serviceOther">Diğer</option>
-                </select>
-              </label>
-            </div>
-            <button id="discovery-request-submit" type="submit" class="inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-lg bg-yellow-500 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span data-i18n="requestSubmit">Talep gönder</span></button>
-            <p class="text-xs leading-5 text-slate-500" data-i18n="requestNotice">WhatsApp mesajı hazırlanır; siz göndermeden bize iletilmez.</p>
-          </form>
-        </article>
+  <button id="discovery-request-open" type="button" onclick="openDiscoveryRequest()" aria-haspopup="dialog" aria-controls="discovery-request-modal" class="mb-3 flex min-h-11 w-full items-center gap-3 rounded-xl border border-yellow-500/30 bg-yellow-500/10 px-3 py-3 text-left text-sm font-bold text-yellow-200 transition hover:bg-yellow-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400"><i class="fa-solid fa-clipboard-list text-base" aria-hidden="true"></i><span data-i18n="requestTitle">Kısa keşif talebi</span><i class="fa-solid fa-chevron-right ml-auto text-xs" aria-hidden="true"></i></button>
           <section aria-labelledby="site-menu-service-label">
             <h2 id="site-menu-service-label" class="px-1 text-sm font-bold text-slate-200" data-i18n="servicePrompt">Hizmet alanını seçin</h2>
           <div id="service-tabs" class="mt-2 grid grid-cols-1 gap-1 rounded-xl border border-slate-700/80 bg-[#142443]/70 p-1" role="tablist" aria-label="Hizmet kategorileri">
@@ -320,6 +284,51 @@
       </div>
     </div>
   </header>
+
+  <div id="discovery-request-modal" hidden role="dialog" aria-modal="true" aria-labelledby="request-title" aria-describedby="request-description" aria-hidden="true" onclick="closeDiscoveryRequestFromBackdrop(event)" class="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto overscroll-contain bg-slate-950/80 px-3 py-4 backdrop-blur-sm">
+    <div class="relative mx-auto my-2 w-full max-w-xl sm:my-8">
+      <article id="discovery-request-card" class="service-panel relative w-full space-y-4 rounded-2xl border border-slate-700/80 bg-[#142443]/95 p-5 shadow-xl" aria-labelledby="request-title">
+          <button id="discovery-request-close" type="button" onclick="closeDiscoveryRequest()" aria-label="Kapat" class="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-600/80 bg-[#152544] text-slate-300 transition hover:border-yellow-400 hover:text-yellow-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+          <div class="pr-12">
+            <h2 id="request-title" class="text-lg font-bold text-white" data-i18n="requestTitle">Kısa keşif talebi</h2>
+            <p id="request-description" class="mt-1 text-sm leading-6 text-slate-400" data-i18n="requestDescription">Bölgenizi ve hizmet ihtiyacınızı seçin; talebinizi WhatsApp üzerinden iletin.</p>
+          </div>
+          <form id="discovery-request-form" class="space-y-4" onsubmit="submitDiscoveryRequest(event)">
+            <label for="request-phone" class="block space-y-2">
+              <span class="block text-sm font-semibold text-slate-200" data-i18n="requestPhoneLabel">1. Telefon numaranız</span>
+              <input id="request-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+90 5XX XXX XX XX" data-i18n-placeholder="requestPhonePlaceholder" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
+            </label>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <label for="request-region" class="block space-y-2">
+                <span class="block text-sm font-semibold text-slate-200" data-i18n="requestRegionLabel">2. Bölgeni seç</span>
+                <select id="request-region" name="region" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
+                  <option value="" selected disabled data-i18n="requestRegionPlaceholder">Bölge seç</option>
+                  <option value="lefkosa" data-i18n="regionNicosia">Lefkoşa</option>
+                  <option value="girne" data-i18n="regionKyrenia">Girne</option>
+                  <option value="catalkoy" data-i18n="regionCatalkoy">Çatalköy</option>
+                  <option value="alsancak" data-i18n="regionAlsancak">Alsancak</option>
+                  <option value="lapta" data-i18n="regionLapta">Lapta</option>
+                </select>
+              </label>
+              <label for="request-service" class="block space-y-2">
+                <span class="block text-sm font-semibold text-slate-200" data-i18n="requestServiceLabel">3. Hizmeti seç</span>
+                <select id="request-service" name="service" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
+                  <option value="" selected disabled data-i18n="requestServicePlaceholder">Hizmet seç</option>
+                  <option value="solar" data-i18n="serviceSolar">Güneş Enerjisi (GES)</option>
+                  <option value="tesisat" data-i18n="serviceInstall">Konut &amp; Akıllı Tesisat</option>
+                  <option value="pano" data-i18n="servicePanel">Pano &amp; Kompanzasyon</option>
+                  <option value="ariza" data-i18n="serviceEmergency">7/24 Acil Arıza</option>
+                  <option value="other" data-i18n="serviceOther">Diğer</option>
+                </select>
+              </label>
+            </div>
+            <button id="discovery-request-submit" type="submit" class="inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-lg bg-yellow-500 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span data-i18n="requestSubmit">Talep gönder</span></button>
+            <p class="text-xs leading-5 text-slate-500" data-i18n="requestNotice">WhatsApp mesajı hazırlanır; siz göndermeden bize iletilmez.</p>
+          </form>
+        </article>
+    </div>
+  </div>
+
 
   <main id="top" class="hero-main mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-10 px-4 py-8 sm:px-6 lg:gap-12 lg:py-14">
     <section id="services" class="mx-auto w-full max-w-4xl space-y-6" aria-labelledby="hero-title">
@@ -362,13 +371,13 @@
   <script>
     const translations = {
       tr: {
-        menuOpen: 'Menüyü aç', menuClose: 'Menüyü kapat', languageLabel: 'Dil seçimi', brandTagline: 'Elektrik & Enerji', emergencyCall: '7/24 Acil Çağrı', contactChoice: 'İletişim yöntemi', whatsappLine: 'WhatsApp ile yazış', phoneCall: 'Telefonla ara', photoCreditPrefix: 'Beşparmak fotoğrafı:', photoCreditSuffix: '· CC BY-SA 4.0 · üst menüde kırpılarak gösterilmiştir.', instagramAccount: 'Instagram hesabımız', heroTitleLead: 'Standartların ötesinde', heroTitleAccent: 'güvenli ve akıllı güç.', heroDescription: "Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da evden sanayiye elektrik ihtiyaçları için keşif, teklif ve uygulama desteği sunuyoruz.", requestTitle: 'Kısa keşif talebi', requestDescription: 'Bölgenizi ve hizmet ihtiyacınızı seçin; talebinizi WhatsApp üzerinden iletin.', requestPhoneLabel: '1. Telefon numaranız', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Bölgeni seç', requestRegionPlaceholder: 'Bölge seç', requestServiceLabel: '3. Hizmeti seç', requestServicePlaceholder: 'Hizmet seç', requestSubmit: 'Talep gönder', requestNotice: 'WhatsApp mesajı hazırlanır; siz göndermeden bize iletilmez.', regionKyrenia: "Girne", regionNicosia: "Lefkoşa", regionCatalkoy: "Çatalköy", regionAlsancak: "Alsancak", regionLapta: "Lapta", serviceOther: 'Diğer', servicePrompt: 'Hizmet alanını seçin', detailsHint: 'Detaylar aşağıda açılır', serviceSolar: 'Güneş Enerjisi (GES)', serviceInstall: 'Konut & Akıllı Tesisat', servicePanel: 'Pano & Kompanzasyon', serviceEmergency: '7/24 Acil Arıza', billLabel: 'Aylık ortalama elektrik faturanız', systemLabel: 'Önerilen GES gücü', yearlyLabel: 'Yıllık tahmini kazanç', calculatorOpen: 'Fatura ve GES tasarruf hesaplayıcısını aç', calculatorHide: 'Fatura ve GES tasarruf hesaplayıcısını gizle', whatsappInfo: "WhatsApp'tan bilgi al", callNow: 'Hemen ara', contactEyebrow: 'Servis ve keşif talebi', contactTitle: 'Elektrik ihtiyacınızı birlikte netleştirelim.', contactDescription: "Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da hizmet talebinizi WhatsApp üzerinden iletin veya 7/24 acil çağrı hattını kullanın.", complianceNote: 'Şebekeye bağlı güneş enerjisi sistemlerinde proje, başvuru ve bağlantı süreçleri; KKTC mevzuatı, Kıb-Tek şartları ve yetkili uzmanların koordinasyonuyla yürütülür. Nihai kapsam keşif ve resmi onaylara göre belirlenir.', whatsappWrite: "WhatsApp'tan yaz", call24: '7/24 ara', footerBusiness: 'Elektrik & Enerji', footerServices: 'Hizmetler', footerContact: 'İletişim', footerLegal: 'Yasal Bilgiler', footerDescription: "Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da elektrik ve enerji çözümleri", legalNotice: 'Bu web sitesi tanıtım ve iletişim amaçlıdır; resmi kurum sitesi değildir. Proje, izin ve bağlantı işlemleri ilgili mevzuat ve yetkili kişiler aracılığıyla yürütülür.', pageTitle: "Bulut Dede Elektrik | Enerji Çözümleri", metaDescription: "Bulut Dede Elektrik; Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da güneş enerjisi, elektrik tesisatı, pano ve acil servis için keşif ve uygulama desteği sunar."
+        menuOpen: 'Menüyü aç', menuClose: 'Menüyü kapat', languageLabel: 'Dil seçimi', brandTagline: 'Elektrik & Enerji', emergencyCall: '7/24 Acil Çağrı', contactChoice: 'İletişim yöntemi', whatsappLine: 'WhatsApp ile yazış', phoneCall: 'Telefonla ara', photoCreditPrefix: 'Beşparmak fotoğrafı:', photoCreditSuffix: '· CC BY-SA 4.0 · üst menüde kırpılarak gösterilmiştir.', instagramAccount: 'Instagram hesabımız', heroTitleLead: 'Standartların ötesinde', heroTitleAccent: 'güvenli ve akıllı güç.', heroDescription: "Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da evden sanayiye elektrik ihtiyaçları için keşif, teklif ve uygulama desteği sunuyoruz.", requestTitle: 'Kısa keşif talebi', requestDescription: 'Bölgenizi ve hizmet ihtiyacınızı seçin; talebinizi WhatsApp üzerinden iletin.', requestPhoneLabel: '1. Telefon numaranız', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Bölgeni seç', requestRegionPlaceholder: 'Bölge seç', requestServiceLabel: '3. Hizmeti seç', requestServicePlaceholder: 'Hizmet seç', requestSubmit: 'Talep gönder', requestClose: 'Kapat', requestNotice: 'WhatsApp mesajı hazırlanır; siz göndermeden bize iletilmez.', regionKyrenia: "Girne", regionNicosia: "Lefkoşa", regionCatalkoy: "Çatalköy", regionAlsancak: "Alsancak", regionLapta: "Lapta", serviceOther: 'Diğer', servicePrompt: 'Hizmet alanını seçin', detailsHint: 'Detaylar aşağıda açılır', serviceSolar: 'Güneş Enerjisi (GES)', serviceInstall: 'Konut & Akıllı Tesisat', servicePanel: 'Pano & Kompanzasyon', serviceEmergency: '7/24 Acil Arıza', billLabel: 'Aylık ortalama elektrik faturanız', systemLabel: 'Önerilen GES gücü', yearlyLabel: 'Yıllık tahmini kazanç', calculatorOpen: 'Fatura ve GES tasarruf hesaplayıcısını aç', calculatorHide: 'Fatura ve GES tasarruf hesaplayıcısını gizle', whatsappInfo: "WhatsApp'tan bilgi al", callNow: 'Hemen ara', contactEyebrow: 'Servis ve keşif talebi', contactTitle: 'Elektrik ihtiyacınızı birlikte netleştirelim.', contactDescription: "Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da hizmet talebinizi WhatsApp üzerinden iletin veya 7/24 acil çağrı hattını kullanın.", complianceNote: 'Şebekeye bağlı güneş enerjisi sistemlerinde proje, başvuru ve bağlantı süreçleri; KKTC mevzuatı, Kıb-Tek şartları ve yetkili uzmanların koordinasyonuyla yürütülür. Nihai kapsam keşif ve resmi onaylara göre belirlenir.', whatsappWrite: "WhatsApp'tan yaz", call24: '7/24 ara', footerBusiness: 'Elektrik & Enerji', footerServices: 'Hizmetler', footerContact: 'İletişim', footerLegal: 'Yasal Bilgiler', footerDescription: "Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da elektrik ve enerji çözümleri", legalNotice: 'Bu web sitesi tanıtım ve iletişim amaçlıdır; resmi kurum sitesi değildir. Proje, izin ve bağlantı işlemleri ilgili mevzuat ve yetkili kişiler aracılığıyla yürütülür.', pageTitle: "Bulut Dede Elektrik | Enerji Çözümleri", metaDescription: "Bulut Dede Elektrik; Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da güneş enerjisi, elektrik tesisatı, pano ve acil servis için keşif ve uygulama desteği sunar."
       },
       en: {
-        menuOpen: 'Open menu', menuClose: 'Close menu', languageLabel: 'Language', brandTagline: 'Electrical & Energy', emergencyCall: '24/7 Emergency Call', contactChoice: 'Choose a contact method', whatsappLine: 'Message on WhatsApp', phoneCall: 'Call by phone', photoCreditPrefix: 'Beşparmak Mountains photo:', photoCreditSuffix: '· CC BY-SA 4.0 · cropped for the header.', instagramAccount: 'Our Instagram', heroTitleLead: 'Beyond the standard', heroTitleAccent: 'safe and smart power.', heroDescription: "We provide survey, quotation and installation support for residential, commercial and solar electrical needs in Nicosia, Kyrenia, Çatalköy, Alsancak and Lapta.", requestTitle: 'Quick site visit request', requestDescription: 'Choose your area and service, then send your request through WhatsApp.', requestPhoneLabel: '1. Your phone number', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Select your area', requestRegionPlaceholder: 'Choose an area', requestServiceLabel: '3. Select a service', requestServicePlaceholder: 'Choose a service', requestSubmit: 'Send request', requestNotice: 'A WhatsApp message will be prepared; it is sent only when you send it.', regionKyrenia: "Kyrenia", regionNicosia: "Nicosia", regionCatalkoy: "Çatalköy", regionAlsancak: "Alsancak", regionLapta: "Lapta", serviceOther: 'Other', servicePrompt: 'Choose a service area', detailsHint: 'Details open below', serviceSolar: 'Solar Energy (PV)', serviceInstall: 'Home & Smart Installation', servicePanel: 'Panels & Power Factor Correction', serviceEmergency: '24/7 Emergency Service', billLabel: 'Your average monthly electricity bill', systemLabel: 'Recommended PV capacity', yearlyLabel: 'Estimated annual savings', calculatorOpen: 'Open the GES savings calculator', calculatorHide: 'Hide the GES savings calculator', whatsappInfo: 'Get info on WhatsApp', callNow: 'Call now', contactEyebrow: 'Service and site survey request', contactTitle: "Let's clarify your electrical needs together.", contactDescription: "Request service in Nicosia, Kyrenia, Çatalköy, Alsancak or Lapta on WhatsApp, or call our 24/7 emergency line.", complianceNote: 'For grid-connected solar systems, project, application and connection processes are coordinated with North Cyprus requirements, KIB-TEK conditions and authorized professionals. Final scope depends on the site survey and official approvals.', whatsappWrite: 'Message us on WhatsApp', call24: 'Call 24/7', footerBusiness: 'Electrical & Energy', footerServices: 'Services', footerContact: 'Contact', footerLegal: 'Legal Information', footerDescription: "Electrical and energy services in Nicosia, Kyrenia, Çatalköy, Alsancak and Lapta", legalNotice: 'This website is for informational and contact purposes only; it is not an official government or utility website. Project, permit and grid-connection processes are handled under applicable regulations by authorized professionals.', pageTitle: "Bulut Dede Electrical | Energy Solutions", metaDescription: "Bulut Dede Electrical provides solar, electrical installation, panel and emergency service surveys in Nicosia, Kyrenia, Çatalköy, Alsancak and Lapta."
+        menuOpen: 'Open menu', menuClose: 'Close menu', languageLabel: 'Language', brandTagline: 'Electrical & Energy', emergencyCall: '24/7 Emergency Call', contactChoice: 'Choose a contact method', whatsappLine: 'Message on WhatsApp', phoneCall: 'Call by phone', photoCreditPrefix: 'Beşparmak Mountains photo:', photoCreditSuffix: '· CC BY-SA 4.0 · cropped for the header.', instagramAccount: 'Our Instagram', heroTitleLead: 'Beyond the standard', heroTitleAccent: 'safe and smart power.', heroDescription: "We provide survey, quotation and installation support for residential, commercial and solar electrical needs in Nicosia, Kyrenia, Çatalköy, Alsancak and Lapta.", requestTitle: 'Quick site visit request', requestDescription: 'Choose your area and service, then send your request through WhatsApp.', requestPhoneLabel: '1. Your phone number', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Select your area', requestRegionPlaceholder: 'Choose an area', requestServiceLabel: '3. Select a service', requestServicePlaceholder: 'Choose a service', requestSubmit: 'Send request', requestClose: 'Close', requestNotice: 'A WhatsApp message will be prepared; it is sent only when you send it.', regionKyrenia: "Kyrenia", regionNicosia: "Nicosia", regionCatalkoy: "Çatalköy", regionAlsancak: "Alsancak", regionLapta: "Lapta", serviceOther: 'Other', servicePrompt: 'Choose a service area', detailsHint: 'Details open below', serviceSolar: 'Solar Energy (PV)', serviceInstall: 'Home & Smart Installation', servicePanel: 'Panels & Power Factor Correction', serviceEmergency: '24/7 Emergency Service', billLabel: 'Your average monthly electricity bill', systemLabel: 'Recommended PV capacity', yearlyLabel: 'Estimated annual savings', calculatorOpen: 'Open the GES savings calculator', calculatorHide: 'Hide the GES savings calculator', whatsappInfo: 'Get info on WhatsApp', callNow: 'Call now', contactEyebrow: 'Service and site survey request', contactTitle: "Let's clarify your electrical needs together.", contactDescription: "Request service in Nicosia, Kyrenia, Çatalköy, Alsancak or Lapta on WhatsApp, or call our 24/7 emergency line.", complianceNote: 'For grid-connected solar systems, project, application and connection processes are coordinated with North Cyprus requirements, KIB-TEK conditions and authorized professionals. Final scope depends on the site survey and official approvals.', whatsappWrite: 'Message us on WhatsApp', call24: 'Call 24/7', footerBusiness: 'Electrical & Energy', footerServices: 'Services', footerContact: 'Contact', footerLegal: 'Legal Information', footerDescription: "Electrical and energy services in Nicosia, Kyrenia, Çatalköy, Alsancak and Lapta", legalNotice: 'This website is for informational and contact purposes only; it is not an official government or utility website. Project, permit and grid-connection processes are handled under applicable regulations by authorized professionals.', pageTitle: "Bulut Dede Electrical | Energy Solutions", metaDescription: "Bulut Dede Electrical provides solar, electrical installation, panel and emergency service surveys in Nicosia, Kyrenia, Çatalköy, Alsancak and Lapta."
       },
       ru: {
-        menuOpen: 'Открыть меню', menuClose: 'Закрыть меню', languageLabel: 'Язык', brandTagline: 'Электрика и энергетика', emergencyCall: 'Срочный вызов 24/7', contactChoice: 'Выберите способ связи', whatsappLine: 'Написать в WhatsApp', phoneCall: 'Позвонить по телефону', photoCreditPrefix: 'Фото гор Бешпармак:', photoCreditSuffix: '· CC BY-SA 4.0 · кадрировано для верхнего меню.', instagramAccount: 'Наш Instagram', heroTitleLead: 'Больше, чем стандарт', heroTitleAccent: 'безопасная и умная энергия.', heroDescription: "Мы предлагаем обследование, расчёт и монтаж бытовых, коммерческих и солнечных электрических систем в Никосии, Кирении, Çatalköy, Alsancak и Lapta.", requestTitle: 'Краткая заявка на выезд', requestDescription: 'Выберите район и услугу, затем отправьте заявку через WhatsApp.', requestPhoneLabel: '1. Ваш номер телефона', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Выберите район', requestRegionPlaceholder: 'Выберите район', requestServiceLabel: '3. Выберите услугу', requestServicePlaceholder: 'Выберите услугу', requestSubmit: 'Отправить заявку', requestNotice: 'Будет подготовлено сообщение WhatsApp; оно отправится только после вашего подтверждения.', regionKyrenia: "Кирения", regionNicosia: "Никосия", regionCatalkoy: "Çatalköy", regionAlsancak: "Alsancak", regionLapta: "Lapta", serviceOther: 'Другое', servicePrompt: 'Выберите направление', detailsHint: 'Подробности открываются ниже', serviceSolar: 'Солнечная энергия (СЭС)', serviceInstall: 'Домашние и умные системы', servicePanel: 'Электрощиты и компенсация реактивной мощности', serviceEmergency: 'Аварийная служба 24/7', billLabel: 'Ваш средний месячный счёт за электричество', systemLabel: 'Рекомендуемая мощность СЭС', yearlyLabel: 'Расчётная годовая экономия', calculatorOpen: 'Открыть калькулятор экономии СЭС', calculatorHide: 'Скрыть калькулятор экономии СЭС', whatsappInfo: 'Получить информацию в WhatsApp', callNow: 'Позвонить сейчас', contactEyebrow: 'Запрос на обслуживание и осмотр', contactTitle: 'Давайте вместе уточним ваши электрические потребности.', contactDescription: "Оставьте заявку в WhatsApp для обслуживания в Никосии, Кирении, Çatalköy, Alsancak или Lapta либо позвоните на линию экстренной связи 24/7.", complianceNote: 'Проектирование, подача заявок и подключение сетевых солнечных систем выполняются в соответствии с требованиями Северного Кипра, условиями KIB-TEK и при участии уполномоченных специалистов. Окончательный объём определяется после осмотра и официальных согласований.', whatsappWrite: 'Написать в WhatsApp', call24: 'Позвонить 24/7', footerBusiness: 'Электрика и энергетика', footerServices: 'Услуги', footerContact: 'Контакты', footerLegal: 'Юридическая информация', footerDescription: "Электрические и энергетические решения в Никосии, Кирении, Çatalköy, Alsancak и Lapta", legalNotice: 'Этот сайт предназначен только для информационных и контактных целей; он не является официальным сайтом государственного учреждения или энергоснабжающей организации. Проектирование, разрешения и подключение к сети выполняются уполномоченными специалистами в соответствии с действующими правилами.', pageTitle: "Bulut Dede Электрика | Энергетические решения", metaDescription: "Bulut Dede предлагает обследование, расчёт и монтаж солнечных систем, электропроводки, щитов и аварийное обслуживание в Никосии, Кирении, Çatalköy, Alsancak и Lapta."
+        menuOpen: 'Открыть меню', menuClose: 'Закрыть меню', languageLabel: 'Язык', brandTagline: 'Электрика и энергетика', emergencyCall: 'Срочный вызов 24/7', contactChoice: 'Выберите способ связи', whatsappLine: 'Написать в WhatsApp', phoneCall: 'Позвонить по телефону', photoCreditPrefix: 'Фото гор Бешпармак:', photoCreditSuffix: '· CC BY-SA 4.0 · кадрировано для верхнего меню.', instagramAccount: 'Наш Instagram', heroTitleLead: 'Больше, чем стандарт', heroTitleAccent: 'безопасная и умная энергия.', heroDescription: "Мы предлагаем обследование, расчёт и монтаж бытовых, коммерческих и солнечных электрических систем в Никосии, Кирении, Çatalköy, Alsancak и Lapta.", requestTitle: 'Краткая заявка на выезд', requestDescription: 'Выберите район и услугу, затем отправьте заявку через WhatsApp.', requestPhoneLabel: '1. Ваш номер телефона', requestPhonePlaceholder: '+90 5XX XXX XX XX', requestRegionLabel: '2. Выберите район', requestRegionPlaceholder: 'Выберите район', requestServiceLabel: '3. Выберите услугу', requestServicePlaceholder: 'Выберите услугу', requestSubmit: 'Отправить заявку', requestClose: 'Закрыть', requestNotice: 'Будет подготовлено сообщение WhatsApp; оно отправится только после вашего подтверждения.', regionKyrenia: "Кирения", regionNicosia: "Никосия", regionCatalkoy: "Çatalköy", regionAlsancak: "Alsancak", regionLapta: "Lapta", serviceOther: 'Другое', servicePrompt: 'Выберите направление', detailsHint: 'Подробности открываются ниже', serviceSolar: 'Солнечная энергия (СЭС)', serviceInstall: 'Домашние и умные системы', servicePanel: 'Электрощиты и компенсация реактивной мощности', serviceEmergency: 'Аварийная служба 24/7', billLabel: 'Ваш средний месячный счёт за электричество', systemLabel: 'Рекомендуемая мощность СЭС', yearlyLabel: 'Расчётная годовая экономия', calculatorOpen: 'Открыть калькулятор экономии СЭС', calculatorHide: 'Скрыть калькулятор экономии СЭС', whatsappInfo: 'Получить информацию в WhatsApp', callNow: 'Позвонить сейчас', contactEyebrow: 'Запрос на обслуживание и осмотр', contactTitle: 'Давайте вместе уточним ваши электрические потребности.', contactDescription: "Оставьте заявку в WhatsApp для обслуживания в Никосии, Кирении, Çatalköy, Alsancak или Lapta либо позвоните на линию экстренной связи 24/7.", complianceNote: 'Проектирование, подача заявок и подключение сетевых солнечных систем выполняются в соответствии с требованиями Северного Кипра, условиями KIB-TEK и при участии уполномоченных специалистов. Окончательный объём определяется после осмотра и официальных согласований.', whatsappWrite: 'Написать в WhatsApp', call24: 'Позвонить 24/7', footerBusiness: 'Электрика и энергетика', footerServices: 'Услуги', footerContact: 'Контакты', footerLegal: 'Юридическая информация', footerDescription: "Электрические и энергетические решения в Никосии, Кирении, Çatalköy, Alsancak и Lapta", legalNotice: 'Этот сайт предназначен только для информационных и контактных целей; он не является официальным сайтом государственного учреждения или энергоснабжающей организации. Проектирование, разрешения и подключение к сети выполняются уполномоченными специалистами в соответствии с действующими правилами.', pageTitle: "Bulut Dede Электрика | Энергетические решения", metaDescription: "Bulut Dede предлагает обследование, расчёт и монтаж солнечных систем, электропроводки, щитов и аварийное обслуживание в Никосии, Кирении, Çatalköy, Alsancak и Lapta."
       }
     };
 
@@ -595,6 +604,41 @@
       if (restoreFocus) toggle?.focus();
     }
 
+    let discoveryRequestScrollY = 0;
+
+    function openDiscoveryRequest() {
+      const modal = document.getElementById('discovery-request-modal');
+      if (!modal || !modal.hidden) return;
+      closeHeaderContactMenu();
+      closeSiteMenu();
+      discoveryRequestScrollY = window.scrollY;
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('overflow-hidden');
+      document.body.classList.add('overflow-hidden');
+      window.requestAnimationFrame(() => document.getElementById('discovery-request-close')?.focus({ preventScroll: true }));
+    }
+
+    function closeDiscoveryRequest() {
+      const modal = document.getElementById('discovery-request-modal');
+      if (!modal || modal.hidden) return;
+      modal.hidden = true;
+      modal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('overflow-hidden');
+      document.body.classList.remove('overflow-hidden');
+      if (Math.abs(window.scrollY - discoveryRequestScrollY) > 1) {
+        const oldScrollBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.scrollTo(0, discoveryRequestScrollY);
+        document.documentElement.style.scrollBehavior = oldScrollBehavior;
+      }
+      document.getElementById('site-menu-toggle')?.focus({ preventScroll: true });
+    }
+
+    function closeDiscoveryRequestFromBackdrop(event) {
+      if (event.target === event.currentTarget) closeDiscoveryRequest();
+    }
+
     function toggleSiteMenu() {
       const menu = document.getElementById('site-menu');
       if (!menu) return;
@@ -664,6 +708,7 @@
       updateSiteMenuButton();
       document.getElementById('home-link').setAttribute('aria-label', currentLanguage === 'en' ? 'Bulut Dede Electrical home page' : currentLanguage === 'ru' ? 'Главная страница Bulut Dede' : 'Bulut Dede Elektrik ana sayfa');
       document.getElementById('emergency-link').setAttribute('aria-label', `${copy.emergencyCall}: ${copy.contactChoice}`);
+      document.getElementById('discovery-request-close').setAttribute('aria-label', copy.requestClose);
       document.getElementById('service-tabs').setAttribute('aria-label', copy.servicePrompt);
       const contactMessage = currentLanguage === 'en' ? 'Hello Bulut Dede Electrical, I would like to request a service.' : currentLanguage === 'ru' ? 'Здравствуйте, Bulut Dede. Я хотел(а) бы заказать услугу.' : 'Merhaba Bulut Dede Elektrik, servis talep ediyorum.';
       const contactHref = `https://wa.me/905338712332?text=${encodeURIComponent(contactMessage)}`;
@@ -697,6 +742,28 @@
       if (contactOptions && contactToggle && !contactOptions.hidden && !contactOptions.contains(event.target) && !contactToggle.contains(event.target)) closeHeaderContactMenu();
     });
     document.addEventListener('keydown', (event) => {
+      const requestModal = document.getElementById('discovery-request-modal');
+      if (requestModal && !requestModal.hidden) {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeDiscoveryRequest();
+          return;
+        }
+        if (event.key === 'Tab') {
+          const focusable = [...requestModal.querySelectorAll('button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])')];
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (!first || !last) return;
+          if (event.shiftKey && (document.activeElement === first || !requestModal.contains(document.activeElement))) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && (document.activeElement === last || !requestModal.contains(document.activeElement))) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+        return;
+      }
       if (event.key !== 'Escape') return;
       const contactOptions = document.getElementById('header-contact-options');
       if (contactOptions && !contactOptions.hidden) {
