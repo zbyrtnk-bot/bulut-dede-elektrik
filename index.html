@@ -251,6 +251,44 @@
           <i id="site-menu-icon" class="fa-solid fa-bars text-base" aria-hidden="true"></i>
         </button>
         <div id="site-menu" hidden role="region" aria-labelledby="site-menu-service-label" class="absolute right-0 top-full z-[70] mt-2 max-h-[calc(100dvh-6rem)] w-80 max-w-[calc(100vw-1rem)] overflow-y-auto overscroll-contain rounded-2xl border border-slate-600/90 bg-[#101f3b] p-3 shadow-2xl shadow-slate-950/70">
+  <article id="discovery-request-card" class="service-panel space-y-4 rounded-2xl border border-slate-700/80 bg-[#142443]/95 p-5 shadow-xl" aria-labelledby="request-title">
+          <div>
+            <h2 id="request-title" class="text-lg font-bold text-white" data-i18n="requestTitle">Kısa keşif talebi</h2>
+            <p class="mt-1 text-sm leading-6 text-slate-400" data-i18n="requestDescription">Bölgenizi ve hizmet ihtiyacınızı seçin; talebinizi WhatsApp üzerinden iletin.</p>
+          </div>
+          <form id="discovery-request-form" class="space-y-4" onsubmit="submitDiscoveryRequest(event)">
+            <label for="request-phone" class="block space-y-2">
+              <span class="block text-sm font-semibold text-slate-200" data-i18n="requestPhoneLabel">1. Telefon numaranız</span>
+              <input id="request-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+90 5XX XXX XX XX" data-i18n-placeholder="requestPhonePlaceholder" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
+            </label>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <label for="request-region" class="block space-y-2">
+                <span class="block text-sm font-semibold text-slate-200" data-i18n="requestRegionLabel">2. Bölgeni seç</span>
+                <select id="request-region" name="region" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
+                  <option value="" selected disabled data-i18n="requestRegionPlaceholder">Bölge seç</option>
+                  <option value="lefkosa" data-i18n="regionNicosia">Lefkoşa</option>
+                  <option value="girne" data-i18n="regionKyrenia">Girne</option>
+                  <option value="catalkoy" data-i18n="regionCatalkoy">Çatalköy</option>
+                  <option value="alsancak" data-i18n="regionAlsancak">Alsancak</option>
+                  <option value="lapta" data-i18n="regionLapta">Lapta</option>
+                </select>
+              </label>
+              <label for="request-service" class="block space-y-2">
+                <span class="block text-sm font-semibold text-slate-200" data-i18n="requestServiceLabel">3. Hizmeti seç</span>
+                <select id="request-service" name="service" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
+                  <option value="" selected disabled data-i18n="requestServicePlaceholder">Hizmet seç</option>
+                  <option value="solar" data-i18n="serviceSolar">Güneş Enerjisi (GES)</option>
+                  <option value="tesisat" data-i18n="serviceInstall">Konut &amp; Akıllı Tesisat</option>
+                  <option value="pano" data-i18n="servicePanel">Pano &amp; Kompanzasyon</option>
+                  <option value="ariza" data-i18n="serviceEmergency">7/24 Acil Arıza</option>
+                  <option value="other" data-i18n="serviceOther">Diğer</option>
+                </select>
+              </label>
+            </div>
+            <button id="discovery-request-submit" type="submit" class="inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-lg bg-yellow-500 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span data-i18n="requestSubmit">Talep gönder</span></button>
+            <p class="text-xs leading-5 text-slate-500" data-i18n="requestNotice">WhatsApp mesajı hazırlanır; siz göndermeden bize iletilmez.</p>
+          </form>
+        </article>
           <section aria-labelledby="site-menu-service-label">
             <h2 id="site-menu-service-label" class="px-1 text-sm font-bold text-slate-200" data-i18n="servicePrompt">Hizmet alanını seçin</h2>
           <div id="service-tabs" class="mt-2 grid grid-cols-1 gap-1 rounded-xl border border-slate-700/80 bg-[#142443]/70 p-1" role="tablist" aria-label="Hizmet kategorileri">
@@ -291,44 +329,7 @@
         <p class="mt-4 max-w-xl text-sm leading-7 text-slate-400 sm:text-base" data-i18n="heroDescription">Lefkoşa, Girne, Çatalköy, Alsancak ve Lapta’da elektrik ihtiyaçları için keşif, teklif ve uygulama desteği sunuyoruz.</p>
       </div>
 
-      <article id="discovery-request-card" class="service-panel space-y-4 rounded-2xl border border-slate-700/80 bg-[#142443]/95 p-5 shadow-xl" aria-labelledby="request-title">
-        <div>
-          <h2 id="request-title" class="text-lg font-bold text-white" data-i18n="requestTitle">Kısa keşif talebi</h2>
-          <p class="mt-1 text-sm leading-6 text-slate-400" data-i18n="requestDescription">Bölgenizi ve hizmet ihtiyacınızı seçin; talebinizi WhatsApp üzerinden iletin.</p>
-        </div>
-        <form id="discovery-request-form" class="space-y-4" onsubmit="submitDiscoveryRequest(event)">
-          <label for="request-phone" class="block space-y-2">
-            <span class="block text-sm font-semibold text-slate-200" data-i18n="requestPhoneLabel">1. Telefon numaranız</span>
-            <input id="request-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+90 5XX XXX XX XX" data-i18n-placeholder="requestPhonePlaceholder" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
-          </label>
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <label for="request-region" class="block space-y-2">
-              <span class="block text-sm font-semibold text-slate-200" data-i18n="requestRegionLabel">2. Bölgeni seç</span>
-              <select id="request-region" name="region" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
-                <option value="" selected disabled data-i18n="requestRegionPlaceholder">Bölge seç</option>
-                <option value="lefkosa" data-i18n="regionNicosia">Lefkoşa</option>
-                <option value="girne" data-i18n="regionKyrenia">Girne</option>
-                <option value="catalkoy" data-i18n="regionCatalkoy">Çatalköy</option>
-                <option value="alsancak" data-i18n="regionAlsancak">Alsancak</option>
-                <option value="lapta" data-i18n="regionLapta">Lapta</option>
-              </select>
-            </label>
-            <label for="request-service" class="block space-y-2">
-              <span class="block text-sm font-semibold text-slate-200" data-i18n="requestServiceLabel">3. Hizmeti seç</span>
-              <select id="request-service" name="service" required class="min-h-11 w-full rounded-lg border border-slate-600/80 bg-[#0d1932] px-3 py-2.5 text-sm text-slate-100 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400/30">
-                <option value="" selected disabled data-i18n="requestServicePlaceholder">Hizmet seç</option>
-                <option value="solar" data-i18n="serviceSolar">Güneş Enerjisi (GES)</option>
-                <option value="tesisat" data-i18n="serviceInstall">Konut &amp; Akıllı Tesisat</option>
-                <option value="pano" data-i18n="servicePanel">Pano &amp; Kompanzasyon</option>
-                <option value="ariza" data-i18n="serviceEmergency">7/24 Acil Arıza</option>
-                <option value="other" data-i18n="serviceOther">Diğer</option>
-              </select>
-            </label>
-          </div>
-          <button id="discovery-request-submit" type="submit" class="inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-lg bg-yellow-500 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-400"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span data-i18n="requestSubmit">Talep gönder</span></button>
-          <p class="text-xs leading-5 text-slate-500" data-i18n="requestNotice">WhatsApp mesajı hazırlanır; siz göndermeden bize iletilmez.</p>
-        </form>
-      </article>
+      
 
       <article id="tab-content-card" hidden class="service-panel min-h-[220px] space-y-4 rounded-2xl border border-slate-700/80 bg-[#142443]/95 p-5 shadow-xl" role="tabpanel" aria-live="polite" aria-hidden="true" tabindex="-1"></article>
 
@@ -630,7 +631,7 @@
 
     function chooseService(key) {
       hasChosenService = true;
-      setTab(key, true);
+      setTab(key, false);
       closeSiteMenu(true);
     }
 
