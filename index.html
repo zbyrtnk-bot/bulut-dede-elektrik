@@ -23,6 +23,57 @@
     .brand-mark { border: 1px solid rgba(148, 163, 184, .35); background: linear-gradient(145deg, rgba(30, 41, 59, .98), rgba(15, 23, 42, .92)); box-shadow: 0 0 24px rgba(250, 204, 21, .12), inset 0 0 18px rgba(239, 68, 68, .06); }
     .brand-bolt { fill: #fff7b2; filter: drop-shadow(0 0 2px rgba(250, 204, 21, .9)); }
     .brand-accent { background: linear-gradient(90deg, var(--wire-yellow) 0%, var(--wire-amber) 20%, var(--wire-orange) 40%, var(--wire-red) 60%, var(--wire-brown) 80%, var(--wire-green) 100%); }
+
+    /* A slow day/night color cycle, scoped only to the top header. */
+    #site-header {
+      animation: siteHeaderDayNight 36s linear infinite;
+    }
+    #site-header #home-link strong {
+      animation: siteHeaderTitleDayNight 36s linear infinite;
+    }
+    #site-header #home-link [data-i18n="brandTagline"] {
+      animation: siteHeaderTaglineDayNight 36s linear infinite;
+    }
+    #site-header #emergency-link,
+    #site-header #site-menu-toggle {
+      animation: siteHeaderControlDayNight 36s linear infinite;
+    }
+    #site-header #emergency-link > i:first-child {
+      animation: siteHeaderPhoneIconDayNight 36s linear infinite;
+    }
+    #site-header #emergency-link .text-slate-400 {
+      animation: siteHeaderPhoneNumberDayNight 36s linear infinite;
+    }
+    @keyframes siteHeaderDayNight {
+      0%, 20%, 80%, 100% { background-color: rgba(12, 24, 50, .94); border-color: rgba(51, 65, 85, .8); }
+      27.5%, 72.5% { background-color: rgba(31, 53, 83, .95); border-color: rgba(100, 116, 139, .86); }
+      35%, 65% { background-color: rgba(239, 246, 255, .97); border-color: rgba(203, 213, 225, .95); }
+    }
+    @keyframes siteHeaderTitleDayNight {
+      0%, 20%, 80%, 100% { color: #f8fafc; }
+      27.5%, 72.5% { color: #f1f5f9; }
+      35%, 65% { color: #172554; }
+    }
+    @keyframes siteHeaderTaglineDayNight {
+      0%, 20%, 80%, 100% { color: #facc15; }
+      27.5%, 72.5% { color: #fde68a; }
+      35%, 65% { color: #a16207; }
+    }
+    @keyframes siteHeaderControlDayNight {
+      0%, 20%, 80%, 100% { background-color: #152544; border-color: rgba(71, 85, 105, .8); color: #e2e8f0; }
+      27.5%, 72.5% { background-color: #344c70; border-color: rgba(148, 163, 184, .86); color: #f1f5f9; }
+      35%, 65% { background-color: #f8fafc; border-color: rgba(148, 163, 184, .8); color: #1e293b; }
+    }
+    @keyframes siteHeaderPhoneIconDayNight {
+      0%, 20%, 80%, 100% { color: #facc15; }
+      27.5%, 72.5% { color: #fde68a; }
+      35%, 65% { color: #a16207; }
+    }
+    @keyframes siteHeaderPhoneNumberDayNight {
+      0%, 20%, 80%, 100% { color: #94a3b8; }
+      27.5%, 72.5% { color: #cbd5e1; }
+      35%, 65% { color: #475569; }
+    }
     .language-flag { display: inline-flex; width: 20px; height: 14px; flex: 0 0 auto; overflow: hidden; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,.18); }
     .language-flag svg { display: block; width: 100%; height: 100%; }
     .language-option[aria-pressed="true"] { background: #facc15; color: #0f172a; box-shadow: 0 0 14px rgba(250, 204, 21, .2); }
@@ -63,7 +114,7 @@
   </style>
 </head>
 <body class="min-h-screen font-sans text-slate-100 selection:bg-yellow-400 selection:text-slate-950">
-  <header class="sticky top-0 z-50 border-b border-slate-700/80 bg-[#0c1832]/90 backdrop-blur-xl">
+  <header id="site-header" class="sticky top-0 z-50 border-b border-slate-700/80 bg-[#0c1832]/90 backdrop-blur-xl">
     <div class="mx-auto flex max-w-7xl flex-nowrap items-center gap-4 px-4 py-4 sm:px-6">
       <a id="home-link" href="#top" class="flex min-w-0 shrink-0 items-center gap-3" aria-label="Bulut Dede Elektrik ana sayfa">
         <span class="brand-mark flex h-14 w-14 items-center justify-center rounded-xl" aria-hidden="true">
