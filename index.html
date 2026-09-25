@@ -136,36 +136,29 @@
     }
     #site-header .header-sky-daylight {
       position: absolute;
-      z-index: 2;
+      z-index: 3;
       inset: 0;
       background: linear-gradient(180deg, rgba(59, 130, 246, .38) 0%, rgba(96, 165, 250, .2) 48%, rgba(191, 219, 254, .05) 78%, transparent 100%);
       opacity: 1;
       transition: opacity 1800ms ease;
     }
-    #site-header .header-sky-stars {
+    #site-header .header-sky-night-photo {
       position: absolute;
-      z-index: 3;
-      top: 0;
-      left: 0;
+      z-index: 2;
+      inset: 0;
       width: 100%;
-      height: 76%;
-      fill: #f8fafc;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 45%;
       opacity: 0;
-      filter: drop-shadow(0 0 2px rgba(191, 219, 254, .9));
       transition: opacity 1800ms ease;
     }
     #site-header[data-sky="night"] .header-sky-photo {
-      opacity: .76;
+      opacity: 0;
       filter: brightness(.3) saturate(.78) hue-rotate(165deg);
     }
+    #site-header[data-sky="night"] .header-sky-night-photo { opacity: 1; }
     #site-header[data-sky="night"] .header-sky-daylight { opacity: 0; }
-    #site-header[data-sky="night"] .header-sky-stars { opacity: .96; }
-    @keyframes starTwinkle {
-      from { opacity: .48; }
-      to { opacity: 1; }
-    }
-    #site-header .header-sky-stars .twinkle { animation: starTwinkle 3s ease-in-out infinite alternate; }
-    #site-header .header-sky-stars .twinkle-slow { animation: starTwinkle 4.2s ease-in-out .8s infinite alternate; }
     .language-flag { display: inline-flex; width: 20px; height: 14px; flex: 0 0 auto; overflow: hidden; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,.18); }
     .language-flag svg { display: block; width: 100%; height: 100%; }
     .language-option[aria-pressed="true"] { background: #facc15; color: #0f172a; box-shadow: 0 0 14px rgba(250, 204, 21, .2); }
@@ -215,18 +208,8 @@
   <header id="site-header" data-sky="night" class="sticky top-0 z-50 border-b border-slate-700/80 bg-[#0c1832]/90 backdrop-blur-xl">
   <div class="header-sky-scene" aria-hidden="true">
     <img class="header-sky-photo" src="selvili-coast-wide.webp" alt="" aria-hidden="true" fetchpriority="high">
+    <img class="header-sky-night-photo" src="night-sky.webp" alt="" aria-hidden="true" decoding="async">
     <div class="header-sky-daylight"></div>
-    <svg class="header-sky-stars" viewBox="0 0 700 100" preserveAspectRatio="none" focusable="false">
-      <circle cx="34" cy="18" r="1.4" class="twinkle"></circle><circle cx="82" cy="46" r="1"></circle>
-      <circle cx="126" cy="24" r="1.2" class="twinkle-slow"></circle><circle cx="174" cy="58" r=".9"></circle>
-      <circle cx="218" cy="14" r="1.1"></circle><circle cx="257" cy="39" r="1.5" class="twinkle"></circle>
-      <circle cx="302" cy="21" r=".9"></circle><circle cx="349" cy="54" r="1.1" class="twinkle-slow"></circle>
-      <circle cx="391" cy="12" r="1.3"></circle><circle cx="432" cy="36" r=".9" class="twinkle"></circle>
-      <circle cx="478" cy="58" r="1.4"></circle><circle cx="518" cy="19" r="1" class="twinkle-slow"></circle>
-      <circle cx="557" cy="42" r="1.2"></circle><circle cx="603" cy="14" r=".9" class="twinkle"></circle>
-      <circle cx="646" cy="51" r="1.5" class="twinkle-slow"></circle><circle cx="680" cy="28" r="1"></circle>
-      <path d="M149 39v6m-3-3h6M535 64v5m-2.5-2.5h5M624 31v5m-2.5-2.5h5" stroke="#f8fafc" stroke-width=".7" opacity=".82"></path>
-    </svg>
   </div>
 
     <div class="mx-auto relative z-10 flex max-w-7xl flex-nowrap items-center gap-4 px-4 py-4 sm:px-6">
