@@ -555,21 +555,21 @@
         outageMenu: 'KIB-TEK kesintileri', outageTitle: 'KIB-TEK kesinti duyuruları', outageIntro: 'Planlı ve bildirilen güncel kesintileri bölgenize göre inceleyin.', outageFilter: 'Bölge veya mahalle ara', outageSearchPlaceholder: 'Örn. Girne, Lapta',
         outageStatusHeading: 'Durum', outageAreaHeading: 'Bölge', outageReasonHeading: 'Neden', outageStartHeading: 'Başlangıç', outageEndHeading: 'Tahmini dönüş', outageUpdateHeading: 'Son güncelleme',
         outageLoading: 'Duyurular yükleniyor…', outageCaveat: 'Bilgiler KIB-TEK duyurularından derlenir. Duyuru bulunmaması, elektriğin kesin olarak verildiği anlamına gelmez.', outageOfficial: 'KIB-TEK resmî sitesi',
-        outageNeverChecked: 'Son kontrol: henüz yapılmadı', outageChecked: 'Son kontrol: ', outageNoNotices: 'Henüz doğrulanmış güncel duyuru eklenmedi.', outageNoMatch: 'Bu bölge için eklenmiş duyuru bulunamadı.', outageLoadError: 'Duyurular yüklenemedi. Lütfen KIB-TEK’in resmî sayfasını kontrol edin.',
+        outageNeverChecked: 'Kaynak bağlantısı henüz kurulmadı', outageChecked: 'Kaynak kontrolü: ', outageNoNotices: 'Resmî kaynaklarda tabloya aktarılabilecek güncel duyuru bulunamadı.', outageNoMatch: 'Bu bölge için doğrulanmış duyuru bulunamadı.', outageLoadError: 'Duyurular yüklenemedi. Lütfen KIB-TEK’in resmî sayfasını kontrol edin.', outageSourceStale: 'Kaynak kontrolü gecikti; durum güncel olmayabilir.',
         outageActive: 'Kesinti sürüyor', outagePlanned: 'Planlandı', outageResolved: 'Giderildi', outageStale: 'Güncelliği doğrulanmadı', outageUnknownTime: 'Belirtilmedi', outageSourceLink: 'Resmî duyuru'
       },
       en: {
         outageMenu: 'KIB-TEK outages', outageTitle: 'KIB-TEK outage notices', outageIntro: 'Check scheduled and reported outages by area.', outageFilter: 'Search area or neighbourhood', outageSearchPlaceholder: 'E.g. Kyrenia, Lapta',
         outageStatusHeading: 'Status', outageAreaHeading: 'Area', outageReasonHeading: 'Reason', outageStartHeading: 'Starts', outageEndHeading: 'Estimated return', outageUpdateHeading: 'Last update',
         outageLoading: 'Loading notices…', outageCaveat: 'Information is compiled from KIB-TEK notices. No listed notice does not confirm that power is available.', outageOfficial: 'Official KIB-TEK website',
-        outageNeverChecked: 'Last checked: not yet', outageChecked: 'Last checked: ', outageNoNotices: 'No verified current notices have been added yet.', outageNoMatch: 'No added notice matches this area.', outageLoadError: 'Notices could not be loaded. Please check the official KIB-TEK website.',
+        outageNeverChecked: 'Source not connected yet', outageChecked: 'Source checked: ', outageNoNotices: 'No current notice suitable for the table was found in official sources.', outageNoMatch: 'No verified notice matches this area.', outageLoadError: 'Notices could not be loaded. Please check the official KIB-TEK website.', outageSourceStale: 'Source check is delayed; status may be outdated.',
         outageActive: 'Outage ongoing', outagePlanned: 'Scheduled', outageResolved: 'Restored', outageStale: 'Update unverified', outageUnknownTime: 'Not announced', outageSourceLink: 'Official notice'
       },
       ru: {
         outageMenu: 'Отключения KIB-TEK', outageTitle: 'Уведомления KIB-TEK об отключениях', outageIntro: 'Плановые и объявленные текущие отключения по районам.', outageFilter: 'Поиск района или квартала', outageSearchPlaceholder: 'Например, Кирения, Лапта',
         outageStatusHeading: 'Статус', outageAreaHeading: 'Район', outageReasonHeading: 'Причина', outageStartHeading: 'Начало', outageEndHeading: 'Ожидаемое восстановление', outageUpdateHeading: 'Обновлено',
         outageLoading: 'Загрузка уведомлений…', outageCaveat: 'Данные основаны на сообщениях KIB-TEK. Отсутствие уведомления не подтверждает наличие электричества.', outageOfficial: 'Официальный сайт KIB-TEK',
-        outageNeverChecked: 'Последняя проверка: ещё не проводилась', outageChecked: 'Последняя проверка: ', outageNoNotices: 'Подтверждённых актуальных уведомлений пока нет.', outageNoMatch: 'Для этого района уведомлений не добавлено.', outageLoadError: 'Не удалось загрузить уведомления. Проверьте официальный сайт KIB-TEK.',
+        outageNeverChecked: 'Источник ещё не подключён', outageChecked: 'Проверка источника: ', outageNoNotices: 'Подходящих актуальных сообщений в официальных источниках нет.', outageNoMatch: 'Для этого района подтверждённых уведомлений нет.', outageLoadError: 'Не удалось загрузить уведомления. Проверьте официальный сайт KIB-TEK.', outageSourceStale: 'Проверка источника задерживается; статус может быть устаревшим.',
         outageActive: 'Отключение продолжается', outagePlanned: 'Запланировано', outageResolved: 'Восстановлено', outageStale: 'Актуальность не подтверждена', outageUnknownTime: 'Не объявлено', outageSourceLink: 'Официальное сообщение'
       }
     };
@@ -624,6 +624,8 @@
         const host = url.hostname.toLowerCase();
         if (host === 'kibtek.com' || host.endsWith('.kibtek.com')) return url.href;
         if (['facebook.com', 'www.facebook.com', 'm.facebook.com'].includes(host) && /^\/(?:elektrikkurumu|@elektrikkurumu)(?:\/|$)/i.test(url.pathname)) return url.href;
+        if (['facebook.com', 'www.facebook.com'].includes(host) && /^\/\d+\/posts\/[A-Za-z0-9_-]+\/?$/.test(url.pathname)) return url.href;
+        if (['instagram.com', 'www.instagram.com'].includes(host) && /^\/(?:p|reel)\/[A-Za-z0-9_-]+\/?$/i.test(url.pathname)) return url.href;
         if (['x.com', 'twitter.com'].includes(host) && /^\/kibtek(?:\/|$)/i.test(url.pathname)) return url.href;
       } catch (error) { /* invalid URL */ }
       return null;
@@ -664,7 +666,8 @@
       const updated = document.getElementById('outage-updated');
       if (!table || !wrapper || !rows || !feedback || !updated) return;
       rows.replaceChildren();
-      updated.textContent = outageCheckedAt ? copy.outageChecked + formatOutageDate(outageCheckedAt) : copy.outageNeverChecked;
+      const sourceDelayed = !outageCheckedAt || Date.now() - Date.parse(outageCheckedAt) > 60 * 60 * 1000;
+      updated.textContent = outageCheckedAt ? copy.outageChecked + formatOutageDate(outageCheckedAt) + (sourceDelayed ? ' · ' + copy.outageSourceStale : '') : copy.outageNeverChecked;
       if (outageLoadFailed || outageNotices === null) {
         table.hidden = true;
         wrapper.hidden = true;
@@ -686,7 +689,7 @@
 
       const headings = [copy.outageStatusHeading, copy.outageAreaHeading, copy.outageReasonHeading, copy.outageStartHeading, copy.outageEndHeading, copy.outageUpdateHeading];
       for (const notice of visible) {
-        const stale = notice.status === 'active' && Date.now() - Date.parse(notice.updatedAt) > 12 * 60 * 60 * 1000;
+        const stale = (sourceDelayed && notice.status === 'active') || (notice.status === 'active' && Date.now() - Date.parse(notice.updatedAt) > 12 * 60 * 60 * 1000);
         const state = stale ? 'stale' : notice.status;
         const labels = { active: copy.outageActive, planned: copy.outagePlanned, resolved: copy.outageResolved, stale: copy.outageStale };
         const tr = document.createElement('tr');
