@@ -36,6 +36,13 @@ class OutageParsingTests(unittest.TestCase):
         post["permalink_url"] = "https://example.com/notice"
         self.assertIsNone(parse_post(post, NOW))
 
+    def test_cancelled_notice_is_not_scheduled(self):
+        post = {
+            "message": "PLANLI KESİNTİ iptal edildi. 28 Eylül 2026 bakım nedeniyle 18:00 ile 20:00 saatleri arasında; Lapta bölgesine elektrik enerjisi verilemeyecektir.",
+            "created_time": "2026-09-28T11:00:00+0000", "permalink_url": URL,
+        }
+        self.assertIsNone(parse_post(post, NOW))
+
 
 if __name__ == "__main__":
     unittest.main()
