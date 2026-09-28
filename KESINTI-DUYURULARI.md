@@ -1,33 +1,22 @@
-# Kesinti duyurularını güncelleme
+# KIB-TEK duyuru tablosu
 
-`kesintiler.json`, sitedeki **KIB-TEK kesintileri** tablosunun veri kaynağıdır. Boş liste, elektrik olduğu anlamına gelmez; yalnızca doğrulanmış duyuru eklenmediğini gösterir.
+Tablo `kesintiler.json` dosyasını gösterir. Veri dosyası örnek kesinti içermez. Kaynak bağlantısı açılana kadar `checkedAt` değeri `null` kalır ve arayüz bunu açıkça belirtir.
 
-Her kontrolün ardından `checkedAt` alanına ISO 8601 tarih ve saat yazın. Her duyuru için aşağıdaki alanlar gereklidir:
+## Meta bağlantısı
 
-| Alan | Anlamı |
-| --- | --- |
-| `status` | `planned` (sarı), `active` (kırmızı) veya `resolved` (yeşil). Durumu yalnızca resmî açıklamaya göre seçin. |
-| `area` | KIB-TEK'in duyurduğu bölge veya mahalleler. |
-| `reason` | KIB-TEK'in açıkladığı neden; açıklanmadıysa bunu açıkça yazın. |
-| `startsAt` | Duyurulan başlangıç saati. |
-| `estimatedEndAt` | Açıklanmışsa yaklaşık bitiş saati; yoksa `null`. |
-| `updatedAt` | Bu duyurunun son doğrulama saati. |
-| `expiresAt` | Kaydın tablodan otomatik kalkacağı saat. Güncelliğini yitirecek kayıtları açık bırakmayın. |
-| `sourceUrl` | KIB-TEK sitesi veya resmî Facebook/X hesabındaki özgün duyuru bağlantısı. |
+KIB-TEK'in resmî Facebook sayfası: https://www.facebook.com/elektrikkurumu/
 
-Tarihleri saat dilimi bilgisi içeren ISO 8601 biçiminde girin (`2026-09-28T12:00:00+03:00` gibi). Sitede saatler Kıbrıs yerel saatinde gösterilir. Aktif bir duyuru 12 saat güncellenmezse kırmızı yerine gri **Güncelliği doğrulanmadı** etiketiyle görünür. Süresi geçmiş kayıtlar gizlenir. Planlı kesintiyi yalnızca saatine bakarak aktif, sessiz kalan kesintiyi de giderilmiş saymayın.
+1. Meta for Developers uygulamasında, yönetmediğiniz bir Facebook sayfasının herkese açık gönderilerini okumak için **Page Public Content Access** erişimini ve uygun kullanıcı erişim belirtecini edinin. KIB-TEK sayfasının sayısal kimliğini Graph API ile doğrulayın.
+2. GitHub deposunun **Settings → Secrets and variables → Actions** bölümünde `META_FACEBOOK_TOKEN` gizli anahtarını ve `KIBTEK_FACEBOOK_PAGE_ID` değişkenini tanımlayın. Belirteci kod dosyasına veya `kesintiler.json` içine yazmayın.
+3. Instagram isteğe bağlıdır. KIB-TEK'in doğrulanmış profesyonel hesap kullanıcı adı, kendi Instagram profesyonel hesabınızın Business Discovery erişimi ve gerekli onaylar varsa `KIBTEK_INSTAGRAM_USERNAME`, `OWN_INSTAGRAM_BUSINESS_ID` değişkenlerini ve `META_INSTAGRAM_TOKEN` gizli anahtarını tanımlayın. Kullanıcı adı boşsa Instagram kontrol edilmez.
+4. İş akışını **Actions → KIB-TEK official social notices → Run workflow** ile çalıştırın. Başarılı erişimden sonra her 15 dakikada bir kontrol yapılır. GitHub zamanlanmış görevleri gecikebilir; tablo son kaynak kontrol saatini gösterir.
 
-Yeni bir duyuru nesnesi örneği (örnek değerler canlı dosyaya eklenmemelidir):
+İş akışı, kaynak hatasında mevcut JSON'u değiştirmez. Gönderide açık kesinti türü, tarih, saat ve bölge yoksa satır üretmez. Görsel içindeki metin bu sürümde okunmaz; yalnızca gönderinin metni veya Instagram açıklaması işlenir. Planlı saatlerin gelmesi kesintinin başladığını, bitmesi elektriğin geri geldiğini kanıtlamaz. Resmî olarak teyit edilmedikçe otomatik yeşil durum üretilmez. Kesinti sürüyor etiketi yalnızca KIB-TEK'in açık arıza duyurusu için, en fazla 12 saat gösterilir; kaynak kontrolü bir saatten fazla gecikirse griye döner.
 
-```json
-{
-  "status": "planned",
-  "area": "DUYURUDA YAZAN BÖLGE",
-  "reason": "DUYURUDA YAZAN NEDEN",
-  "startsAt": "2099-01-01T09:00:00+02:00",
-  "estimatedEndAt": "2099-01-01T12:00:00+02:00",
-  "updatedAt": "2098-12-31T17:00:00+02:00",
-  "expiresAt": "2099-01-01T12:30:00+02:00",
-  "sourceUrl": "https://www.kibtek.com/"
-}
-```
+Yerel kontrol: `python -m unittest discover -s tests`
+
+Meta belgeleri:
+
+- https://developers.facebook.com/docs/pages-api/posts/
+- https://developers.facebook.com/docs/features-reference/page-public-content-access/
+- https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/business-discovery/
