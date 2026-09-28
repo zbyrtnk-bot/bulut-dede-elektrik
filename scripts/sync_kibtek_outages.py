@@ -75,6 +75,8 @@ def parse_post(post, now=None, facebook_page_id=None):
     message = post.get("message") or post.get("caption") or ""
     if not isinstance(message, str) or not re.search(r"\bkesinti(?:si)?\b", message, re.I):
         return None
+    if re.search(r"\b(?:iptal\s+edildi|iptal\s+oldu|kesinti\s+iptal)\b", message, re.I):
+        return None
     heading = message[:100].upper()
     if "PLANLI KESİNTİ" in heading or "PLANLI ELEKTRİK KESİNTİSİ" in heading:
         status = "planned"
@@ -117,7 +119,7 @@ def parse_post(post, now=None, facebook_page_id=None):
         if published > now + timedelta(minutes=5) or published < now - timedelta(days=7):
             return None
         expires = (end + timedelta(hours=1)) if status == "planned" else (published + timedelta(hours=12))
-        if start > now + timedelta(days=7) or expires <= now:
+        if start > now + timedelta(days=7) or expires <= now or (status == "active" and start > now):
             return None
         source = post.get("permalink_url") or post.get("permalink") or ""
         parsed = urllib.parse.urlparse(source)
