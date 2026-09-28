@@ -134,6 +134,14 @@
       filter: brightness(1.06) saturate(1.02) contrast(1.04);
       transition: opacity 1800ms ease, filter 1800ms ease;
     }
+    #site-header {
+      --header-rain-color: rgba(15, 23, 42, .34);
+      --header-rain-glint: rgba(255, 255, 255, .5);
+    }
+    #site-header[data-sky="night"] {
+      --header-rain-color: rgba(191, 219, 254, .58);
+      --header-rain-glint: rgba(248, 250, 252, .68);
+    }
     #site-header .header-sky-rain {
       position: absolute;
       z-index: 3;
@@ -145,7 +153,7 @@
       transition: opacity 900ms ease, visibility 0s linear 900ms;
     }
     #site-header[data-rain="true"] .header-sky-rain {
-      opacity: .64;
+      opacity: .78;
       visibility: visible;
       transition-delay: 0s;
     }
@@ -158,16 +166,16 @@
       will-change: transform;
     }
     #site-header .header-sky-rain::before {
-      background-image: linear-gradient(176deg, transparent 47%, rgba(239, 246, 255, .56) 49%, rgba(219, 234, 254, .12) 50%, transparent 52%);
-      background-size: 22px 31px;
-      animation: headerSkyRainFall .9s linear infinite;
+      background-image: linear-gradient(176deg, transparent 44%, var(--header-rain-color) 47%, var(--header-rain-glint) 50%, var(--header-rain-color) 53%, transparent 57%);
+      background-size: 25px 38px;
+      animation: headerSkyRainFall 1s linear infinite;
     }
     #site-header .header-sky-rain::after {
-      background-image: linear-gradient(176deg, transparent 47%, rgba(219, 234, 254, .38) 49%, transparent 52%);
-      background-size: 37px 46px;
+      background-image: linear-gradient(176deg, transparent 42%, var(--header-rain-glint) 46%, var(--header-rain-color) 50%, var(--header-rain-glint) 54%, transparent 59%);
+      background-size: 39px 51px;
       background-position: 11px 8px;
-      animation: headerSkyRainFall 1.25s linear -.4s infinite;
-      opacity: .7;
+      animation: headerSkyRainFall 1.4s linear -.4s infinite;
+      opacity: .76;
     }
     @keyframes headerSkyRainFall {
       to { transform: translate3d(-16px, 32px, 0); }
