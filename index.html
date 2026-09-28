@@ -588,7 +588,7 @@
       const rainLayer = document.querySelector('#site-header .header-sky-rain');
       if (!rainLayer || rainLayer.childElementCount) return;
 
-      const count = Math.min(96, Math.max(36, Math.round(window.innerWidth / 13)));
+      const count = Math.min(76, Math.max(28, Math.round(window.innerWidth / 17)));
       const fragment = document.createDocumentFragment();
       const randomBetween = (min, max, decimals = 2) =>
         (min + Math.random() * (max - min)).toFixed(decimals);
