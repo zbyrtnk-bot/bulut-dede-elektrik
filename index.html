@@ -1007,7 +1007,7 @@
           return;
         }
         if (event.key === 'Tab') {
-          const focusable = [...outageModal.querySelectorAll('button:not([disabled]), input:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])')].filter((element) => element.getClientRects().length);
+          const focusable = [...outageModal.querySelectorAll('button:not([disabled]), iframe, a[href], [tabindex]:not([tabindex="-1"])')].filter((element) => element.getClientRects().length);
           const first = focusable[0];
           const last = focusable[focusable.length - 1];
           if (first && last && event.shiftKey && (document.activeElement === first || !outageModal.contains(document.activeElement))) {
