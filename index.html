@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#020617">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src https://www.facebook.com; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; upgrade-insecure-requests">
   <link rel="icon" type="image/png" href="bulut-dede-logo.png">
   <title>Bulut Dede Elektrik | Enerji Çözümleri</title>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -230,6 +230,24 @@
       .hero-main::before { height: 530px; background-position: center, center, center, 100% 12%; background-image: linear-gradient(180deg, #071329 0%, rgba(7, 19, 41, .68) 32px, rgba(7, 19, 41, 0) 72px), linear-gradient(90deg, rgba(7, 19, 41, .48) 0%, rgba(7, 19, 41, .42) 52%, rgba(7, 19, 41, .64) 100%), linear-gradient(180deg, rgba(7, 19, 41, .16) 0%, rgba(7, 19, 41, .84) 94%), url("technician-electrical-hero.png"); background-size: cover, cover, cover, cover; }
     }
     #discovery-request-modal[hidden] { display: none !important; }
+    #outage-modal[hidden] { display: none !important; }
+    #outage-modal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: flex-start; justify-content: center; overflow-y: auto; overscroll-behavior: contain; padding: 1rem; background: rgba(2, 6, 23, .84); backdrop-filter: blur(5px); }
+    .outage-dialog { position: relative; width: min(100%, 570px); max-height: calc(100dvh - 2rem); overflow-y: auto; border: 1px solid #475569; border-radius: 1rem; background: #101f3b; box-shadow: 0 24px 70px rgba(2, 6, 23, .7); padding: 1.25rem; color: #e2e8f0; }
+    .outage-dialog h2 { margin: 0; padding-right: 2.5rem; color: #fff; font-size: 1.25rem; font-weight: 800; }
+    .outage-dialog p { line-height: 1.5; }
+    .outage-menu-button { display: flex; align-items: center; gap: .75rem; width: 100%; min-height: 44px; margin-bottom: .75rem; padding: .75rem; border: 1px solid #475569; border-radius: .75rem; background: #152544; color: #f8fafc; font-size: .875rem; font-weight: 700; text-align: left; cursor: pointer; }
+    .outage-menu-button:hover, .outage-menu-button:focus-visible { border-color: #facc15; outline-color: #facc15; }
+    .outage-close { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border: 1px solid #64748b; border-radius: .5rem; background: #152544; color: #f8fafc; cursor: pointer; }
+    .outage-close:focus-visible, .outage-footer a:focus-visible { outline: 2px solid #facc15; outline-offset: 2px; }
+    .outage-intro { margin: .45rem 0 0; color: #cbd5e1; font-size: .875rem; }
+    .outage-feed-wrap { display: flex; justify-content: center; width: 100%; margin-top: 1rem; min-height: 620px; border-radius: .75rem; background: #fff; overflow: hidden; }
+    .outage-feed { display: block; width: 100%; min-height: 620px; border: 0; background: #fff; }
+    .outage-footer { margin-top: 1rem; color: #cbd5e1; font-size: .8rem; }
+    .outage-footer a { color: #fde68a; text-decoration: underline; text-underline-offset: 2px; }
+    @media (max-width: 700px) {
+      #outage-modal { padding: .5rem; }
+      .outage-dialog { max-height: calc(100dvh - 1rem); padding: 1rem; }
+    }
     .service-panel { scroll-margin-top: 92px; }
     .service-panel.is-opening { animation: servicePanelOpen .32s ease both; }
     .service-calculator { scroll-margin-top: 92px; }
@@ -312,6 +330,7 @@
         </button>
         <div id="site-menu" hidden role="region" aria-labelledby="site-menu-service-label" class="absolute right-0 top-full z-[70] mt-2 max-h-[calc(100dvh-6rem)] w-80 max-w-[calc(100vw-1rem)] overflow-y-auto overscroll-contain rounded-2xl border border-slate-600/90 bg-[#101f3b] p-3 shadow-2xl shadow-slate-950/70">
   <button id="discovery-request-open" type="button" onclick="openDiscoveryRequest()" aria-haspopup="dialog" aria-controls="discovery-request-modal" class="mb-3 flex min-h-11 w-full items-center gap-3 rounded-xl border border-yellow-500/30 bg-yellow-500/10 px-3 py-3 text-left text-sm font-bold text-yellow-200 transition hover:bg-yellow-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400"><i class="fa-solid fa-clipboard-list text-base" aria-hidden="true"></i><span data-i18n="requestTitle">Kısa keşif talebi</span><i class="fa-solid fa-chevron-right ml-auto text-xs" aria-hidden="true"></i></button>
+          <button id="outage-open" type="button" onclick="openOutages()" aria-haspopup="dialog" aria-controls="outage-modal" class="outage-menu-button"><i class="fa-solid fa-bolt text-yellow-400" aria-hidden="true"></i><span data-i18n="outageMenu">KIB-TEK kesintileri</span><i class="fa-solid fa-chevron-right ml-auto text-xs" aria-hidden="true"></i></button>
           <section aria-labelledby="site-menu-service-label">
             <h2 id="site-menu-service-label" class="px-1 text-sm font-bold text-slate-200" data-i18n="servicePrompt">Hizmet alanını seçin</h2>
           <div id="service-tabs" class="mt-2 grid grid-cols-1 gap-1 rounded-xl border border-slate-700/80 bg-[#142443]/70 p-1" role="tablist" aria-label="Hizmet kategorileri">
@@ -386,6 +405,16 @@
           </form>
         </article>
     </div>
+  </div>
+
+  <div id="outage-modal" hidden role="dialog" aria-modal="true" aria-labelledby="outage-title" aria-describedby="outage-intro" aria-hidden="true" onclick="closeOutagesFromBackdrop(event)">
+    <section class="outage-dialog">
+      <button id="outage-close" class="outage-close" type="button" onclick="closeOutages()" aria-label="Kapat"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <h2 id="outage-title" data-i18n="outageTitle">KIB-TEK resmî duyuruları</h2>
+      <p id="outage-intro" class="outage-intro" data-i18n="outageIntro">Facebook sayfasındaki en yeni paylaşımlar doğrudan KIB-TEK kaynağından gösterilir.</p>
+      <div class="outage-feed-wrap"><iframe id="outage-feed" class="outage-feed" title="KIB-TEK Facebook duyuruları" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture"></iframe></div>
+      <p class="outage-footer"><span data-i18n="outageFallback">Akış cihazınızda açılmazsa </span><a href="https://www.facebook.com/elektrikkurumu/" target="_blank" rel="noopener noreferrer" data-i18n="outageOfficial">KIB-TEK Facebook sayfasını açın</a>.</p>
+    </section>
   </div>
 
 
@@ -489,6 +518,13 @@
       }
     };
 
+    const outageTranslations = {
+      tr: { outageMenu: 'KIB-TEK kesintileri', outageTitle: 'KIB-TEK resmî duyuruları', outageIntro: 'Facebook sayfasındaki en yeni paylaşımlar doğrudan KIB-TEK kaynağından gösterilir.', outageFallback: 'Akış cihazınızda açılmazsa ', outageOfficial: 'KIB-TEK Facebook sayfasını açın' },
+      en: { outageMenu: 'KIB-TEK outages', outageTitle: 'Official KIB-TEK notices', outageIntro: 'Recent posts are shown directly from the KIB-TEK Facebook page.', outageFallback: 'If the feed does not open on your device, ', outageOfficial: 'open the KIB-TEK Facebook page' },
+      ru: { outageMenu: 'Отключения KIB-TEK', outageTitle: 'Официальные объявления KIB-TEK', outageIntro: 'Новые публикации показаны напрямую со страницы KIB-TEK в Facebook.', outageFallback: 'Если лента не открывается, ', outageOfficial: 'откройте страницу KIB-TEK в Facebook' }
+    };
+    for (const language of Object.keys(outageTranslations)) Object.assign(translations[language], outageTranslations[language]);
+
     const languageFlags = {
       tr: '<svg viewBox="0 0 28 20" role="img" aria-label="Türkçe"><rect width="28" height="20" fill="#e30a17"/><circle cx="11" cy="10" r="5.5" fill="#fff"/><circle cx="13" cy="10" r="4.4" fill="#e30a17"/><path fill="#fff" d="m18.4 5.8 1.2 3 3.2.1-2.5 1.9.8 3-2.7-1.7-2.7 1.7.9-3-2.5-1.9 3.1-.1z"/></svg>',
       en: '<svg viewBox="0 0 28 20" role="img" aria-label="English"><rect width="28" height="20" fill="#012169"/><path d="M0 0 28 20M28 0 0 20" stroke="#fff" stroke-width="4"/><path d="M0 0 28 20M28 0 0 20" stroke="#c8102e" stroke-width="1.6"/><path d="M14 0v20M0 10h28" stroke="#fff" stroke-width="6"/><path d="M14 0v20M0 10h28" stroke="#c8102e" stroke-width="3"/></svg>',
@@ -523,6 +559,43 @@
       new Intl.DateTimeFormat('en-US', { timeZone: CYPRUS_TIME_ZONE });
     } catch (error) {
       CYPRUS_TIME_ZONE = 'Asia/Nicosia';
+    }
+
+    let outageScrollY = 0;
+
+    function openOutages() {
+      const modal = document.getElementById('outage-modal');
+      if (!modal || !modal.hidden) return;
+      closeHeaderContactMenu();
+      closeSiteMenu();
+      outageScrollY = window.scrollY;
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('overflow-hidden');
+      document.body.classList.add('overflow-hidden');
+      const feed = document.getElementById('outage-feed');
+      const width = Math.max(180, Math.min(500, Math.floor(feed.parentElement.getBoundingClientRect().width)));
+      const url = new URL('https://www.facebook.com/plugins/page.php');
+      url.search = new URLSearchParams({ href: 'https://www.facebook.com/elektrikkurumu/', tabs: 'timeline', width: String(width), height: '620', small_header: 'true', adapt_container_width: 'true', hide_cover: 'true', show_facepile: 'false' });
+      feed.width = String(width);
+      feed.src = url.href;
+      window.requestAnimationFrame(() => document.getElementById('outage-close')?.focus({ preventScroll: true }));
+    }
+
+    function closeOutages() {
+      const modal = document.getElementById('outage-modal');
+      if (!modal || modal.hidden) return;
+      modal.hidden = true;
+      modal.setAttribute('aria-hidden', 'true');
+      document.getElementById('outage-feed').removeAttribute('src');
+      document.documentElement.classList.remove('overflow-hidden');
+      document.body.classList.remove('overflow-hidden');
+      if (Math.abs(window.scrollY - outageScrollY) > 1) window.scrollTo(0, outageScrollY);
+      document.getElementById('site-menu-toggle')?.focus({ preventScroll: true });
+    }
+
+    function closeOutagesFromBackdrop(event) {
+      if (event.target === event.currentTarget) closeOutages();
     }
 
     function getCyprusDateParts(now) {
@@ -888,12 +961,14 @@
       document.getElementById('home-link').setAttribute('aria-label', currentLanguage === 'en' ? 'Bulut Dede Electrical home page' : currentLanguage === 'ru' ? 'Главная страница Bulut Dede' : 'Bulut Dede Elektrik ana sayfa');
       document.getElementById('emergency-link').setAttribute('aria-label', `${copy.emergencyCall}: ${copy.contactChoice}`);
       document.getElementById('discovery-request-close').setAttribute('aria-label', copy.requestClose);
+      document.getElementById('outage-close').setAttribute('aria-label', copy.requestClose);
       document.getElementById('service-tabs').setAttribute('aria-label', copy.servicePrompt);
       const contactMessage = currentLanguage === 'en' ? 'Hello Bulut Dede Electrical, I would like to request a service.' : currentLanguage === 'ru' ? 'Здравствуйте, Bulut Dede. Я хотел(а) бы заказать услугу.' : 'Merhaba Bulut Dede Elektrik, servis talep ediyorum.';
       const contactHref = `https://wa.me/905338712332?text=${encodeURIComponent(contactMessage)}`;
       document.getElementById('header-whatsapp').href = contactHref;
       setTab(activeTab);
       calculateSavings(document.getElementById('bill-slider').value);
+      document.getElementById('outage-feed').title = copy.outageTitle;
       updateHeaderSky();
       try { localStorage.setItem('bulut-dede-language', currentLanguage); } catch (error) { /* storage may be unavailable */ }
     }
@@ -924,6 +999,27 @@
       if (contactOptions && contactToggle && !contactOptions.hidden && !contactOptions.contains(event.target) && !contactToggle.contains(event.target)) closeHeaderContactMenu();
     });
     document.addEventListener('keydown', (event) => {
+      const outageModal = document.getElementById('outage-modal');
+      if (outageModal && !outageModal.hidden) {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeOutages();
+          return;
+        }
+        if (event.key === 'Tab') {
+          const focusable = [...outageModal.querySelectorAll('button:not([disabled]), iframe, a[href], [tabindex]:not([tabindex="-1"])')].filter((element) => element.getClientRects().length);
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (first && last && event.shiftKey && (document.activeElement === first || !outageModal.contains(document.activeElement))) {
+            event.preventDefault();
+            last.focus();
+          } else if (first && last && !event.shiftKey && (document.activeElement === last || !outageModal.contains(document.activeElement))) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+        return;
+      }
       const requestModal = document.getElementById('discovery-request-modal');
       if (requestModal && !requestModal.hidden) {
         if (event.key === 'Escape') {
