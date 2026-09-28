@@ -135,12 +135,14 @@
       transition: opacity 1800ms ease, filter 1800ms ease;
     }
     #site-header {
-      --header-rain-color: rgba(15, 23, 42, .34);
-      --header-rain-glint: rgba(255, 255, 255, .5);
+      --header-rain-fill: rgba(22, 62, 96, .42);
+      --header-rain-glint: rgba(255, 255, 255, .82);
+      --header-rain-shadow: rgba(15, 23, 42, .48);
     }
     #site-header[data-sky="night"] {
-      --header-rain-color: rgba(191, 219, 254, .58);
-      --header-rain-glint: rgba(248, 250, 252, .68);
+      --header-rain-fill: rgba(191, 219, 254, .5);
+      --header-rain-glint: rgba(248, 250, 252, .9);
+      --header-rain-shadow: rgba(2, 6, 23, .62);
     }
     #site-header .header-sky-rain {
       position: absolute;
@@ -153,32 +155,38 @@
       transition: opacity 900ms ease, visibility 0s linear 900ms;
     }
     #site-header[data-rain="true"] .header-sky-rain {
-      opacity: .78;
+      opacity: .82;
       visibility: visible;
       transition-delay: 0s;
     }
-    #site-header .header-sky-rain::before,
-    #site-header .header-sky-rain::after {
+    #site-header .header-sky-rain .rain-drop {
+      position: absolute;
+      top: var(--drop-top);
+      left: var(--drop-left);
+      display: block;
+      width: var(--drop-width);
+      height: var(--drop-height);
+      opacity: 0;
+      clip-path: polygon(50% 0, 82% 38%, 100% 64%, 96% 80%, 82% 93%, 62% 100%, 38% 100%, 18% 93%, 4% 80%, 0 64%, 18% 38%);
+      background: linear-gradient(110deg, var(--header-rain-glint) 0%, rgba(255, 255, 255, .38) 24%, var(--header-rain-fill) 70%, rgba(255, 255, 255, .66) 100%);
+      filter: drop-shadow(0 1px 1px var(--header-rain-shadow));
+      animation: headerSkyDropFall var(--drop-duration) linear var(--drop-delay) infinite;
+    }
+    #site-header .header-sky-rain .rain-drop::after {
       content: "";
       position: absolute;
-      inset: -100% -18%;
-      background-repeat: repeat;
-      will-change: transform;
+      top: 18%;
+      left: 22%;
+      width: 22%;
+      height: 32%;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .84);
     }
-    #site-header .header-sky-rain::before {
-      background-image: linear-gradient(176deg, transparent 44%, var(--header-rain-color) 47%, var(--header-rain-glint) 50%, var(--header-rain-color) 53%, transparent 57%);
-      background-size: 25px 38px;
-      animation: headerSkyRainFall 1s linear infinite;
-    }
-    #site-header .header-sky-rain::after {
-      background-image: linear-gradient(176deg, transparent 42%, var(--header-rain-glint) 46%, var(--header-rain-color) 50%, var(--header-rain-glint) 54%, transparent 59%);
-      background-size: 39px 51px;
-      background-position: 11px 8px;
-      animation: headerSkyRainFall 1.4s linear -.4s infinite;
-      opacity: .76;
-    }
-    @keyframes headerSkyRainFall {
-      to { transform: translate3d(-16px, 32px, 0); }
+    @keyframes headerSkyDropFall {
+      0% { opacity: 0; transform: translate3d(0, -18px, 0) rotate(var(--drop-angle)); }
+      12% { opacity: var(--drop-opacity); }
+      84% { opacity: var(--drop-opacity); }
+      100% { opacity: 0; transform: translate3d(var(--drop-drift), 150px, 0) rotate(var(--drop-angle)); }
     }
     #site-header .header-sky-daylight {
       position: absolute;
@@ -205,8 +213,11 @@
     }
     #site-header[data-sky="night"] .header-sky-night-photo { opacity: 1; }
     @media (prefers-reduced-motion: reduce) {
-      #site-header .header-sky-rain::before,
-      #site-header .header-sky-rain::after { animation: none !important; }
+      #site-header .header-sky-rain .rain-drop {
+        animation: none !important;
+        opacity: var(--drop-opacity) !important;
+        transform: none !important;
+      }
     }
     #site-header[data-sky="night"] .header-sky-daylight { opacity: 0; }
     .language-flag { display: inline-flex; width: 20px; height: 14px; flex: 0 0 auto; overflow: hidden; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,.18); }
@@ -572,6 +583,35 @@
       const sky = isDay ? 'day' : 'night';
       header.dataset.sky = sky;
     }
+
+    function seedHeaderRainDrops() {
+      const rainLayer = document.querySelector('#site-header .header-sky-rain');
+      if (!rainLayer || rainLayer.childElementCount) return;
+
+      const count = Math.min(96, Math.max(36, Math.round(window.innerWidth / 13)));
+      const fragment = document.createDocumentFragment();
+      const randomBetween = (min, max, decimals = 2) =>
+        (min + Math.random() * (max - min)).toFixed(decimals);
+
+      for (let index = 0; index < count; index += 1) {
+        const drop = document.createElement('span');
+        drop.className = 'rain-drop';
+        drop.style.setProperty('--drop-left', randomBetween(0, 100) + '%');
+        drop.style.setProperty('--drop-top', randomBetween(-35, 78) + '%');
+        drop.style.setProperty('--drop-width', randomBetween(2.8, 4.6) + 'px');
+        drop.style.setProperty('--drop-height', randomBetween(9, 16) + 'px');
+        drop.style.setProperty('--drop-opacity', randomBetween(.46, .82));
+        drop.style.setProperty('--drop-duration', randomBetween(1.05, 1.85) + 's');
+        drop.style.setProperty('--drop-delay', '-' + randomBetween(0, 1.85) + 's');
+        drop.style.setProperty('--drop-drift', randomBetween(-15, 2) + 'px');
+        drop.style.setProperty('--drop-angle', randomBetween(4, 10) + 'deg');
+        fragment.appendChild(drop);
+      }
+
+      rainLayer.appendChild(fragment);
+    }
+
+    seedHeaderRainDrops();
 
     const HEADER_RAIN_REFRESH_MS = 15 * 60 * 1000;
     let lastHeaderRainCheck = 0;
