@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#020617">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src https://www.facebook.com; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; upgrade-insecure-requests">
   <link rel="icon" type="image/png" href="bulut-dede-logo.png">
   <title>Bulut Dede Elektrik | Enerji Çözümleri</title>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -230,45 +230,23 @@
       .hero-main::before { height: 530px; background-position: center, center, center, 100% 12%; background-image: linear-gradient(180deg, #071329 0%, rgba(7, 19, 41, .68) 32px, rgba(7, 19, 41, 0) 72px), linear-gradient(90deg, rgba(7, 19, 41, .48) 0%, rgba(7, 19, 41, .42) 52%, rgba(7, 19, 41, .64) 100%), linear-gradient(180deg, rgba(7, 19, 41, .16) 0%, rgba(7, 19, 41, .84) 94%), url("technician-electrical-hero.png"); background-size: cover, cover, cover, cover; }
     }
     #discovery-request-modal[hidden] { display: none !important; }
-    #outage-modal[hidden], #outage-table[hidden], #outage-feedback[hidden] { display: none !important; }
+    #outage-modal[hidden] { display: none !important; }
     #outage-modal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: flex-start; justify-content: center; overflow-y: auto; overscroll-behavior: contain; padding: 1rem; background: rgba(2, 6, 23, .84); backdrop-filter: blur(5px); }
-    .outage-dialog { position: relative; width: min(100%, 900px); max-height: calc(100dvh - 2rem); overflow-y: auto; border: 1px solid #475569; border-radius: 1rem; background: #101f3b; box-shadow: 0 24px 70px rgba(2, 6, 23, .7); padding: 1.25rem; color: #e2e8f0; }
+    .outage-dialog { position: relative; width: min(100%, 570px); max-height: calc(100dvh - 2rem); overflow-y: auto; border: 1px solid #475569; border-radius: 1rem; background: #101f3b; box-shadow: 0 24px 70px rgba(2, 6, 23, .7); padding: 1.25rem; color: #e2e8f0; }
     .outage-dialog h2 { margin: 0; padding-right: 2.5rem; color: #fff; font-size: 1.25rem; font-weight: 800; }
     .outage-dialog p { line-height: 1.5; }
     .outage-menu-button { display: flex; align-items: center; gap: .75rem; width: 100%; min-height: 44px; margin-bottom: .75rem; padding: .75rem; border: 1px solid #475569; border-radius: .75rem; background: #152544; color: #f8fafc; font-size: .875rem; font-weight: 700; text-align: left; cursor: pointer; }
     .outage-menu-button:hover, .outage-menu-button:focus-visible { border-color: #facc15; outline-color: #facc15; }
     .outage-close { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border: 1px solid #64748b; border-radius: .5rem; background: #152544; color: #f8fafc; cursor: pointer; }
-    .outage-close:focus-visible, .outage-search:focus-visible, .outage-source:focus-visible { outline: 2px solid #facc15; outline-offset: 2px; }
-    .outage-intro, .outage-caveat { margin: .45rem 0 0; color: #cbd5e1; font-size: .875rem; }
-    .outage-controls { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .75rem; margin: 1.25rem 0 .75rem; }
-    .outage-controls label { display: grid; gap: .35rem; min-width: min(100%, 250px); font-size: .8rem; font-weight: 700; }
-    .outage-search { width: 100%; min-height: 44px; padding: .6rem .8rem; border: 1px solid #64748b; border-radius: .6rem; background: #0d1932; color: #fff; font: inherit; }
-    .outage-updated { color: #cbd5e1; font-size: .75rem; }
-    .outage-table-wrap { overflow-x: auto; border: 1px solid #475569; border-radius: .75rem; }
-    .outage-table { width: 100%; border-collapse: collapse; text-align: left; font-size: .82rem; }
-    .outage-table th { padding: .75rem .65rem; background: #1b3152; color: #e2e8f0; font-weight: 700; white-space: nowrap; }
-    .outage-table td { padding: .8rem .65rem; border-top: 1px solid #334155; vertical-align: top; overflow-wrap: anywhere; }
-    .outage-table tbody tr { background: #10203d; }
-    .outage-table tbody tr:nth-child(even) { background: #142746; }
-    .outage-status { display: inline-block; border: 1px solid; border-radius: 999px; padding: .25rem .5rem; font-size: .75rem; font-weight: 800; white-space: nowrap; }
-    .outage-status--active { border-color: #ef4444; background: #491b25; color: #fecaca; }
-    .outage-status--planned { border-color: #eab308; background: #483916; color: #fef08a; }
-    .outage-status--resolved { border-color: #22c55e; background: #133b2b; color: #bbf7d0; }
-    .outage-status--stale { border-color: #64748b; background: #26364e; color: #e2e8f0; }
-    .outage-source { display: inline-block; margin-top: .35rem; color: #fde68a; font-size: .75rem; text-decoration: underline; text-underline-offset: 2px; }
-    .outage-feedback { padding: 1rem; border: 1px solid #475569; border-radius: .75rem; background: #142746; color: #e2e8f0; font-size: .875rem; }
-    .outage-footer { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; justify-content: space-between; margin-top: 1rem; }
-    .outage-footer a { color: #fde68a; font-size: .875rem; text-decoration: underline; text-underline-offset: 2px; }
+    .outage-close:focus-visible, .outage-footer a:focus-visible { outline: 2px solid #facc15; outline-offset: 2px; }
+    .outage-intro { margin: .45rem 0 0; color: #cbd5e1; font-size: .875rem; }
+    .outage-feed-wrap { display: flex; justify-content: center; width: 100%; margin-top: 1rem; min-height: 620px; border-radius: .75rem; background: #fff; overflow: hidden; }
+    .outage-feed { display: block; width: 100%; min-height: 620px; border: 0; background: #fff; }
+    .outage-footer { margin-top: 1rem; color: #cbd5e1; font-size: .8rem; }
+    .outage-footer a { color: #fde68a; text-decoration: underline; text-underline-offset: 2px; }
     @media (max-width: 700px) {
       #outage-modal { padding: .5rem; }
       .outage-dialog { max-height: calc(100dvh - 1rem); padding: 1rem; }
-      .outage-table-wrap { overflow: visible; border: 0; }
-      .outage-table, .outage-table tbody, .outage-table tr { display: block; width: 100%; }
-      .outage-table thead { display: none; }
-      .outage-table tbody tr { margin-bottom: .65rem; border: 1px solid #475569; border-radius: .75rem; overflow: hidden; }
-      .outage-table td { display: grid; grid-template-columns: 6.3rem minmax(0, 1fr); gap: .6rem; padding: .55rem .7rem; border-top: 1px solid #334155; }
-      .outage-table td:first-child { border-top: 0; }
-      .outage-table td::before { content: attr(data-label); color: #cbd5e1; font-size: .75rem; font-weight: 700; }
     }
     .service-panel { scroll-margin-top: 92px; }
     .service-panel.is-opening { animation: servicePanelOpen .32s ease both; }
@@ -432,20 +410,10 @@
   <div id="outage-modal" hidden role="dialog" aria-modal="true" aria-labelledby="outage-title" aria-describedby="outage-intro" aria-hidden="true" onclick="closeOutagesFromBackdrop(event)">
     <section class="outage-dialog">
       <button id="outage-close" class="outage-close" type="button" onclick="closeOutages()" aria-label="Kapat"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
-      <h2 id="outage-title" data-i18n="outageTitle">KIB-TEK kesinti duyuruları</h2>
-      <p id="outage-intro" class="outage-intro" data-i18n="outageIntro">Planlı ve bildirilen güncel kesintileri bölgenize göre inceleyin.</p>
-      <div class="outage-controls">
-        <label for="outage-search"><span data-i18n="outageFilter">Bölge veya mahalle ara</span><input id="outage-search" class="outage-search" type="search" autocomplete="off" placeholder="Örn. Girne, Lapta" data-i18n-placeholder="outageSearchPlaceholder" oninput="renderOutages()"></label>
-        <span id="outage-updated" class="outage-updated"></span>
-      </div>
-      <div id="outage-table-wrap" class="outage-table-wrap" hidden>
-        <table id="outage-table" class="outage-table" hidden>
-          <thead><tr><th scope="col" data-i18n="outageStatusHeading">Durum</th><th scope="col" data-i18n="outageAreaHeading">Bölge</th><th scope="col" data-i18n="outageReasonHeading">Neden</th><th scope="col" data-i18n="outageStartHeading">Başlangıç</th><th scope="col" data-i18n="outageEndHeading">Tahmini dönüş</th><th scope="col" data-i18n="outageUpdateHeading">Son güncelleme</th></tr></thead>
-          <tbody id="outage-rows"></tbody>
-        </table>
-      </div>
-      <p id="outage-feedback" class="outage-feedback" role="status" aria-live="polite" data-i18n="outageLoading">Duyurular yükleniyor…</p>
-      <div class="outage-footer"><p class="outage-caveat" data-i18n="outageCaveat">Duyuru bulunmaması, bölgede elektriğin kesin olarak verildiği anlamına gelmez.</p><a href="https://www.kibtek.com/" target="_blank" rel="noopener noreferrer" data-i18n="outageOfficial">KIB-TEK resmî sitesi</a></div>
+      <h2 id="outage-title" data-i18n="outageTitle">KIB-TEK resmî duyuruları</h2>
+      <p id="outage-intro" class="outage-intro" data-i18n="outageIntro">Facebook sayfasındaki en yeni paylaşımlar doğrudan KIB-TEK kaynağından gösterilir.</p>
+      <div class="outage-feed-wrap"><iframe id="outage-feed" class="outage-feed" title="KIB-TEK Facebook duyuruları" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture"></iframe></div>
+      <p class="outage-footer"><span data-i18n="outageFallback">Akış cihazınızda açılmazsa </span><a href="https://www.facebook.com/elektrikkurumu/" target="_blank" rel="noopener noreferrer" data-i18n="outageOfficial">KIB-TEK Facebook sayfasını açın</a>.</p>
     </section>
   </div>
 
@@ -551,27 +519,9 @@
     };
 
     const outageTranslations = {
-      tr: {
-        outageMenu: 'KIB-TEK kesintileri', outageTitle: 'KIB-TEK kesinti duyuruları', outageIntro: 'Planlı ve bildirilen güncel kesintileri bölgenize göre inceleyin.', outageFilter: 'Bölge veya mahalle ara', outageSearchPlaceholder: 'Örn. Girne, Lapta',
-        outageStatusHeading: 'Durum', outageAreaHeading: 'Bölge', outageReasonHeading: 'Neden', outageStartHeading: 'Başlangıç', outageEndHeading: 'Tahmini dönüş', outageUpdateHeading: 'Son güncelleme',
-        outageLoading: 'Duyurular yükleniyor…', outageCaveat: 'Bilgiler KIB-TEK duyurularından derlenir. Duyuru bulunmaması, elektriğin kesin olarak verildiği anlamına gelmez.', outageOfficial: 'KIB-TEK resmî sitesi',
-        outageNeverChecked: 'Kaynak bağlantısı henüz kurulmadı', outageChecked: 'Kaynak kontrolü: ', outageNoNotices: 'Resmî kaynaklarda tabloya aktarılabilecek güncel duyuru bulunamadı.', outageNoMatch: 'Bu bölge için doğrulanmış duyuru bulunamadı.', outageLoadError: 'Duyurular yüklenemedi. Lütfen KIB-TEK’in resmî sayfasını kontrol edin.', outageSourceStale: 'Kaynak kontrolü gecikti; durum güncel olmayabilir.',
-        outageActive: 'Kesinti sürüyor', outagePlanned: 'Planlandı', outageResolved: 'Giderildi', outageStale: 'Güncelliği doğrulanmadı', outageUnknownTime: 'Belirtilmedi', outageSourceLink: 'Resmî duyuru'
-      },
-      en: {
-        outageMenu: 'KIB-TEK outages', outageTitle: 'KIB-TEK outage notices', outageIntro: 'Check scheduled and reported outages by area.', outageFilter: 'Search area or neighbourhood', outageSearchPlaceholder: 'E.g. Kyrenia, Lapta',
-        outageStatusHeading: 'Status', outageAreaHeading: 'Area', outageReasonHeading: 'Reason', outageStartHeading: 'Starts', outageEndHeading: 'Estimated return', outageUpdateHeading: 'Last update',
-        outageLoading: 'Loading notices…', outageCaveat: 'Information is compiled from KIB-TEK notices. No listed notice does not confirm that power is available.', outageOfficial: 'Official KIB-TEK website',
-        outageNeverChecked: 'Source not connected yet', outageChecked: 'Source checked: ', outageNoNotices: 'No current notice suitable for the table was found in official sources.', outageNoMatch: 'No verified notice matches this area.', outageLoadError: 'Notices could not be loaded. Please check the official KIB-TEK website.', outageSourceStale: 'Source check is delayed; status may be outdated.',
-        outageActive: 'Outage ongoing', outagePlanned: 'Scheduled', outageResolved: 'Restored', outageStale: 'Update unverified', outageUnknownTime: 'Not announced', outageSourceLink: 'Official notice'
-      },
-      ru: {
-        outageMenu: 'Отключения KIB-TEK', outageTitle: 'Уведомления KIB-TEK об отключениях', outageIntro: 'Плановые и объявленные текущие отключения по районам.', outageFilter: 'Поиск района или квартала', outageSearchPlaceholder: 'Например, Кирения, Лапта',
-        outageStatusHeading: 'Статус', outageAreaHeading: 'Район', outageReasonHeading: 'Причина', outageStartHeading: 'Начало', outageEndHeading: 'Ожидаемое восстановление', outageUpdateHeading: 'Обновлено',
-        outageLoading: 'Загрузка уведомлений…', outageCaveat: 'Данные основаны на сообщениях KIB-TEK. Отсутствие уведомления не подтверждает наличие электричества.', outageOfficial: 'Официальный сайт KIB-TEK',
-        outageNeverChecked: 'Источник ещё не подключён', outageChecked: 'Проверка источника: ', outageNoNotices: 'Подходящих актуальных сообщений в официальных источниках нет.', outageNoMatch: 'Для этого района подтверждённых уведомлений нет.', outageLoadError: 'Не удалось загрузить уведомления. Проверьте официальный сайт KIB-TEK.', outageSourceStale: 'Проверка источника задерживается; статус может быть устаревшим.',
-        outageActive: 'Отключение продолжается', outagePlanned: 'Запланировано', outageResolved: 'Восстановлено', outageStale: 'Актуальность не подтверждена', outageUnknownTime: 'Не объявлено', outageSourceLink: 'Официальное сообщение'
-      }
+      tr: { outageMenu: 'KIB-TEK kesintileri', outageTitle: 'KIB-TEK resmî duyuruları', outageIntro: 'Facebook sayfasındaki en yeni paylaşımlar doğrudan KIB-TEK kaynağından gösterilir.', outageFallback: 'Akış cihazınızda açılmazsa ', outageOfficial: 'KIB-TEK Facebook sayfasını açın' },
+      en: { outageMenu: 'KIB-TEK outages', outageTitle: 'Official KIB-TEK notices', outageIntro: 'Recent posts are shown directly from the KIB-TEK Facebook page.', outageFallback: 'If the feed does not open on your device, ', outageOfficial: 'open the KIB-TEK Facebook page' },
+      ru: { outageMenu: 'Отключения KIB-TEK', outageTitle: 'Официальные объявления KIB-TEK', outageIntro: 'Новые публикации показаны напрямую со страницы KIB-TEK в Facebook.', outageFallback: 'Если лента не открывается, ', outageOfficial: 'откройте страницу KIB-TEK в Facebook' }
     };
     for (const language of Object.keys(outageTranslations)) Object.assign(translations[language], outageTranslations[language]);
 
@@ -611,136 +561,7 @@
       CYPRUS_TIME_ZONE = 'Asia/Nicosia';
     }
 
-    let outageNotices = null;
-    let outageCheckedAt = null;
-    let outageLoadFailed = false;
     let outageScrollY = 0;
-    let outageRequestId = 0;
-
-    function officialOutageSource(value) {
-      try {
-        const url = new URL(value);
-        if (url.protocol !== 'https:') return null;
-        const host = url.hostname.toLowerCase();
-        if (host === 'kibtek.com' || host.endsWith('.kibtek.com')) return url.href;
-        if (['facebook.com', 'www.facebook.com', 'm.facebook.com'].includes(host) && /^\/(?:elektrikkurumu|@elektrikkurumu)(?:\/|$)/i.test(url.pathname)) return url.href;
-        if (['facebook.com', 'www.facebook.com'].includes(host) && /^\/\d+\/posts\/[A-Za-z0-9_-]+\/?$/.test(url.pathname)) return url.href;
-        if (['instagram.com', 'www.instagram.com'].includes(host) && /^\/(?:p|reel)\/[A-Za-z0-9_-]+\/?$/i.test(url.pathname)) return url.href;
-        if (['x.com', 'twitter.com'].includes(host) && /^\/kibtek(?:\/|$)/i.test(url.pathname)) return url.href;
-      } catch (error) { /* invalid URL */ }
-      return null;
-    }
-
-    function parseOutageDate(value) {
-      const time = typeof value === 'string' ? Date.parse(value) : NaN;
-      return Number.isFinite(time) ? time : null;
-    }
-
-    function formatOutageDate(value) {
-      const time = parseOutageDate(value);
-      if (time === null) return translations[currentLanguage].outageUnknownTime;
-      const locale = currentLanguage === 'en' ? 'en-GB' : currentLanguage === 'ru' ? 'ru-RU' : 'tr-TR';
-      return new Intl.DateTimeFormat(locale, { timeZone: CYPRUS_TIME_ZONE, day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).format(time);
-    }
-
-    function normalizedOutageNotices(data) {
-      if (!data || !Array.isArray(data.notices)) throw new Error('Invalid outage data');
-      const now = Date.now();
-      outageCheckedAt = parseOutageDate(data.checkedAt) === null ? null : data.checkedAt;
-      return data.notices.filter((notice) => {
-        if (!notice || !['planned', 'active', 'resolved'].includes(notice.status)) return false;
-        if (typeof notice.area !== 'string' || !notice.area.trim() || typeof notice.reason !== 'string' || !notice.reason.trim()) return false;
-        if (!officialOutageSource(notice.sourceUrl)) return false;
-        if (parseOutageDate(notice.startsAt) === null || parseOutageDate(notice.updatedAt) === null) return false;
-        const expires = parseOutageDate(notice.expiresAt);
-        return expires !== null && expires > now;
-      });
-    }
-
-    function renderOutages() {
-      const copy = translations[currentLanguage];
-      const table = document.getElementById('outage-table');
-      const wrapper = document.getElementById('outage-table-wrap');
-      const rows = document.getElementById('outage-rows');
-      const feedback = document.getElementById('outage-feedback');
-      const updated = document.getElementById('outage-updated');
-      if (!table || !wrapper || !rows || !feedback || !updated) return;
-      rows.replaceChildren();
-      const sourceDelayed = !outageCheckedAt || Date.now() - Date.parse(outageCheckedAt) > 60 * 60 * 1000;
-      updated.textContent = outageCheckedAt ? copy.outageChecked + formatOutageDate(outageCheckedAt) + (sourceDelayed ? ' · ' + copy.outageSourceStale : '') : copy.outageNeverChecked;
-      if (outageLoadFailed || outageNotices === null) {
-        table.hidden = true;
-        wrapper.hidden = true;
-        feedback.hidden = false;
-        feedback.textContent = outageLoadFailed ? copy.outageLoadError : copy.outageLoading;
-        return;
-      }
-
-      const search = document.getElementById('outage-search').value.trim().toLocaleLowerCase('tr-TR');
-      const statusOrder = { active: 0, planned: 1, resolved: 2 };
-      const visible = outageNotices.filter((notice) => notice.area.toLocaleLowerCase('tr-TR').includes(search)).sort((a, b) => statusOrder[a.status] - statusOrder[b.status] || Date.parse(b.updatedAt) - Date.parse(a.updatedAt));
-      if (!visible.length) {
-        table.hidden = true;
-        wrapper.hidden = true;
-        feedback.hidden = false;
-        feedback.textContent = search ? copy.outageNoMatch : copy.outageNoNotices;
-        return;
-      }
-
-      const headings = [copy.outageStatusHeading, copy.outageAreaHeading, copy.outageReasonHeading, copy.outageStartHeading, copy.outageEndHeading, copy.outageUpdateHeading];
-      for (const notice of visible) {
-        const stale = (sourceDelayed && notice.status === 'active') || (notice.status === 'active' && Date.now() - Date.parse(notice.updatedAt) > 12 * 60 * 60 * 1000);
-        const state = stale ? 'stale' : notice.status;
-        const labels = { active: copy.outageActive, planned: copy.outagePlanned, resolved: copy.outageResolved, stale: copy.outageStale };
-        const tr = document.createElement('tr');
-        const values = [labels[state], notice.area, notice.reason, formatOutageDate(notice.startsAt), notice.estimatedEndAt ? formatOutageDate(notice.estimatedEndAt) : copy.outageUnknownTime, formatOutageDate(notice.updatedAt)];
-        values.forEach((value, index) => {
-          const cell = document.createElement('td');
-          cell.dataset.label = headings[index];
-          if (index === 0) {
-            const badge = document.createElement('span');
-            badge.className = 'outage-status outage-status--' + state;
-            badge.textContent = value;
-            cell.append(badge);
-          } else {
-            cell.textContent = value;
-            if (index === 2) {
-              const link = document.createElement('a');
-              link.className = 'outage-source';
-              link.href = officialOutageSource(notice.sourceUrl);
-              link.target = '_blank';
-              link.rel = 'noopener noreferrer';
-              link.textContent = copy.outageSourceLink;
-              cell.append(document.createElement('br'), link);
-            }
-          }
-          tr.append(cell);
-        });
-        rows.append(tr);
-      }
-      feedback.hidden = true;
-      table.hidden = false;
-      wrapper.hidden = false;
-    }
-
-    async function loadOutages() {
-      const requestId = ++outageRequestId;
-      outageNotices = null;
-      outageCheckedAt = null;
-      outageLoadFailed = false;
-      renderOutages();
-      try {
-        const response = await fetch('kesintiler.json', { cache: 'no-store' });
-        if (!response.ok) throw new Error('Outage data unavailable');
-        const data = await response.json();
-        if (requestId !== outageRequestId) return;
-        outageNotices = normalizedOutageNotices(data);
-      } catch (error) {
-        if (requestId !== outageRequestId) return;
-        outageLoadFailed = true;
-      }
-      renderOutages();
-    }
 
     function openOutages() {
       const modal = document.getElementById('outage-modal');
@@ -748,12 +569,16 @@
       closeHeaderContactMenu();
       closeSiteMenu();
       outageScrollY = window.scrollY;
-      document.getElementById('outage-search').value = '';
       modal.hidden = false;
       modal.setAttribute('aria-hidden', 'false');
       document.documentElement.classList.add('overflow-hidden');
       document.body.classList.add('overflow-hidden');
-      void loadOutages();
+      const feed = document.getElementById('outage-feed');
+      const width = Math.max(180, Math.min(500, Math.floor(feed.parentElement.getBoundingClientRect().width)));
+      const url = new URL('https://www.facebook.com/plugins/page.php');
+      url.search = new URLSearchParams({ href: 'https://www.facebook.com/elektrikkurumu/', tabs: 'timeline', width: String(width), height: '620', small_header: 'true', adapt_container_width: 'true', hide_cover: 'true', show_facepile: 'false' });
+      feed.width = String(width);
+      feed.src = url.href;
       window.requestAnimationFrame(() => document.getElementById('outage-close')?.focus({ preventScroll: true }));
     }
 
@@ -762,6 +587,7 @@
       if (!modal || modal.hidden) return;
       modal.hidden = true;
       modal.setAttribute('aria-hidden', 'true');
+      document.getElementById('outage-feed').removeAttribute('src');
       document.documentElement.classList.remove('overflow-hidden');
       document.body.classList.remove('overflow-hidden');
       if (Math.abs(window.scrollY - outageScrollY) > 1) window.scrollTo(0, outageScrollY);
@@ -1142,7 +968,7 @@
       document.getElementById('header-whatsapp').href = contactHref;
       setTab(activeTab);
       calculateSavings(document.getElementById('bill-slider').value);
-      renderOutages();
+      document.getElementById('outage-feed').title = copy.outageTitle;
       updateHeaderSky();
       try { localStorage.setItem('bulut-dede-language', currentLanguage); } catch (error) { /* storage may be unavailable */ }
     }
