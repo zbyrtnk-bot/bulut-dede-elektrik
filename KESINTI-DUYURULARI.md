@@ -7,7 +7,7 @@ Hamburger menüdeki kesinti tablosu, `kesintiler.json` dosyasındaki resmî duyu
 Kaynak, KIB-TEK'in [resmî Facebook sayfasıdır](https://www.facebook.com/elektrikkurumu/). GitHub Actions, sayfadaki son 30 gönderiyi yaklaşık 15 dakikada bir Graph API üzerinden kontrol eder. Duyurunun açıklama metni yetmiyorsa Facebook gönderisindeki resim yerel Tesseract `tur+eng` OCR ile okunur. Sitede Facebook akışı veya gönderi resmi açılmaz; sadece çıkarılan bölge, sebep ve saatler tabloya yazılır.
 
 1. Meta for Developers uygulamasında, yönetmediğiniz bir Facebook sayfasının herkese açık gönderilerini okumak için onaylanmış **Page Public Content Access** ve uygun kullanıcı erişim belirtecini kullanın.
-2. GitHub deposunun **Settings → Secrets and variables → Actions** bölümüne `META_FACEBOOK_TOKEN` gizli anahtarını ve `KIBTEK_FACEBOOK_PAGE_ID` değişkenini ekleyin. Belirteci kod dosyasına veya JSON dosyasına yazmayın.
+2. GitHub deposunun **Settings → Secrets and variables → Actions** bölümüne `META_FACEBOOK_TOKEN` adlı gizli anahtarı ekleyin. Sayısal KIB-TEK sayfa kimliği, bu belirteçle resmî `elektrikkurumu` kullanıcı adından otomatik bulunur; istenirse `KIBTEK_FACEBOOK_PAGE_ID` değişkeni olarak elle de verilebilir. Belirteci kod dosyasına veya JSON dosyasına yazmayın.
 3. **Actions → KIB-TEK official social notices → Run workflow** ile ilk kontrolü başlatın. Başarılı çalışmadan sonra `kesintiler.json` güncellenir; GitHub `main` dalından siteye otomatik yayın devreye girer.
 
 ## Durum ve güvenlik kuralları
