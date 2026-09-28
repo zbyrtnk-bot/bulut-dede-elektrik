@@ -28,8 +28,8 @@ jobs:
           OWN_INSTAGRAM_BUSINESS_ID: ${{ vars.OWN_INSTAGRAM_BUSINESS_ID }}
           META_INSTAGRAM_TOKEN: ${{ secrets.META_INSTAGRAM_TOKEN }}
         run: |
-          if [ -z "$META_FACEBOOK_TOKEN" ] || [ -z "$KIBTEK_FACEBOOK_PAGE_ID" ]; then
-            echo 'Meta access is not configured. No sample notices are published.'
+          if [ -z "$META_FACEBOOK_TOKEN" ]; then
+            echo 'Meta access token is not configured. No sample notices are published.'
             exit 0
           fi
           sudo apt-get update
