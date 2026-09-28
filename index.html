@@ -925,6 +925,14 @@
 
     function chooseService(key) {
       hasChosenService = true;
+      const services = document.getElementById('services');
+      const homeServices = document.getElementById('home-services');
+      const card = document.getElementById('tab-content-card');
+      const calculator = document.getElementById('calculator-shell');
+      if (services && homeServices && card && homeServices.parentElement === services) {
+        services.insertBefore(card, homeServices);
+        if (calculator) services.insertBefore(calculator, homeServices);
+      }
       setTab(key, true);
       closeSiteMenu(true);
     }
