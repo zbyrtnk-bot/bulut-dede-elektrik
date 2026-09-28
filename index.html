@@ -784,7 +784,7 @@
       }
       card.setAttribute('aria-hidden', String(!hasChosenService));
       card.classList.add('is-opening');
-      if (reveal && window.matchMedia('(max-width: 767px)').matches) {
+      if (reveal) {
         window.requestAnimationFrame(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }));
       }
     }
@@ -802,7 +802,7 @@
       if (opening) {
         void shell.offsetWidth;
         shell.classList.add('is-opening');
-        if (window.matchMedia('(max-width: 767px)').matches) window.requestAnimationFrame(() => shell.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+        window.requestAnimationFrame(() => shell.scrollIntoView({ behavior: 'smooth', block: 'start' }));
       }
     }
 
@@ -920,12 +920,12 @@
       menu.hidden = true;
       closeLanguageOptions();
       updateSiteMenuButton();
-      if (restoreFocus) document.getElementById('site-menu-toggle').focus();
+      if (restoreFocus) document.getElementById('site-menu-toggle').focus({ preventScroll: true });
     }
 
     function chooseService(key) {
       hasChosenService = true;
-      setTab(key, false);
+      setTab(key, true);
       closeSiteMenu(true);
     }
 
