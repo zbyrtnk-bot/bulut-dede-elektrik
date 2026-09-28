@@ -254,7 +254,12 @@ def ocr_image(url):
 
 def collect():
     token = os.environ["META_FACEBOOK_TOKEN"]
-    page_id = os.environ["KIBTEK_FACEBOOK_PAGE_ID"]
+    page_id = os.environ.get("KIBTEK_FACEBOOK_PAGE_ID", "").strip()
+    if not page_id:
+        page = graph_get("elektrikkurumu", {"fields": "id"}, token)
+        page_id = str(page.get("id", ""))
+    if not re.fullmatch(r"\d+", page_id):
+        raise RuntimeError("KIB-TEK Facebook Page ID could not be resolved")
     response = graph_get(page_id + "/posts", {
         "fields": "message,created_time,permalink_url,full_picture,attachments{media,subattachments}", "limit": "30",
     }, token)
@@ -275,7 +280,6 @@ def collect():
 
     ocr_count = 0
     now = datetime.now(timezone.utc)
-    page_id = os.environ["KIBTEK_FACEBOOK_PAGE_ID"]
     for post in posts:
         message = post.get("message") or post.get("caption") or ""
         if ocr_count >= 20 or not image_url(post):
@@ -289,13 +293,12 @@ def collect():
         except (urllib.error.URLError, TimeoutError, subprocess.TimeoutExpired):
             post["image_text"] = ""
         ocr_count += 1
-    return posts
+    return posts, page_id
 
 
 def main():
     now = datetime.now(timezone.utc)
-    posts = collect()  # Failure keeps the existing JSON untouched.
-    page_id = os.environ["KIBTEK_FACEBOOK_PAGE_ID"]
+    posts, page_id = collect()  # Failure keeps the existing JSON untouched.
     notices = [notice for post in posts if (notice := parse_post(post, now, page_id))]
     notices = list({notice["sourceUrl"]: notice for notice in notices}.values())
     notices.sort(key=lambda notice: notice["startsAt"])
